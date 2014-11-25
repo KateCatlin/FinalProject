@@ -2,6 +2,7 @@ package com.example.katecatlin.finalproject.requests;
 
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.katecatlin.finalproject.interfaces.JsonApiCallback;
 
@@ -11,6 +12,9 @@ import org.json.JSONObject;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -19,9 +23,9 @@ import java.net.URLConnection;
  */
 public class JSONRequest {
 
-    private static final String ROOT_URL = "api.jambase.com";
+    HttpURLConnection httpURLConnection = null;
+    InputStream inputStream = null;
 
-    URLConnection httpURLConnection = null;
 
     private static JSONRequest jsonRequest;
 
@@ -33,14 +37,16 @@ public class JSONRequest {
         return jsonRequest;
     }
 
+
     private JSONRequest () {
     }
+
 
     public void getConcerts (JsonApiCallback jsonApiCallback) {
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority(ROOT_URL)
+                .authority("api.jambase.com")
                 .appendPath("events")
                 .appendQueryParameter("zipCode", "48201")
                 .appendQueryParameter("radius", "10")
@@ -49,8 +55,8 @@ public class JSONRequest {
                 .build();
 
         new LoadDataInBackground(jsonApiCallback).execute(uri);
-
     }
+
 
     private class LoadDataInBackground extends AsyncTask <Uri, Void, JSONObject> {
 
@@ -72,9 +78,15 @@ public class JSONRequest {
                 return null;
             } finally {
                 if (httpURLConnection != null) {
-//                    httpURLConnection.disconnect();
+                    httpURLConnection.disconnect();
                 }
-
+                try {
+                    if (inputStream != null) {
+                        inputStream.close();
+                    }
+                } catch (IOException e) {
+                    Log.d("LOG_TAG", "IOException on closing input stream");
+                }
 
             }
         }
@@ -90,9 +102,14 @@ public class JSONRequest {
     }
 
     private JSONObject getJSONObjectFromUri(Uri uri) throws IOException, JSONException {
-        URLConnection httpURLConnection = new URL(uri.toString()).openConnection();
+        String uriString = uri.toString();
+        URL url = new URL(uriString);
 
-        InputStream inputStream = httpURLConnection.getInputStream();
+        httpURLConnection = (HttpURLConnection) url.openConnection();
+        httpURLConnection.setRequestMethod("GET");
+        httpURLConnection.connect();
+
+        inputStream = httpURLConnection.getInputStream();
         BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
 
         int bytesRead;
@@ -101,11 +118,6 @@ public class JSONRequest {
         while ((bytesRead = bufferedInputStream.read()) != -1) {
             stringBuilder.append((char)bytesRead);
         }
-
-        if (inputStream != null) {
-            inputStream.close();
-        }
-
 
         return new JSONObject(stringBuilder.toString());
 
