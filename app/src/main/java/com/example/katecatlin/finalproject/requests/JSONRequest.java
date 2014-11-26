@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.example.katecatlin.finalproject.interfaces.JsonApiCallback;
 
+import org.joda.time.DateTime;
+import org.joda.time.JodaTimePermission;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -94,7 +96,7 @@ public class JSONRequest {
         @Override
         protected void onPostExecute(JSONObject result) {
             if (result != null) {
-                this.jsonApiCallback.onSuccess(result);
+                this.jsonApiCallback.onSuccess();
             } else {
                 this.jsonApiCallback.onError();
             }
