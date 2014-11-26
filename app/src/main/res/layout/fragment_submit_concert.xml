@@ -8,8 +8,7 @@
     android:paddingRight="20dp"
     tools:context=".CreateLunchFragment">
 
-   <!--<string name="Ticket_URl_Submit">Link to Purchase Tickets:</string>-->
-    <!---->
+    <!--Why is this so ugly? -->
 
     <TextView
         android:layout_width="wrap_content"
