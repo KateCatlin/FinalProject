@@ -47,9 +47,9 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
         List<ConcertModel> allConcerts = new ArrayList<ConcertModel>();
 
         //Making a fake array just to test array adapter:
-        ConcertModel concertModel1 = new ConcertModel("The Venue", "1520 Woodward Ave", "Detroit", "48226", "DetroitLabs.com", "The Rocking Rok", "Two-Tones Tyndall", "Stu Mcgoo", "www.RockinLabs.com");
-        ConcertModel concertModel2 = new ConcertModel("La Venue-a", "1521 Woodward Ave", "Detroit", "48226", "DetroitLabers.com", "Bay-Bay Bry Bry", "Chowdown Chowning", "The Clawed", "www.Labs.com");
-        ConcertModel concertModel3 = new ConcertModel("El Venue-y", "1522 Woodward Ave", "Detroit", "48226", "DetroitLabays.com", "Sub-Bass Sibs", "No Dotz", "Terry-Your-Heart-Out", "www.RockinLabs.com");
+        ConcertModel concertModel1 = new ConcertModel("12/25", "9:32PM", "The Venue", "1520 Woodward Ave", "Detroit", "48226", "DetroitLabs.com", "The Rocking Rok", "Two-Tones Tyndall", "Stu Mcgoo", "www.RockinLabs.com");
+        ConcertModel concertModel2 = new ConcertModel("12/25", "9:32PM", "La Venue-a", "1521 Woodward Ave", "Detroit", "48226", "DetroitLabers.com", "Bay-Bay Bry Bry", "Chowdown Chowning", "The Clawed", "www.Labs.com");
+        ConcertModel concertModel3 = new ConcertModel("12/25", "9:32PM", "El Venue-y", "1522 Woodward Ave", "Detroit", "48226", "DetroitLabays.com", "Sub-Bass Sibs", "No Dotz", "Terry-Your-Heart-Out", "www.RockinLabs.com");
 
         allConcerts.add(concertModel1);
         allConcerts.add(concertModel2);
