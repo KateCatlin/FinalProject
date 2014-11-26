@@ -12,6 +12,8 @@
     android:background="@drawable/default_concert_background"
     >
 
+    <!--Go back and turn those color placeholders into actual colors! -->
+
     <TextView
         android:id="@+id/First_Artist1_Title"
         android:layout_width="wrap_content"

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical"
+    >
+
+    <!--Go back and turn those color placeholders into actual colors! -->
+
+    <TextView
+        android:id="@+id/Artist1_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:paddingTop="30dp"
+        android:paddingLeft="10dp"
+        android:text="@string/Artist1"
+        android:textColor="#ffffff"
+        android:textSize="40dp"/>
+
+    <RelativeLayout
+        android:id="@+id/Date_Row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Artist1_Title"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="20dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/Date_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="30dp"
+            android:text="@string/Date"
+            android:textColor="#ffffff"
+            android:textSize="25dp"
+            />
+
+        <TextView
+            android:id="@+id/Time_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/Date_Title"
+            android:text="@string/Time"
+            android:textColor="#ffffff"
+            android:textSize="25dp"
+            />
+
+        </RelativeLayout>
+
+    <TextView
+        android:id="@+id/Venue_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Date_Row"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="30dp"
+        android:text="@string/Venue"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        />
+
+    <TextView
+        android:id="@+id/Address_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Venue_Title"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Address"
+        android:textColor="#ffffff"
+        android:textSize="15dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/Address_Row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/Address_Title"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/City_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/City"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            />
+        <TextView
+            android:id="@+id/Zipcode_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/City_Title"
+            android:text="@string/ZipCode"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/URL_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/Address_Row"
+        android:text="@string/VenueURL"
+        android:textColor="#ffffff"
+        android:textSize="15dp"
+        />
+
+    <TextView
+        android:id="@+id/Featuring_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/URL_Title"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="30dp"
+        android:text="@string/Featuring_Title"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/Artists_Row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Featuring_Title"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="20dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/Artist2_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="30dp"
+            android:text="@string/Artist2"
+            android:textColor="#ffffff"
+            android:textSize="25dp"
+            />
+
+        <TextView
+            android:id="@+id/Artist3_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/Artist2_Title"
+            android:text="@string/Artist3"
+            android:textColor="#ffffff"
+            android:textSize="25dp"
+            />
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/Ticket_Button"
+        android:background="#000fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:text="@string/Ticket_Title"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        />
+
+
+</RelativeLayout>

@@ -7,6 +7,9 @@
     >
 
 <!--Kate go back and add a drawable shape to give these a frame!-->
+
+    <!--Go back and turn those color placeholders into actual colors! -->
+
     <TextView
         android:id="@+id/Artist1_Title"
         android:layout_width="wrap_content"
