@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     android:background="#000000"
     android:orientation="vertical"
     >
@@ -11,7 +11,7 @@
     <!--Go back and turn those color placeholders into actual colors! -->
 
     <TextView
-        android:id="@+id/Artist1_Title"
+        android:id="@+id/TextView_Artist1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
@@ -22,10 +22,10 @@
 
 
     <TextView
-        android:id="@+id/Date_Title"
+        android:id="@+id/TextView_Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Artist1_Title"
+        android:layout_below="@id/TextView_Artist1"
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
         android:text="@string/Date"
@@ -34,11 +34,11 @@
         />
 
     <TextView
-        android:id="@+id/Time_Title"
+        android:id="@+id/TextView_Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/Date_Title"
-        android:layout_below="@id/Artist1_Title"
+        android:layout_toRightOf="@id/TextView_Date"
+        android:layout_below="@id/TextView_Artist1"
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
         android:text="@string/Time"
@@ -47,27 +47,27 @@
         />
 
     <TextView
-        android:id="@+id/Venue_Title"
+        android:id="@+id/TextView_Venue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/Date_Title"
+        android:layout_below="@id/TextView_Date"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
+        android:paddingBottom="10dp"
         android:text="@string/Venue"
         android:textColor="#ffffff"
         android:textSize="20dp"
         />
 
     <TextView
-        android:id="@+id/City_Title"
+        android:id="@+id/TextView_City"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/Date_Title"
-        android:layout_toRightOf="@id/Venue_Title"
+        android:layout_below="@id/TextView_Date"
+        android:layout_toRightOf="@id/TextView_Venue"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
+        android:paddingBottom="10dp"
         android:text="@string/City"
         android:textColor="#ffffff"
         android:textSize="20dp"
