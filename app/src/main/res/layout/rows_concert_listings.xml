@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="150dp"
+    android:background="#000000"
+    android:orientation="vertical"
+    >
 
-</LinearLayout>
+<!--Kate go back and add a drawable shape to give these a frame!-->
+    <TextView
+        android:id="@+id/Artist1_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="@string/Artist1"
+        android:textColor="#ffffff"
+        android:textSize="30dp"/>
+
+
+    <TextView
+        android:id="@+id/Date_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Artist1_Title"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="@string/Date"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/Time_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/Date_Title"
+        android:layout_below="@id/Artist1_Title"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="@string/Time"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/Venue_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/Date_Title"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:text="@string/Venue"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/City_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/Date_Title"
+        android:layout_toRightOf="@id/Venue_Title"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:text="@string/City"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        />
+
+
+</RelativeLayout>
