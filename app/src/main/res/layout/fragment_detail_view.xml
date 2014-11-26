@@ -8,6 +8,7 @@
     >
 
     <!--Go back and turn those color placeholders into actual colors! -->
+<!--Make sure a button gets added for sharing at a later date!-->
 
     <TextView
         android:id="@+id/Artist1_Title"

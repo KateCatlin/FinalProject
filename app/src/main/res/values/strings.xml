@@ -8,6 +8,21 @@
 
     <string name="Ticket_Title">Get Tickets Now</string>
     <string name="Featuring_Title">Featuring: </string>
+    <string name="Share_Title">Share music you're stoked about:</string>
+    <string name="Date_Submit">Date and Time of Concert:</string>
+    <string name="Venue_Submit">Name of Venue:</string>
+    <string name="Address_Submit">Address of Venue:</string>
+    <string name="City_Submit">City:</string>
+    <string name="Zipcode_Submit">Zipcode:</string>
+    <string name="Venue_URL_Submit">Website of Venue (Optional):</string>
+    <string name="Artist_Submit">Headlining Performer Name:</string>
+    <string name="Artist_2_Submit">Other Performer (If Applicable):</string>
+    <string name="Artist_3_Submit">Other Performer (If Applicable):</string>
+    <string name="Ticket_URl_Submit">Link to Purchase Tickets:</string>
+
+    <string name="Hint_Date">Date / Time</string>
+
+
 
     <string name="Venue">Default Venue</string>
     <string name="Address">Default Address</string>
