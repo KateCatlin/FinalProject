@@ -43,8 +43,20 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
     //onSuccess and onError may need to get refactored, depending on the passage of information from the
     //two sources of data!
     @Override
-    public void onSuccess(JSONObject jsonObject) {
+    public void onSuccess() {
         List<ConcertModel> allConcerts = new ArrayList<ConcertModel>();
+
+        //Making a fake array just to test array adapter:
+        ConcertModel concertModel1 = new ConcertModel("The Venue", "1520 Woodward Ave", "Detroit", "48226", "DetroitLabs.com", "The Rocking Rok", "Two-Tones Tyndall", "Stu Mcgoo", "www.RockinLabs.com");
+        ConcertModel concertModel2 = new ConcertModel("La Venue-a", "1521 Woodward Ave", "Detroit", "48226", "DetroitLabers.com", "Bay-Bay Bry Bry", "Chowdown Chowning", "The Clawed", "www.Labs.com");
+        ConcertModel concertModel3 = new ConcertModel("El Venue-y", "1522 Woodward Ave", "Detroit", "48226", "DetroitLabays.com", "Sub-Bass Sibs", "No Dotz", "Terry-Your-Heart-Out", "www.RockinLabs.com");
+
+        allConcerts.add(concertModel1);
+        allConcerts.add(concertModel2);
+        allConcerts.add(concertModel3);
+
+        concertListAdapter.clear();
+        concertListAdapter.addAll(allConcerts);
 
     }
 
@@ -56,8 +68,10 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
 
     private void loadConcerts () {
 
+        onSuccess();
+
         //this is gonna need to be refactored to include all the components...
-        JSONRequest.getJsonRequest();
+//        JSONRequest.getJsonRequest();
 
     }
 
