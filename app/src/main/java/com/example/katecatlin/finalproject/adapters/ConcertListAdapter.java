@@ -1,6 +1,7 @@
 package com.example.katecatlin.finalproject.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import org.joda.time.DateTime;
  * Created by katecatlin on 11/26/14.
  */
 public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
+    final String LOG_TAG = "LOG_TAG";
     Context context;
 
     public ConcertListAdapter (Context context) {
@@ -46,7 +48,7 @@ public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             switch (type) {
                 case FIRST_CONCERT_VIEW:
-                    convertView = inflater.inflate(R.layout.first_row_concert_listing, parent, false);
+                    convertView = inflater.inflate(R.layout.rows_concert_listings, parent, false);
                     break;
                 case OTHER_CONCERT_VIEW:
                     convertView = inflater.inflate(R.layout.rows_concert_listings, parent, false);

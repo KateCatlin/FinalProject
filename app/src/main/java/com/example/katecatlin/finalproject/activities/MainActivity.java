@@ -48,6 +48,7 @@ public class MainActivity extends Activity implements FragmentController {
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, concertListFragment)
+
                 .commit();
 
     }
