@@ -30,11 +30,9 @@ public class ConcertModel {
         TicketUrl = ticketUrl;
     }
 
+    public DateTime getDateTime () { return DateTime; }
 
-
-    public String getVenue() {
-        return Venue;
-    }
+    public String getVenue() { return Venue; }
 
     public String getAddress() {
         return Address;
@@ -67,4 +65,15 @@ public class ConcertModel {
     public String getTicketUrl() {
         return TicketUrl;
     }
+
+    public String convertDateTimetoDate (DateTime dateTime) {
+        String date = dateTime.getMonthOfYear() + "/" + dateTime.getDayOfMonth();
+        return date;
+    }
+
+    public String convertDateTimetoTime (DateTime dateTime) {
+        String time = dateTime.toString("H:mm");
+        return time;
+    }
+
 }

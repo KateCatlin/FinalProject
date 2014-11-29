@@ -15,7 +15,7 @@
     <!--Go back and turn those color placeholders into actual colors! -->
 
     <TextView
-        android:id="@+id/First_Artist1_Title"
+        android:id="@+id/TextView_Artist1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -25,36 +25,34 @@
         android:textColor="#ffffff"/>
 
     <TextView
-        android:id="@+id/Date"
+        android:id="@+id/TextView_Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/TextView_Artist1"
+        android:layout_toLeftOf="@+id/TextView_Time"
         android:paddingRight="10dp"
-        android:paddingTop="20dp"
         android:text="@string/Date"
         android:textColor="#ffffff"
         android:textSize="20dp"
         />
-    <!--android:layout_above="@id/Textview_venue_title_first"-->
-    <!--android:layout_toLeftOf="@id/First_Time_Title"-->
 
 
     <TextView
-        android:id="@+id/First_Time_Title"
+        android:id="@+id/TextView_Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_below="@id/TextView_Artist1"
         android:paddingLeft="10dp"
         android:paddingRight="20dp"
-        android:paddingTop="20dp"
         android:text="@string/Time"
         android:textColor="#ffffff"
         android:textSize="20dp"
         />
-    <!--android:layout_above="@id/Textview_venue_title_first"-->
 
 
     <TextView
-        android:id="@+id/Textview_venue_title_first"
+        android:id="@+id/TextView_Venue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -62,6 +60,19 @@
         android:paddingRight="20dp"
         android:paddingTop="20dp"
         android:text="@string/Venue"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/TextView_City"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/TextView_Venue"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="20dp"
+        android:paddingRight="10dp"
+        android:text="@string/City"
         android:textColor="#ffffff"
         android:textSize="20dp"
         />
