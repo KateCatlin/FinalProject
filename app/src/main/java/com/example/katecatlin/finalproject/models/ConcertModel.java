@@ -1,11 +1,14 @@
 package com.example.katecatlin.finalproject.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.joda.time.DateTime;
 
 /**
  * Created by katecatlin on 11/25/14.
  */
-public class ConcertModel {
+public class ConcertModel implements Parcelable {
     DateTime DateTime;
     String Venue;
     String Address;
@@ -75,5 +78,47 @@ public class ConcertModel {
         String time = dateTime.toString("H:mm");
         return time;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel (Parcel dest, int flags) {
+        dest.writeSerializable(this.DateTime);
+        dest.writeString(this.Venue);
+        dest.writeString(this.Address);
+        dest.writeString(this.City);
+        dest.writeString(this.ZipCode);
+        dest.writeString(this.VenueURL);
+        dest.writeString(this.Artist1);
+        dest.writeString(this.Artist2);
+        dest.writeString(this.Artist3);
+        dest.writeString(this.TicketUrl);
+    }
+
+    private ConcertModel(Parcel in) {
+        this.DateTime = (DateTime) in.readSerializable();
+        this.Venue = in.readString();
+        this.Address = in.readString();
+        this.City = in.readString();
+        this.ZipCode = in.readString();
+        this.VenueURL = in.readString();
+        this.Artist1 = in.readString();
+        this.Artist2 = in.readString();
+        this.Artist3 = in.readString();
+        this.TicketUrl = in.readString();
+    }
+
+    public static final Parcelable.Creator<ConcertModel> CREATOR = new Parcelable.Creator<ConcertModel>() {
+        public ConcertModel createFromParcel (Parcel source) {
+            return new ConcertModel(source);
+        }
+
+        public ConcertModel[] newArray(int size) {
+            return new ConcertModel[size];
+        }
+    };
 
 }
