@@ -11,6 +11,7 @@ import com.example.katecatlin.finalproject.interfaces.JsonApiCallback;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 import com.example.katecatlin.finalproject.requests.JSONRequest;
 
+import org.joda.time.DateTime;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -46,10 +47,13 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
     public void onSuccess() {
         List<ConcertModel> allConcerts = new ArrayList<ConcertModel>();
 
+
+
         //Making a fake array just to test array adapter:
-        ConcertModel concertModel1 = new ConcertModel("12/25", "9:32PM", "The Venue", "1520 Woodward Ave", "Detroit", "48226", "DetroitLabs.com", "The Rocking Rok", "Two-Tones Tyndall", "Stu Mcgoo", "www.RockinLabs.com");
-        ConcertModel concertModel2 = new ConcertModel("12/25", "9:32PM", "La Venue-a", "1521 Woodward Ave", "Detroit", "48226", "DetroitLabers.com", "Bay-Bay Bry Bry", "Chowdown Chowning", "The Clawed", "www.Labs.com");
-        ConcertModel concertModel3 = new ConcertModel("12/25", "9:32PM", "El Venue-y", "1522 Woodward Ave", "Detroit", "48226", "DetroitLabays.com", "Sub-Bass Sibs", "No Dotz", "Terry-Your-Heart-Out", "www.RockinLabs.com");
+        DateTime dt = new DateTime(2014, 12, 25, 8, 30);
+        ConcertModel concertModel1 = new ConcertModel(dt, "The Venue", "1520 Woodward Ave", "Detroit", "48226", "DetroitLabs.com", "The Rocking Rok", "Two-Tones Tyndall", "Stu Mcgoo", "www.RockinLabs.com");
+        ConcertModel concertModel2 = new ConcertModel(dt, "La Venue-a", "1521 Woodward Ave", "Detroit", "48226", "DetroitLabers.com", "Bay-Bay Bry Bry", "Chowdown Chowning", "The Clawed", "www.Labs.com");
+        ConcertModel concertModel3 = new ConcertModel(dt, "El Venue-y", "1522 Woodward Ave", "Detroit", "48226", "DetroitLabays.com", "Sub-Bass Sibs", "No Dotz", "Terry-Your-Heart-Out", "www.RockinLabs.com");
 
         allConcerts.add(concertModel1);
         allConcerts.add(concertModel2);

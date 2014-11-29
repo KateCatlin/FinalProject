@@ -1,11 +1,12 @@
 package com.example.katecatlin.finalproject.models;
 
+import org.joda.time.DateTime;
+
 /**
  * Created by katecatlin on 11/25/14.
  */
 public class ConcertModel {
-    String Date;
-    String Time;
+    DateTime DateTime;
     String Venue;
     String Address;
     String City;
@@ -16,9 +17,8 @@ public class ConcertModel {
     String Artist3;
     String TicketUrl;
 
-    public ConcertModel(String date, String time, String venue, String address, String city, String zipCode, String venueURL, String artist1, String artist2, String artist3, String ticketUrl) {
-        Date = date;
-        Time = time;
+    public ConcertModel(DateTime dateTime, String venue, String address, String city, String zipCode, String venueURL, String artist1, String artist2, String artist3, String ticketUrl) {
+        DateTime = dateTime;
         Venue = venue;
         Address = address;
         City = city;
