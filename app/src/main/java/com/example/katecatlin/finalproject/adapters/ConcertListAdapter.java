@@ -19,7 +19,7 @@ import org.joda.time.DateTime;
  */
 public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
     final String LOG_TAG = "LOG_TAG";
-    Context context;
+    Context context = getContext();
 
     public ConcertListAdapter (Context context) {
         super(context, R.layout.rows_concert_listings);
@@ -44,17 +44,16 @@ public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
         final int OTHER_CONCERT_VIEW = 1;
 
         if (convertView == null) {
-            viewHolder = new ViewHolder(convertView);
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
             switch (type) {
                 case FIRST_CONCERT_VIEW:
-                    convertView = inflater.inflate(R.layout.rows_concert_listings, parent, false);
+                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.first_row_concert_listing, parent, false);
                     break;
                 case OTHER_CONCERT_VIEW:
-                    convertView = inflater.inflate(R.layout.rows_concert_listings, parent, false);
+                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.rows_concert_listings, parent, false);
                     break;
             }
-
+            viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

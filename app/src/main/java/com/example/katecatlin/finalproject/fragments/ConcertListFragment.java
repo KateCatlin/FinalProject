@@ -3,10 +3,12 @@ package com.example.katecatlin.finalproject.fragments;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.adapters.ConcertListAdapter;
+import com.example.katecatlin.finalproject.interfaces.FragmentController;
 import com.example.katecatlin.finalproject.interfaces.JsonApiCallback;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 import com.example.katecatlin.finalproject.requests.JSONRequest;
@@ -39,6 +41,23 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
         concertListAdapter = new ConcertListAdapter(getActivity());
         setListAdapter(concertListAdapter);
         loadConcerts();
+    }
+
+    @Override
+    public void onListItemClick(ListView listView, View row, int position, long id) {
+
+        if (getActivity() instanceof FragmentController) {
+
+            ConcertModel concertModel = (ConcertModel) listView.getAdapter().getItem(position);
+            ConcertDetailFragment concertDetailFragment = ConcertDetailFragment.newInstance(concertModel);
+
+            FragmentController fragmentController = (FragmentController) getActivity();
+            fragmentController.changeFragment(concertDetailFragment, true);
+
+        } else {
+            throw new IllegalArgumentException("Your activity must implement the FragmentController interface");
+        }
+
     }
 
     //onSuccess and onError may need to get refactored, depending on the passage of information from the
