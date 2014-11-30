@@ -1,3 +1,6 @@
+This doc will be deleted later and only serves to show me the format of the JSON for Jambase to structure parsing.
+
+
 http://api.jambase.com/events?zipCode=48201&radius=30&page=0&api_key=fbry47pgp62uj3vnknntdyda
 
 {

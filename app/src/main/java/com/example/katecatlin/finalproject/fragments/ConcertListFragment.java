@@ -70,7 +70,7 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
 
         //Making a fake array just to test array adapter:
         DateTime dt = new DateTime(2014, 12, 25, 8, 30);
-        ConcertModel concertModel1 = new ConcertModel(dt, "The Venue", "1520 Woodward Ave", "Detroit", "48226", "DetroitLabs.com", "The Rocking Rok", "Two-Tones Tyndall", "Stu Mcgoo", "www.RockinLabs.com");
+        ConcertModel concertModel1 = new ConcertModel(dt, "The Venue", "1520 Woodward Ave", "Detroit", "48226", "DetroitLabs.com", "The Rocking Rok", "", "", "www.RockinLabs.com");
         ConcertModel concertModel2 = new ConcertModel(dt, "La Venue-a", "1521 Woodward Ave", "Detroit", "48226", "DetroitLabers.com", "Bay-Bay Bry Bry", "Chowdown Chowning", "The Clawed", "www.Labs.com");
         ConcertModel concertModel3 = new ConcertModel(dt, "El Venue-y", "1522 Woodward Ave", "Detroit", "48226", "DetroitLabays.com", "Sub-Bass Sibs", "No Dotz", "Terry-Your-Heart-Out", "www.RockinLabs.com");
 

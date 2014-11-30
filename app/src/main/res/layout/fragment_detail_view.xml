@@ -11,7 +11,7 @@
 <!--Make sure a button gets added for sharing at a later date!-->
 
     <TextView
-        android:id="@+id/Artist1_Title"
+        android:id="@+id/detailArtistTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -23,16 +23,16 @@
         android:textSize="40dp"/>
 
     <RelativeLayout
-        android:id="@+id/Date_Row"
+        android:id="@+id/date_Row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Artist1_Title"
+        android:layout_below="@id/detailArtistTextView"
         android:layout_centerHorizontal="true"
         android:paddingTop="20dp"
         android:gravity="center_horizontal">
 
         <TextView
-            android:id="@+id/Date_Title"
+            android:id="@+id/detailDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="30dp"
@@ -42,11 +42,11 @@
             />
 
         <TextView
-            android:id="@+id/Time_Title"
+            android:id="@+id/detailTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_toRightOf="@id/Date_Title"
+            android:layout_toRightOf="@id/detailDateTextView"
             android:text="@string/Time"
             android:textColor="#ffffff"
             android:textSize="25dp"
@@ -55,10 +55,10 @@
         </RelativeLayout>
 
     <TextView
-        android:id="@+id/Venue_Title"
+        android:id="@+id/detailVenueTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Date_Row"
+        android:layout_below="@id/date_Row"
         android:layout_centerHorizontal="true"
         android:paddingTop="30dp"
         android:text="@string/Venue"
@@ -67,10 +67,10 @@
         />
 
     <TextView
-        android:id="@+id/Address_Title"
+        android:id="@+id/detailAddressTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Venue_Title"
+        android:layout_below="@id/detailVenueTextView"
         android:layout_centerHorizontal="true"
         android:text="@string/Address"
         android:textColor="#ffffff"
@@ -78,15 +78,15 @@
         />
 
     <RelativeLayout
-        android:id="@+id/Address_Row"
+        android:id="@+id/address_Row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/Address_Title"
+        android:layout_below="@id/detailAddressTextView"
         android:gravity="center_horizontal">
 
         <TextView
-            android:id="@+id/City_Title"
+            android:id="@+id/detailCityTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -95,11 +95,11 @@
             android:textSize="15dp"
             />
         <TextView
-            android:id="@+id/Zipcode_Title"
+            android:id="@+id/detailZipCodeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_toRightOf="@id/City_Title"
+            android:layout_toRightOf="@id/detailCityTextView"
             android:text="@string/ZipCode"
             android:textColor="#ffffff"
             android:textSize="15dp"
@@ -108,21 +108,21 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/URL_Title"
+        android:id="@+id/detailUrlTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/Address_Row"
+        android:layout_below="@id/address_Row"
         android:text="@string/VenueURL"
         android:textColor="#ffffff"
         android:textSize="15dp"
         />
 
     <TextView
-        android:id="@+id/Featuring_Title"
+        android:id="@+id/featuringTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/URL_Title"
+        android:layout_below="@id/detailUrlTextView"
         android:layout_centerHorizontal="true"
         android:paddingTop="30dp"
         android:text="@string/Featuring_Title"
@@ -130,38 +130,28 @@
         android:textSize="30dp"
         />
 
-    <RelativeLayout
-        android:id="@+id/Artists_Row"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Featuring_Title"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="20dp"
-        android:gravity="center_horizontal">
-
         <TextView
-            android:id="@+id/Artist2_Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="30dp"
-            android:text="@string/Artist2"
-            android:textColor="#ffffff"
-            android:textSize="25dp"
-            />
-
-        <TextView
-            android:id="@+id/Artist3_Title"
+            android:id="@+id/detailArtist2TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_toRightOf="@id/Artist2_Title"
-            android:text="@string/Artist3"
+            android:layout_below="@id/featuringTextView"
+            android:paddingRight="30dp"
+            android:text="@string/Artist2"
             android:textColor="#ffffff"
-            android:textSize="25dp"
+            android:textSize="20dp"
             />
 
-    </RelativeLayout>
-
+        <TextView
+            android:id="@+id/detailArtist3TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/detailArtist2TextView"
+            android:text="@string/Artist3"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            />
 
     <Button
         android:id="@+id/Ticket_Button"
@@ -169,7 +159,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/detailArtist3TextView"
         android:layout_margin="20dp"
         android:padding="10dp"
         android:text="@string/Ticket_Title"
