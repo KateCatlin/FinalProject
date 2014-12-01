@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.katecatlin.finalproject.R;
@@ -51,10 +52,13 @@ public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
                     break;
                 case OTHER_CONCERT_VIEW:
                     convertView = LayoutInflater.from(getContext()).inflate(R.layout.rows_concert_listings, parent, false);
+
                     break;
             }
+
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
+
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
@@ -67,6 +71,7 @@ public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
         DateTime dateTime = concertModel.getDateTime();
         viewHolder.textView_date.setText(concertModel.convertDateTimetoDate(dateTime));
 
+
         return convertView;
     }
 
@@ -76,6 +81,7 @@ public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
         private TextView textView_date;
         private TextView textView_venue;
         private TextView textView_city;
+        private ImageView concertImage;
 
         public ViewHolder(View rootView) {
             this.textView_artist1 = (TextView) rootView.findViewById(R.id.TextView_Artist1);

@@ -38,7 +38,6 @@ public class JSONRequest {
         if (jsonRequest == null) {
             jsonRequest = new JSONRequest();
         }
-
         return jsonRequest;
     }
 

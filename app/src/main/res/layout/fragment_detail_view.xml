@@ -35,7 +35,6 @@
             android:id="@+id/detailDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="30dp"
             android:text="@string/Date"
             android:textColor="#ffffff"
             android:textSize="25dp"
@@ -43,6 +42,7 @@
 
         <TextView
             android:id="@+id/detailTimeTextView"
+            android:paddingLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -116,6 +116,7 @@
         android:text="@string/VenueURL"
         android:textColor="#ffffff"
         android:textSize="15dp"
+        android:autoLink="web"
         />
 
     <TextView

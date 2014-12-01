@@ -2,6 +2,9 @@ package com.example.katecatlin.finalproject.fragments;
 
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -66,7 +69,6 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
     @Override
     public void onSuccess(List<ConcertModel> upcomingConcerts) {
 
-
         /// Ask Matt why "isAdded" is used here!
         if (isAdded()) {
             concertListAdapter.clear();
@@ -77,10 +79,9 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
     @Override
     public void onError() {
         Toast.makeText(getActivity(), "Error loading concerts, press back and try again!", Toast.LENGTH_LONG).show();
-
     }
 
-    private void loadConcerts () {
+    public void loadConcerts () {
 
         //this will be changed later to ALSO call entries from the Parse.com API, which will be added later.
         jsonRequest.getConcerts(this);
@@ -88,4 +89,21 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // action with ID action_refresh was selected
+            case R.id.action_refresh:
+                Toast.makeText(getActivity(), "Refreshing your jams...", Toast.LENGTH_SHORT)
+                        .show();
+                loadConcerts();
+                break;
+            // action with ID action_settings was selected
+            case R.id.action_settings:
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
 }
