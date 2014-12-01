@@ -66,7 +66,6 @@ public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
         viewHolder.textView_venue.setText(concertModel.getVenue());
         DateTime dateTime = concertModel.getDateTime();
         viewHolder.textView_date.setText(concertModel.convertDateTimetoDate(dateTime));
-        viewHolder.textView_time.setText(concertModel.convertDateTimetoTime(dateTime));
 
         return convertView;
     }
@@ -75,14 +74,12 @@ public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
 
         private TextView textView_artist1;
         private TextView textView_date;
-        private TextView textView_time;
         private TextView textView_venue;
         private TextView textView_city;
 
         public ViewHolder(View rootView) {
             this.textView_artist1 = (TextView) rootView.findViewById(R.id.TextView_Artist1);
             this.textView_date = (TextView) rootView.findViewById(R.id.TextView_Date);
-            this.textView_time = (TextView) rootView.findViewById(R.id.TextView_Time);
             this.textView_venue = (TextView) rootView.findViewById(R.id.TextView_Venue);
             this.textView_city = (TextView) rootView.findViewById(R.id.TextView_City);
         }

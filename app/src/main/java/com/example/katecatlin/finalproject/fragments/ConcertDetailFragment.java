@@ -1,11 +1,17 @@
 package com.example.katecatlin.finalproject.fragments;
 
 import android.app.Fragment;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.models.ConcertModel;
@@ -22,6 +28,7 @@ public class ConcertDetailFragment extends Fragment {
     private TextView detailArtistTextView, detailDateTextView, detailTimeTextView, detailVenueTextView,
             detailAddressTextView, detailCityTextView, detailZipCodeTextView, detailUrlTextView,
             featuringTextView, detailArtist2TextView, detailArtist3TextView;
+    private Button ticketButton;
 
     public static ConcertDetailFragment newInstance(ConcertModel concertModel) {
 
@@ -49,6 +56,7 @@ public class ConcertDetailFragment extends Fragment {
         featuringTextView = (TextView) view.findViewById(R.id.featuringTextView);
         detailArtist2TextView = (TextView) view.findViewById(R.id.detailArtist2TextView);
         detailArtist3TextView = (TextView) view.findViewById(R.id.detailArtist3TextView);
+        ticketButton  = (Button) view.findViewById(R.id.Ticket_Button);
 
         return view;
     }
@@ -59,13 +67,12 @@ public class ConcertDetailFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ConcertModel concertModel = getArguments().getParcelable(ARG_CONCERT_ENTRY);
+        final ConcertModel concertModel = getArguments().getParcelable(ARG_CONCERT_ENTRY);
 
         if (concertModel != null) {
 
             detailArtistTextView.setText(concertModel.getArtist1());
             detailDateTextView.setText(concertModel.convertDateTimetoDate(concertModel.getDateTime()));
-            detailTimeTextView.setText(concertModel.convertDateTimetoTime(concertModel.getDateTime()));
             detailVenueTextView.setText(concertModel.getVenue());
             detailAddressTextView.setText(concertModel.getAddress());
             detailCityTextView.setText(concertModel.getCity());
@@ -76,10 +83,39 @@ public class ConcertDetailFragment extends Fragment {
             if (concertModel.getArtist2().equals("")) {
                 featuringTextView.setText("");
             }
+            if (concertModel.convertDateTimetoTime(concertModel.getDateTime()).toString().equals("0:00")) {
+                detailTimeTextView.setVisibility(View.GONE);
+            } else {
+                detailTimeTextView.setText(concertModel.convertDateTimetoTime(concertModel.getDateTime()));
+            }
+
+            ticketButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+//                    if (concertModel.getTicketUrl().equals("") && concertModel.getVenueURL().equals("")) {
+//                        Toast.makeText(getActivity(), "Sorry, URL not provided!", Toast.LENGTH_SHORT);
+//                    } else if (concertModel.getTicketUrl().equals("")) {
+//                        openWebURL(concertModel.getVenueURL());
+//                    } else {
+                        openWebURL(concertModel.getTicketUrl());
+//                    }
+                }
+            });
 
         } else {
             throw new IllegalStateException("Something went wrong passing concert model to detail fragment!");
         }
     }
+
+    public void openWebURL(String URL ) {
+
+        Log.d("LOG_TAG", "URL is " + URL);
+
+        Intent internetIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+        internetIntent.setComponent(new ComponentName("com.android.browser","com.android.browser.BrowserActivity"));
+        internetIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getActivity().startActivity(internetIntent);
+
+    }
+
 
 }

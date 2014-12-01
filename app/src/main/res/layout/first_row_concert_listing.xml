@@ -21,8 +21,10 @@
         android:layout_centerHorizontal="true"
         android:padding="20dp"
         android:text="@string/Artist1"
-        android:textSize="25dp"
-        android:textColor="#ffffff"/>
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:ellipsize="end"
+        android:maxLines="1"/>
 
     <TextView
         android:id="@+id/TextView_Date"
@@ -33,23 +35,10 @@
         android:paddingRight="10dp"
         android:text="@string/Date"
         android:textColor="#ffffff"
-        android:textSize="20dp"
+        android:textSize="25dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         />
-
-
-    <TextView
-        android:id="@+id/TextView_Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/TextView_Artist1"
-        android:paddingLeft="10dp"
-        android:paddingRight="20dp"
-        android:text="@string/Time"
-        android:textColor="#ffffff"
-        android:textSize="20dp"
-        />
-
 
     <TextView
         android:id="@+id/TextView_Venue"
@@ -61,7 +50,9 @@
         android:paddingTop="20dp"
         android:text="@string/Venue"
         android:textColor="#ffffff"
-        android:textSize="20dp"
+        android:textSize="15dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         />
 
     <TextView
@@ -74,7 +65,9 @@
         android:paddingRight="10dp"
         android:text="@string/City"
         android:textColor="#ffffff"
-        android:textSize="20dp"
+        android:textSize="15dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         />
 
 

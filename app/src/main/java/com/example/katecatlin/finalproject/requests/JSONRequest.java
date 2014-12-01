@@ -57,6 +57,8 @@ public class JSONRequest {
                 .appendQueryParameter("api_key", "fbry47pgp62uj3vnknntdyda")
                 .build();
 
+        Log.d("LOG_TAG", "URL is " + uri);
+
         new LoadDataInBackground(jsonApiCallback).execute(uri);
     }
 
