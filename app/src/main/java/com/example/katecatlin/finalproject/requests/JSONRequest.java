@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.katecatlin.finalproject.interfaces.JsonApiCallback;
+import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.parsers.JSONParser;
 
 import org.joda.time.DateTime;
 import org.joda.time.JodaTimePermission;
@@ -19,6 +21,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 
 /**
  * Created by katecatlin on 11/25/14.
@@ -39,10 +42,8 @@ public class JSONRequest {
         return jsonRequest;
     }
 
-
     private JSONRequest () {
     }
-
 
     public void getConcerts (JsonApiCallback jsonApiCallback) {
 
@@ -60,7 +61,7 @@ public class JSONRequest {
     }
 
 
-    private class LoadDataInBackground extends AsyncTask <Uri, Void, JSONObject> {
+    private class LoadDataInBackground extends AsyncTask <Uri, Void, List<ConcertModel>> {
 
         private JsonApiCallback jsonApiCallback;
 
@@ -69,11 +70,13 @@ public class JSONRequest {
         }
 
         @Override
-        protected JSONObject doInBackground(Uri... params) {
+        protected List<ConcertModel> doInBackground(Uri... params) {
 
             try {
                 Uri uri = params[0];
-                return getJSONObjectFromUri(uri);
+                JSONObject jsonObject = getJSONObjectFromUri(uri) ;
+                List<ConcertModel> listOfConcerts = JSONParser.parseJSONObject(jsonObject);
+                return listOfConcerts;
             } catch (IOException e) {
                 return null;
             } catch (JSONException e) {
@@ -94,9 +97,9 @@ public class JSONRequest {
         }
 
         @Override
-        protected void onPostExecute(JSONObject result) {
-            if (result != null) {
-                this.jsonApiCallback.onSuccess();
+        protected void onPostExecute(List<ConcertModel> results) {
+            if (results != null) {
+                this.jsonApiCallback.onSuccess(results);
             } else {
                 this.jsonApiCallback.onError();
             }

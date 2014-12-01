@@ -25,6 +25,7 @@ import java.util.List;
 public class ConcertListFragment extends ListFragment implements JsonApiCallback {
 
     private ConcertListAdapter concertListAdapter;
+    private JSONRequest jsonRequest = JSONRequest.getJsonRequest();
 
     public ConcertListFragment () {
     }
@@ -63,24 +64,14 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
     //onSuccess and onError may need to get refactored, depending on the passage of information from the
     //two sources of data!
     @Override
-    public void onSuccess() {
-        List<ConcertModel> allConcerts = new ArrayList<ConcertModel>();
+    public void onSuccess(List<ConcertModel> upcomingConcerts) {
 
 
-
-        //Making a fake array just to test array adapter:
-        DateTime dt = new DateTime(2014, 12, 25, 8, 30);
-        ConcertModel concertModel1 = new ConcertModel(dt, "The Venue", "1520 Woodward Ave", "Detroit", "48226", "DetroitLabs.com", "The Rocking Rok", "", "", "www.RockinLabs.com");
-        ConcertModel concertModel2 = new ConcertModel(dt, "La Venue-a", "1521 Woodward Ave", "Detroit", "48226", "DetroitLabers.com", "Bay-Bay Bry Bry", "Chowdown Chowning", "The Clawed", "www.Labs.com");
-        ConcertModel concertModel3 = new ConcertModel(dt, "El Venue-y", "1522 Woodward Ave", "Detroit", "48226", "DetroitLabays.com", "Sub-Bass Sibs", "No Dotz", "Terry-Your-Heart-Out", "www.RockinLabs.com");
-
-        allConcerts.add(concertModel1);
-        allConcerts.add(concertModel2);
-        allConcerts.add(concertModel3);
-
-        concertListAdapter.clear();
-        concertListAdapter.addAll(allConcerts);
-
+        /// Ask Matt why "isAdded" is used here!
+        if (isAdded()) {
+            concertListAdapter.clear();
+            concertListAdapter.addAll(upcomingConcerts);
+        }
     }
 
     @Override
@@ -91,10 +82,9 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
 
     private void loadConcerts () {
 
-        onSuccess();
+        //this will be changed later to ALSO call entries from the Parse.com API, which will be added later.
+        jsonRequest.getConcerts(this);
 
-        //this is gonna need to be refactored to include all the components...
-//        JSONRequest.getJsonRequest();
 
     }
 
