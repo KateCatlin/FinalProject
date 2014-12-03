@@ -25,5 +25,7 @@ dependencies {
     compile files ('joda-time-2.6.jar')
     compile files ('joda-time-2.5-javadoc.jar')
     compile files ('joda-time-2.5-sources.jar')
-
+    compile "com.android.support:support-v4:21.0.2"
+    compile 'com.parse.bolts:bolts-android:1.1.3'
+    compile fileTree(dir: 'libs', include: 'Parse-*.jar')
 }

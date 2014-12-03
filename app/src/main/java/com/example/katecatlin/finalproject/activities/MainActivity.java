@@ -2,8 +2,8 @@ package com.example.katecatlin.finalproject.activities;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,7 +20,7 @@ public class MainActivity extends Activity implements FragmentController {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity);
         loadConcertListFragment();
     }
 
@@ -61,5 +61,22 @@ public class MainActivity extends Activity implements FragmentController {
 
                 .commit();
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                break;
+            case R.id.action_new_concert:
+                Intent addConcertIntent = new Intent (this, AddConcertActivity.class );
+                startActivity(addConcertIntent);
+                break;
+            case R.id.action_settings:
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 }

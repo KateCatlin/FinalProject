@@ -1,7 +1,9 @@
 package com.example.katecatlin.finalproject.fragments;
 
 import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -10,6 +12,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
+import com.example.katecatlin.finalproject.activities.AddConcertActivity;
+import com.example.katecatlin.finalproject.activities.MainActivity;
 import com.example.katecatlin.finalproject.adapters.ConcertListAdapter;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
 import com.example.katecatlin.finalproject.interfaces.JsonApiCallback;
@@ -83,6 +87,8 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
 
     public void loadConcerts () {
 
+        Log.d("LOG_TAG", "Loading Concerts!");
+
         //this will be changed later to ALSO call entries from the Parse.com API, which will be added later.
         jsonRequest.getConcerts(this);
 
@@ -92,13 +98,15 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // action with ID action_refresh was selected
             case R.id.action_refresh:
                 Toast.makeText(getActivity(), "Refreshing your jams...", Toast.LENGTH_SHORT)
                         .show();
                 loadConcerts();
                 break;
-            // action with ID action_settings was selected
+            case R.id.action_new_concert:
+                Intent addConcertIntent = new Intent (getActivity(), AddConcertActivity.class );
+                startActivity(addConcertIntent);
+                break;
             case R.id.action_settings:
                 break;
             default:

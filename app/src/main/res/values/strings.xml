@@ -15,10 +15,11 @@
     <string name="City_Submit">City:</string>
     <string name="Zipcode_Submit">Zipcode:</string>
     <string name="Venue_URL_Submit">Website of Venue (Optional):</string>
-    <string name="Artist_Submit">Headlining Performer Name:</string>
-    <string name="Artist_2_Submit">Other Performer (If Applicable):</string>
-    <string name="Artist_3_Submit">Other Performer (If Applicable):</string>
+    <string name="Artist_Submit">Headlining Performer:</string>
+    <string name="Artist_2_Submit">FEAT (If Applicable):</string>
+    <string name="Artist_3_Submit">FEAT (If Applicable):</string>
     <string name="Ticket_URl_Submit">Link to Purchase Tickets:</string>
+    <string name="Submit_Button">SUBMIT</string>
 
     <string name="Hint_Date">Date / Time</string>
 
