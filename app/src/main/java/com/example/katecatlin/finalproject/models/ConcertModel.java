@@ -33,6 +33,46 @@ public class ConcertModel implements Parcelable {
         TicketUrl = ticketUrl;
     }
 
+    public void setDateTime(DateTime dateTime) {
+        DateTime = dateTime;
+    }
+
+    public void setVenue(String venue) {
+        Venue = venue;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
+    public void setCity(String city) {
+        City = city;
+    }
+
+    public void setZipCode(String zipCode) {
+        ZipCode = zipCode;
+    }
+
+    public void setVenueURL(String venueURL) {
+        VenueURL = venueURL;
+    }
+
+    public void setArtist1(String artist1) {
+        Artist1 = artist1;
+    }
+
+    public void setArtist2(String artist2) {
+        Artist2 = artist2;
+    }
+
+    public void setArtist3(String artist3) {
+        Artist3 = artist3;
+    }
+
+    public void setTicketUrl(String ticketUrl) {
+        TicketUrl = ticketUrl;
+    }
+
     public DateTime getDateTime () { return DateTime; }
 
     public String getVenue() { return Venue; }

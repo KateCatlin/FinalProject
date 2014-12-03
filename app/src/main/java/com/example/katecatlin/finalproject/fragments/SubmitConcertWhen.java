@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.katecatlin.finalproject.R;
 
@@ -17,6 +18,13 @@ public class SubmitConcertWhen extends android.support.v4.app.Fragment {
     {
         SubmitConcertWhen fragment = new SubmitConcertWhen();
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
     }
 
     @Override

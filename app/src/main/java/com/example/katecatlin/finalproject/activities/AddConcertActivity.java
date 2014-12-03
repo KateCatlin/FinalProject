@@ -9,12 +9,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.support.v4.app.FragmentActivity;
+import android.widget.EditText;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.fragments.SubmitConcertWhen;
 import com.example.katecatlin.finalproject.fragments.SubmitConcertWhere;
 import com.example.katecatlin.finalproject.fragments.SubmitConcertWho;
 import com.example.katecatlin.finalproject.models.ConcertModel;
+
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ public class AddConcertActivity extends FragmentActivity {
     ActionBar actionBar;
     ViewPager viewPager;
     public List<android.support.v4.app.Fragment> fragmentList = new ArrayList<android.support.v4.app.Fragment>();
-    ConcertModel submittedConcert;
+    public ConcertModel submittedConcert;
 
     FragmentPageAdapter fragmentPageAdapter;
     android.support.v4.app.FragmentManager fragmentManager;
@@ -35,9 +38,11 @@ public class AddConcertActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("LOG_TAG", "Entered AddConcertActivity");
-        submittedConcert = new ConcertModel()
         super.onCreate(savedInstanceState);
+
+        DateTime dateTime = DateTime.parse("00/00/0000 00:00:00");
+        submittedConcert = new ConcertModel(dateTime, "", "", "", "", "", "", "", "", "");
+
         setContentView(R.layout.activity_viewpager);
 
         List<android.support.v4.app.Fragment> fragments = getFragments();
@@ -132,11 +137,54 @@ public class AddConcertActivity extends FragmentActivity {
 
         switch ( position ) {
             case 1:
+
+                EditText edit_artist_1 = (EditText) findViewById(R.id.edit_artist_1);
+                String artist1 = edit_artist_1.getText().toString();
+                submittedConcert.setArtist1(artist1);
+
+                EditText edit_artist_2 = (EditText) findViewById(R.id.edit_artist_2);
+                String artist2 = edit_artist_2.getText().toString();
+                submittedConcert.setArtist2(artist2);
+
+                EditText edit_artist_3 = (EditText) findViewById(R.id.edit_artist_3);
+                String artist3 = edit_artist_3.getText().toString();
+                submittedConcert.setArtist3(artist3);
+
                 break;
+
             case 2:
+
+                EditText edit_venue = (EditText) findViewById(R.id.edit_venue);
+                String venue = edit_venue.getText().toString();
+                submittedConcert.setVenue(venue);
+
+                EditText edit_address = (EditText) findViewById(R.id.edit_address);
+                String address = edit_address.getText().toString();
+                submittedConcert.setAddress(address);
+
+                EditText edit_city = (EditText) findViewById(R.id.edit_city);
+                String city = edit_city.getText().toString();
+                submittedConcert.setCity(city);
+
+                EditText edit_zipcode = (EditText) findViewById(R.id.edit_zipcode);
+                String zipCode = edit_zipcode.getText().toString();
+                submittedConcert.setZipCode(zipCode);
+
+                EditText edit_venue_url = (EditText) findViewById(R.id.edit_venue_url);
+                String venueURL = edit_venue_url.getText().toString();
+                submittedConcert.setVenueURL(venueURL);
+
                 break;
+
+
             case 3:
+
+                EditText edit_ticket_url = (EditText) findViewById(R.id.edit_ticket_url);
+                String url = edit_ticket_url.getText().toString();
+                submittedConcert.setTicketUrl(url);
+
                 break;
+
             default:
                 break;
 
