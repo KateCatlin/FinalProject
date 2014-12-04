@@ -22,6 +22,7 @@ import com.example.katecatlin.finalproject.models.ConcertModel;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,7 +47,9 @@ public class AddConcertActivity extends FragmentActivity {
         List<android.support.v4.app.Fragment> fragments = getFragments();
         fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), fragments);
 
-        DateTime dateTime = DateTime.parse("00/00/0000 00:00:00");
+        Date currentDate = new Date(System.currentTimeMillis());
+
+        DateTime dateTime = new DateTime(currentDate);
         submittedConcert = new ConcertModel(dateTime, "", "", "", "", "", "", "", "", "");
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
