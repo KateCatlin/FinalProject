@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.katecatlin.finalproject.R;
@@ -40,14 +42,12 @@ public class AddConcertActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_viewpager);
+        List<android.support.v4.app.Fragment> fragments = getFragments();
+        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), fragments);
+
         DateTime dateTime = DateTime.parse("00/00/0000 00:00:00");
         submittedConcert = new ConcertModel(dateTime, "", "", "", "", "", "", "", "", "");
-
-        setContentView(R.layout.activity_viewpager);
-
-        List<android.support.v4.app.Fragment> fragments = getFragments();
-
-        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager(), fragments);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(fragmentPageAdapter);
@@ -95,6 +95,17 @@ public class AddConcertActivity extends FragmentActivity {
             public void onPageScrollStateChanged(int arg0) {
             }
         });
+
+        Button submitButton = (Button) findViewById(R.id.button_submit);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+                                            public void onClick(View v) {
+        Log.d("LOG_TAG", "Info is " + submittedConcert.getArtist1() + " " + submittedConcert.getVenue() + " " + submittedConcert.getAddress());
+                                            }
+                                        }
+
+
+
+        );
     }
 
     private class FragmentPageAdapter extends FragmentPagerAdapter {
@@ -132,6 +143,7 @@ public class AddConcertActivity extends FragmentActivity {
 
         return fragmentList;
     }
+
 
     private void saveData(android.support.v4.app.Fragment fragment, int position){
 
