@@ -12,7 +12,7 @@ import com.example.katecatlin.finalproject.R;
 /**
  * Created by katecatlin on 12/3/14.
  */
-public class SubmitConcertWhen extends android.support.v4.app.Fragment {
+public class SubmitConcertWhen extends Fragment {
 
     public static final SubmitConcertWhen newInstance(String message)
     {

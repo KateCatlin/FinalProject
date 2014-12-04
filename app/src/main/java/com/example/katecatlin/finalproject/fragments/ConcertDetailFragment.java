@@ -108,8 +108,6 @@ public class ConcertDetailFragment extends Fragment {
 
     public void openWebURL(String URL ) {
 
-        Log.d("LOG_TAG", "URL is " + URL);
-
         Intent internetIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
         internetIntent.setComponent(new ComponentName("com.android.browser","com.android.browser.BrowserActivity"));
         internetIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

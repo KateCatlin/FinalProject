@@ -2,21 +2,29 @@ package com.example.katecatlin.finalproject.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.katecatlin.finalproject.R;
+import com.example.katecatlin.finalproject.models.ConcertModel;
 
 /**
  * Created by katecatlin on 12/3/14.
  */
-public class SubmitConcertWhere extends android.support.v4.app.Fragment {
+public class SubmitConcertWhere extends Fragment {
 
-    public static final SubmitConcertWhere newInstance(String message)
-    {
-        SubmitConcertWhere fragment = new SubmitConcertWhere();
-        return fragment;
+    private static final String SUBMITTED_CONCERT_ENTRY = "SUBMITTED_CONCERT_ENTRY";
+
+    public static final SubmitConcertWhere newInstance(ConcertModel concertModel) {
+        Bundle args = new Bundle();
+        args.putParcelable(SUBMITTED_CONCERT_ENTRY, concertModel);
+
+        SubmitConcertWhere submitConcertWhere = new SubmitConcertWhere();
+        submitConcertWhere.setArguments(args);
+
+        return submitConcertWhere;
     }
 
     @Override
@@ -26,4 +34,16 @@ public class SubmitConcertWhere extends android.support.v4.app.Fragment {
 
         return view;
     }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        final ConcertModel submittedConcert = getArguments().getParcelable(SUBMITTED_CONCERT_ENTRY);
+        Log.d("LOG_TAG", "Submitted concert info on artist is " + submittedConcert.getArtist1());
+
+    }
+
+
 }
+
