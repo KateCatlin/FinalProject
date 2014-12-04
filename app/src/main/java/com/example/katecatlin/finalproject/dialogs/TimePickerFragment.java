@@ -32,7 +32,7 @@ public class TimePickerFragment extends DialogFragment
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        OnDateSet(hourOfDay, minute);
+//        OnDateSet(hourOfDay, minute);
 
     }
 }

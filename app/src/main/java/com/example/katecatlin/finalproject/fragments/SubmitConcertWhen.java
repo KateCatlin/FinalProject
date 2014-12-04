@@ -1,16 +1,21 @@
 package com.example.katecatlin.finalproject.fragments;
 
+import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TimePicker;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.activities.MainActivity;
@@ -22,22 +27,24 @@ import com.example.katecatlin.finalproject.models.ConcertModel;
 
 import org.joda.time.DateTime;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Created by katecatlin on 12/3/14.
  */
-public class SubmitConcertWhen extends Fragment implements GetChosenDateInterface {
+public class SubmitConcertWhen extends Fragment
+//        implements GetChosenDateInterface
+{
     static final String SUBMITTED_CONCERT_ENTRY = SubmitConcertWho.SUBMITTED_CONCERT_ENTRY;
     ConcertModel submittedConcert;
     private EditText edit_ticket_url;
     Button button_date, button_time;
     public static final String WHICH_DATE_KEY = "WHICH_DATE_KEY";
+    Calendar dateAndTime = Calendar.getInstance();
 
 
-
-    public static final SubmitConcertWhen newInstance(ConcertModel concertModel)
-    {
+    public static final SubmitConcertWhen newInstance(ConcertModel concertModel) {
         Bundle args = new Bundle();
         args.putParcelable(SUBMITTED_CONCERT_ENTRY, concertModel);
 
@@ -86,33 +93,32 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
             }
         });
 
-        button_date = (Button) view.findViewById(R.id.button_date);
-        button_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogFragment newFragment = new DatePickerFragment(button_date);
-                newFragment.show(getFragmentManager(), "datePicker");
-            }
-            });
-
-        button_time = (Button) view.findViewById(R.id.button_time);
+        Button button_date = (Button) view.findViewById(R.id.button_date);
 
         return view;
     }
 
-    public void gatherInfoFromWhenEditTexts () {
+    public void gatherInfoFromWhenEditTexts() {
         String url = edit_ticket_url.getText().toString();
         submittedConcert.setTicketUrl(url);
     }
 
-    @Override
-    public void getChosenDate(Date chosenDate, String whichDateString) {
-
-        if(whichDateString.equals(END_DATE_STRING)){
-            endDate = chosenDate;
-            lunchEndButton.setText(fmt.print(endDate));
-        }
-
+    private void updateLabel() {
+        button_date
+                .setText(DateUtils.formatDateTime(getActivity(),
+                        dateAndTime.getTimeInMillis(),
+                        DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_TIME));
     }
-
 }
+
+
+//    @Override
+//    public void getChosenDate(Date chosenDate, String whichDateString) {
+//
+//        if(whichDateString.equals(END_DATE_STRING)){
+//            endDate = chosenDate;
+//            lunchEndButton.setText(fmt.print(endDate));
+//        }
+//
+//    }
+
