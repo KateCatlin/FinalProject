@@ -17,15 +17,23 @@ import com.example.katecatlin.finalproject.activities.MainActivity;
 import com.example.katecatlin.finalproject.dialogs.DatePickerFragment;
 import com.example.katecatlin.finalproject.dialogs.TimePickerFragment;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
+import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
 import com.example.katecatlin.finalproject.models.ConcertModel;
+
+import org.joda.time.DateTime;
+
+import java.util.Date;
 
 /**
  * Created by katecatlin on 12/3/14.
  */
-public class SubmitConcertWhen extends Fragment {
+public class SubmitConcertWhen extends Fragment implements GetChosenDateInterface {
     static final String SUBMITTED_CONCERT_ENTRY = SubmitConcertWho.SUBMITTED_CONCERT_ENTRY;
     ConcertModel submittedConcert;
     private EditText edit_ticket_url;
+    Button button_date, button_time;
+    public static final String WHICH_DATE_KEY = "WHICH_DATE_KEY";
+
 
 
     public static final SubmitConcertWhen newInstance(ConcertModel concertModel)
@@ -78,6 +86,17 @@ public class SubmitConcertWhen extends Fragment {
             }
         });
 
+        button_date = (Button) view.findViewById(R.id.button_date);
+        button_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment newFragment = new DatePickerFragment(button_date);
+                newFragment.show(getFragmentManager(), "datePicker");
+            }
+            });
+
+        button_time = (Button) view.findViewById(R.id.button_time);
+
         return view;
     }
 
@@ -85,4 +104,15 @@ public class SubmitConcertWhen extends Fragment {
         String url = edit_ticket_url.getText().toString();
         submittedConcert.setTicketUrl(url);
     }
+
+    @Override
+    public void getChosenDate(Date chosenDate, String whichDateString) {
+
+        if(whichDateString.equals(END_DATE_STRING)){
+            endDate = chosenDate;
+            lunchEndButton.setText(fmt.print(endDate));
+        }
+
+    }
+
 }

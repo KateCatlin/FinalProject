@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
@@ -65,9 +66,9 @@ public class AddConcertActivity extends Activity implements FragmentController {
         newFragment.show(getFragmentManager(), "timePicker");
     }
 
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getFragmentManager(), "datePicker");
+    public void setDateButton (int hourOfDay, int minute) {
+        Button button_date = (Button) findViewById(R.id.button_date);
+        button_date.setText(hourOfDay + ":" + minute);
     }
 
 }
