@@ -14,6 +14,7 @@ import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.fragments.ConcertListFragment;
 import com.example.katecatlin.finalproject.fragments.SubmitConcertWho;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
+import com.example.katecatlin.finalproject.models.ConcertModel;
 
 
 public class AddConcertActivity extends Activity implements FragmentController {
@@ -23,7 +24,9 @@ public class AddConcertActivity extends Activity implements FragmentController {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity);
 
-        SubmitConcertWho submitConcertWho = SubmitConcertWho.newInstance();
+        ConcertModel newConcert = new ConcertModel(null, "", "", "", "", "", "", "", "", "");
+
+        SubmitConcertWho submitConcertWho = SubmitConcertWho.newInstance(newConcert);
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, submitConcertWho)
