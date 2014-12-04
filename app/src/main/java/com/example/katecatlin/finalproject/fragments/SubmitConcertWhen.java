@@ -1,5 +1,6 @@
 package com.example.katecatlin.finalproject.fragments;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.widget.ImageButton;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.activities.MainActivity;
+import com.example.katecatlin.finalproject.dialogs.DatePickerFragment;
+import com.example.katecatlin.finalproject.dialogs.TimePickerFragment;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 
@@ -66,8 +69,7 @@ public class SubmitConcertWhen extends Fragment {
 
                 gatherInfoFromWhenEditTexts();
 
-                Log.d("LOG_TAG", "All the info from the concert is " + submittedConcert.getArtist1() + " " + submittedConcert.getVenue() + " " + submittedConcert.getTicketUrl() + " " + submittedConcert.getAddress());
-
+//                Log.d("LOG_TAG", "All the info from the concert is " + submittedConcert.getArtist1() + " " + submittedConcert.getVenue() + " " + submittedConcert.getTicketUrl() + " " + submittedConcert.getAddress());
 //                Insert some stuff about sending to Parse
 
                 Intent intent = new Intent(getActivity(), MainActivity.class);

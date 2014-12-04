@@ -21,8 +21,8 @@
     <string name="Ticket_URl_Submit">Link to Purchase Tickets:</string>
     <string name="Submit_Button">SUBMIT</string>
 
-    <string name="Hint_Date">Date / Time</string>
-
+    <string name="Hint_Date">Date</string>
+    <string name="Hint_Time">Time</string>
 
 
     <string name="Venue">Default Venue</string>
