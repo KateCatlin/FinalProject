@@ -26,6 +26,8 @@ import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -33,15 +35,15 @@ import java.util.Date;
 /**
  * Created by katecatlin on 12/3/14.
  */
-public class SubmitConcertWhen extends Fragment
-//        implements GetChosenDateInterface
-{
+public class SubmitConcertWhen extends Fragment {
     static final String SUBMITTED_CONCERT_ENTRY = SubmitConcertWho.SUBMITTED_CONCERT_ENTRY;
     ConcertModel submittedConcert;
     private EditText edit_ticket_url;
     Button button_date, button_time;
     public static final String WHICH_DATE_KEY = "WHICH_DATE_KEY";
     Calendar dateAndTime = Calendar.getInstance();
+    DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
+
 
 
     public static final SubmitConcertWhen newInstance(ConcertModel concertModel) {
@@ -94,13 +96,79 @@ public class SubmitConcertWhen extends Fragment
         });
 
         Button button_date = (Button) view.findViewById(R.id.button_date);
+        button_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseDate(view);
+            }
+        });
 
+        Button button_time = (Button) view.findViewById(R.id.button_time);
+        button_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseTime(view);
+            }
+        });
         return view;
     }
+
+    com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface chosenDateInterface;
+
+        public void chooseDate(View view) { new DatePickerDialog(getActivity(), d,
+                dateAndTime.get(Calendar.YEAR),
+                dateAndTime.get(Calendar.MONTH),
+                dateAndTime.get(Calendar.DAY_OF_MONTH))
+                .show(); }
+
+        DatePickerDialog.OnDateSetListener d=new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                dateAndTime.set(Calendar.YEAR, year);
+                dateAndTime.set(Calendar.MONTH, monthOfYear);
+                dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                if (chosenDateInterface !=null) {
+                    chosenDateInterface.getChosenDate(dateAndTime.getTime());
+                }
+            }
+        };
+
+    public void chooseTime(View v) { new TimePickerDialog(getActivity(), t,
+            dateAndTime.get(Calendar.HOUR_OF_DAY), dateAndTime.get(Calendar.MINUTE), true)
+            .show(); }
+
+        TimePickerDialog.OnTimeSetListener t=new TimePickerDialog.OnTimeSetListener() {
+
+            public void onTimeSet(TimePicker view, int hourOfDay,
+                                  int minute) {
+
+                dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                dateAndTime.set(Calendar.MINUTE, minute);
+                Log.d("LOG_TAG", "dateAndTime is" + dateAndTime);
+                if (button_time == null) {
+                    Log.d("LOG_TAG", "button_time is null");
+                }
+                if (dateAndTime != null) {
+//                    button_time.setText(DateUtils.formatDateTime(getActivity(),
+//                            dateAndTime.getTimeInMillis(),
+//                            DateUtils.FORMAT_SHOW_TIME));
+                }
+                else {
+                    Log.d("LOG_TAG", "dateAndTime is null");
+                }
+            }
+        };
+
 
     public void gatherInfoFromWhenEditTexts() {
         String url = edit_ticket_url.getText().toString();
         submittedConcert.setTicketUrl(url);
+    }
+
+    public void setButtonText (String value) {
+        button_date.setText(value);
     }
 
     private void updateLabel() {
@@ -109,16 +177,6 @@ public class SubmitConcertWhen extends Fragment
                         dateAndTime.getTimeInMillis(),
                         DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_TIME));
     }
-}
 
-
-//    @Override
-//    public void getChosenDate(Date chosenDate, String whichDateString) {
-//
-//        if(whichDateString.equals(END_DATE_STRING)){
-//            endDate = chosenDate;
-//            lunchEndButton.setText(fmt.print(endDate));
-//        }
-//
-//    }
+    }
 

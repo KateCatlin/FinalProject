@@ -21,15 +21,20 @@ import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.dialogs.DatePickerFragment;
 import com.example.katecatlin.finalproject.dialogs.TimePickerFragment;
 import com.example.katecatlin.finalproject.fragments.ConcertListFragment;
+import com.example.katecatlin.finalproject.fragments.SubmitConcertWhen;
 import com.example.katecatlin.finalproject.fragments.SubmitConcertWho;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
+import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 
 import java.util.Calendar;
+import java.util.Date;
 
 
-public class AddConcertActivity extends Activity implements FragmentController {
+public class AddConcertActivity extends Activity implements FragmentController, GetChosenDateInterface {
+    SubmitConcertWhen submitConcertWhen;
     Calendar dateAndTime=Calendar.getInstance();
+    Date concertDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,8 @@ public class AddConcertActivity extends Activity implements FragmentController {
         ConcertModel newConcert = new ConcertModel(null, "", "", "", "", "", "", "", "", "");
 
         SubmitConcertWho submitConcertWho = SubmitConcertWho.newInstance(newConcert);
+
+        submitConcertWhen = new SubmitConcertWhen();
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, submitConcertWho)
@@ -68,45 +75,23 @@ public class AddConcertActivity extends Activity implements FragmentController {
         fragmentTransaction.commit();
     }
 
-    public void showTimePickerDialog(View v) {
-        DialogFragment newFragment = new TimePickerFragment();
-        newFragment.show(getFragmentManager(), "timePicker");
-    }
-
-    public void setDateButton (int hourOfDay, int minute) {
-        Button button_date = (Button) findViewById(R.id.button_date);
-        button_date.setText(hourOfDay + ":" + minute);
-    }
-
-    public void chooseDate(View v) { new DatePickerDialog(this, d,
-            dateAndTime.get(Calendar.YEAR),
-            dateAndTime.get(Calendar.MONTH),
-            dateAndTime.get(Calendar.DAY_OF_MONTH))
-            .show(); }
-
-    public void chooseTime(View v) { new TimePickerDialog(this, t,
-            dateAndTime.get(Calendar.HOUR_OF_DAY), dateAndTime.get(Calendar.MINUTE), true)
-            .show(); }
-
-
-    DatePickerDialog.OnDateSetListener d=new DatePickerDialog.OnDateSetListener() {
-
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-            dateAndTime.set(Calendar.YEAR, year);
-            dateAndTime.set(Calendar.MONTH, monthOfYear);
-            dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
-        } };
-
-    TimePickerDialog.OnTimeSetListener t=new TimePickerDialog.OnTimeSetListener() {
-        public void onTimeSet(TimePicker view, int hourOfDay,
-                              int minute) {
-
-            dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            dateAndTime.set(Calendar.MINUTE, minute);
-//            updateLabel();
+    public void getChosenDate(Date chosenDate) {
+        concertDate = chosenDate;
+        if (submitConcertWhen.isVisible()) {
+            submitConcertWhen.setButtonText(concertDate.toString());
         }
-    }; }
+    }
+
+//    public void showTimePickerDialog(View v) {
+//        DialogFragment newFragment = new TimePickerFragment();
+//        newFragment.show(getFragmentManager(), "timePicker");
+//    }
+//
+//    public void setDateButton (int hourOfDay, int minute) {
+//        Button button_date = (Button) findViewById(R.id.button_date);
+//        button_date.setText(hourOfDay + ":" + minute);
+//    }
+
+ }
 
 

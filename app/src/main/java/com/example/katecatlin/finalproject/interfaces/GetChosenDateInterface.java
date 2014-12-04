@@ -10,6 +10,6 @@ import java.util.Date;
 
 public interface GetChosenDateInterface {
 
-    public void getChosenDate(Date chosenDate, String whichDateString);
+    public void getChosenDate(Date chosenDate);
 
 }

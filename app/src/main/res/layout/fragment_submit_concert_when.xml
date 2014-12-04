@@ -56,7 +56,6 @@
         android:layout_marginBottom="20dp"
         android:padding="10dp"
         android:textColor="#ffffff"
-        android:onClick="chooseDate"
         />
 
     <Button
@@ -70,7 +69,7 @@
         android:layout_marginBottom="20dp"
         android:padding="10dp"
         android:textColor="#ffffff"
-        android:onClick="chooseTime"/>
+        />
 
     </LinearLayout>
 
