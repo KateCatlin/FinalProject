@@ -24,6 +24,7 @@ import com.example.katecatlin.finalproject.dialogs.TimePickerFragment;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
 import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
 import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.requests.ParseRequest;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -87,7 +88,8 @@ public class SubmitConcertWhen extends Fragment {
                 gatherInfoFromWhenEditTexts();
 
 //                Log.d("LOG_TAG", "All the info from the concert is " + submittedConcert.getArtist1() + " " + submittedConcert.getVenue() + " " + submittedConcert.getTicketUrl() + " " + submittedConcert.getAddress());
-//                Insert some stuff about sending to Parse
+                ParseRequest parseRequest = new ParseRequest(getActivity());
+                parseRequest.postConcertToParse(submittedConcert);
 
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
