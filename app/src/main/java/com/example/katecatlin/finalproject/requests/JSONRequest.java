@@ -25,20 +25,21 @@ public class JSONRequest {
 
     HttpURLConnection httpURLConnection = null;
     InputStream inputStream = null;
-
     private static JSONRequest jsonRequest;
+    IndividualApiRequestCallback thisCallback;
 
-    public static JSONRequest getJsonRequest () {
+    public static JSONRequest getJsonRequest (IndividualApiRequestCallback individualApiRequestCallback) {
         if (jsonRequest == null) {
-            jsonRequest = new JSONRequest();
+            jsonRequest = new JSONRequest(individualApiRequestCallback);
         }
         return jsonRequest;
     }
 
-    private JSONRequest () {
+    private JSONRequest (IndividualApiRequestCallback individualApiRequestCallback) {
+        thisCallback = individualApiRequestCallback;
     }
 
-    public void getConcerts (IndividualApiRequestCallback individualApiRequestCallback) {
+    public void getConcerts () {
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
@@ -52,16 +53,13 @@ public class JSONRequest {
 
         Log.d("LOG_TAG", "URL is " + uri);
 
-        new LoadDataInBackground(individualApiRequestCallback).execute(uri);
+        new LoadDataInBackground().execute(uri);
     }
 
 
     private class LoadDataInBackground extends AsyncTask <Uri, Void, List<ConcertModel>> {
 
-        private IndividualApiRequestCallback individualApiRequestCallback;
-
-        private LoadDataInBackground(IndividualApiRequestCallback individualApiRequestCallback) {
-            this.individualApiRequestCallback = individualApiRequestCallback;
+        private LoadDataInBackground() {
         }
 
         @Override
@@ -94,9 +92,9 @@ public class JSONRequest {
         @Override
         protected void onPostExecute(List<ConcertModel> results) {
             if (results != null) {
-                this.individualApiRequestCallback.onSuccess(results);
+                thisCallback.onSuccess(results);
             } else {
-                this.individualApiRequestCallback.onError();
+                thisCallback.onError();
             }
         }
     }

@@ -17,44 +17,44 @@ import java.util.List;
 public class MasterRequest implements IndividualApiRequestCallback {
     public static Integer apisReturned = 0;
     List<ConcertModel> upcomingConcerts = new ArrayList<ConcertModel>();
-    private MasterAPIRequestCallback masterAPIRequestCallback;
+    private MasterAPIRequestCallback thisMasterAPIRequestCallback;
 
     private static MasterRequest masterRequest;
     Activity activity;
 
-    public static MasterRequest getMasterRequest() {
+    public static MasterRequest getMasterRequest(MasterAPIRequestCallback masterAPIRequestCallback) {
         if (masterRequest == null) {
-            masterRequest = new MasterRequest();
+            masterRequest = new MasterRequest(masterAPIRequestCallback);
         }
         return masterRequest;
     }
 
-    private MasterRequest() {
+    private MasterRequest(MasterAPIRequestCallback masterAPIRequestCallback) {
+        thisMasterAPIRequestCallback = masterAPIRequestCallback;
     }
 
     public void loadConcerts(Activity activity, MasterAPIRequestCallback masterAPIRequestCallback) {
-        this.masterAPIRequestCallback = masterAPIRequestCallback;
+        thisMasterAPIRequestCallback = masterAPIRequestCallback;
 
-
-        JSONRequest jsonRequest = JSONRequest.getJsonRequest();
-        jsonRequest.getConcerts(this);
+        JSONRequest jsonRequest = JSONRequest.getJsonRequest(this);
+        jsonRequest.getConcerts();
 
         ParseRequest parseRequest = ParseRequest.getParseRequest(activity, this);
-        parseRequest.getConcertsFromParse(this);
+        parseRequest.getConcertsFromParse();
     }
 
     public void refreshConcerts (List<ConcertModel> returnedConcerts) {
 
-        for (int i=0; i < 10; i++) {
+        for (int i=0; i < returnedConcerts.size(); i++) {
             upcomingConcerts.add(returnedConcerts.get(i));
         }
 
         if (apisReturned == 1) {
             if (upcomingConcerts.get(0) != null) {
                 apisReturned = 0;
-                masterAPIRequestCallback.onSuccess(upcomingConcerts);
+                thisMasterAPIRequestCallback.onSuccess(upcomingConcerts);
             } else {
-                masterAPIRequestCallback.onError();
+                thisMasterAPIRequestCallback.onError();
             }
         }
     }
@@ -67,6 +67,6 @@ public class MasterRequest implements IndividualApiRequestCallback {
 
     @Override
     public void onError() {
-        masterAPIRequestCallback.onError();
+        thisMasterAPIRequestCallback.onError();
     }
 }

@@ -32,12 +32,17 @@ public class ParseRequest {
 
     public ParseRequest(Activity currentActivity, IndividualApiRequestCallback individualApiRequestCallback) {
         Parse.initialize(currentActivity, APPLICATION_ID, CLIENT_KEY);
+        this.individualApiRequestCallback = individualApiRequestCallback;
     }
 
     public static ParseRequest getParseRequest (Activity activity, IndividualApiRequestCallback individualApiRequestCallback) {
         if (parseRequest == null) {
             parseRequest = new ParseRequest(activity, individualApiRequestCallback);
         }
+        return parseRequest;
+    }
+
+    public static ParseRequest getEstablishedParseRequest (Activity activity) {
         return parseRequest;
     }
 
@@ -58,9 +63,7 @@ public class ParseRequest {
         newConcertObject.saveInBackground();
     }
 
-    public void getConcertsFromParse(IndividualApiRequestCallback individualApiRequestCallback) {
-        this.individualApiRequestCallback = individualApiRequestCallback;
-
+    public void getConcertsFromParse() {
 
         List<ParseObject> parseObjectList = null;
         ParseQuery<ParseObject> parseQuery = new ParseQuery<ParseObject>("Concert");
@@ -83,9 +86,9 @@ public class ParseRequest {
         }
 
         if (concertModels != null) {
-            this.individualApiRequestCallback.onSuccess(concertModels);
+            individualApiRequestCallback.onSuccess(concertModels);
         } else {
-            this.individualApiRequestCallback.onError();
+            individualApiRequestCallback.onError();
         }
     }
 

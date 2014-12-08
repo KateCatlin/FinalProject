@@ -16,13 +16,16 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
+import com.example.katecatlin.finalproject.activities.AddConcertActivity;
 import com.example.katecatlin.finalproject.activities.MainActivity;
 import com.example.katecatlin.finalproject.dialogs.DatePickerFragment;
 import com.example.katecatlin.finalproject.dialogs.TimePickerFragment;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
 import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
+import com.example.katecatlin.finalproject.interfaces.MasterAPIRequestCallback;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 import com.example.katecatlin.finalproject.requests.ParseRequest;
 
@@ -32,6 +35,7 @@ import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by katecatlin on 12/3/14.
@@ -41,7 +45,6 @@ public class SubmitConcertWhen extends Fragment {
     ConcertModel submittedConcert;
     private EditText edit_ticket_url;
     Button button_date, button_time;
-    public static final String WHICH_DATE_KEY = "WHICH_DATE_KEY";
     Calendar dateAndTime = Calendar.getInstance();
     DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
 
@@ -87,13 +90,8 @@ public class SubmitConcertWhen extends Fragment {
 
                 gatherInfoFromWhenEditTexts();
 
-//                Log.d("LOG_TAG", "All the info from the concert is " + submittedConcert.getArtist1() + " " + submittedConcert.getVenue() + " " + submittedConcert.getTicketUrl() + " " + submittedConcert.getAddress());
-//                ParseRequest parseRequest = new ParseRequest(getActivity(), );
-//                parseRequest.postConcertToParse(submittedConcert);
-
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-
+                ParseRequest parseRequest = ParseRequest.getEstablishedParseRequest(getActivity());
+                parseRequest.postConcertToParse(submittedConcert);
             }
         });
 
@@ -179,6 +177,5 @@ public class SubmitConcertWhen extends Fragment {
                         dateAndTime.getTimeInMillis(),
                         DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_TIME));
     }
-
-    }
+}
 

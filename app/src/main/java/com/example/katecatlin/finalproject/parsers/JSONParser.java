@@ -24,7 +24,7 @@ public class JSONParser {
 
             List <ConcertModel> concertsList = new ArrayList<ConcertModel>();
 
-            for (int index = 0; index < jsonArray.length() && index < 25; index++) {
+            for (int index = 0; index < 10 && index < 25; index++) {
 
                 JSONObject concertEntry = jsonArray.getJSONObject(index);
 
