@@ -26,7 +26,7 @@ public class JSONRequest {
     HttpURLConnection httpURLConnection = null;
     InputStream inputStream = null;
     private static JSONRequest jsonRequest;
-    IndividualApiRequestCallback thisCallback;
+    IndividualApiRequestCallback jsonCallback;
 
     public static JSONRequest getJsonRequest (IndividualApiRequestCallback individualApiRequestCallback) {
         if (jsonRequest == null) {
@@ -36,7 +36,7 @@ public class JSONRequest {
     }
 
     private JSONRequest (IndividualApiRequestCallback individualApiRequestCallback) {
-        thisCallback = individualApiRequestCallback;
+        jsonCallback = individualApiRequestCallback;
     }
 
     public void getConcerts () {
@@ -50,8 +50,6 @@ public class JSONRequest {
                 .appendQueryParameter("page", "0")
                 .appendQueryParameter("api_key", "fbry47pgp62uj3vnknntdyda")
                 .build();
-
-        Log.d("LOG_TAG", "URL is " + uri);
 
         new LoadDataInBackground().execute(uri);
     }
@@ -92,9 +90,9 @@ public class JSONRequest {
         @Override
         protected void onPostExecute(List<ConcertModel> results) {
             if (results != null) {
-                thisCallback.onSuccess(results);
+                jsonCallback.onSuccess(results);
             } else {
-                thisCallback.onError();
+                jsonCallback.onError();
             }
         }
     }
@@ -119,7 +117,4 @@ public class JSONRequest {
 
         return new JSONObject(stringBuilder.toString());
     }
-
-
-
 }

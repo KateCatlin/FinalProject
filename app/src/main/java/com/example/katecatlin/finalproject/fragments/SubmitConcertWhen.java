@@ -1,9 +1,7 @@
 package com.example.katecatlin.finalproject.fragments;
 
-import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -11,15 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TimePicker;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.dialogs.DatePickerFragment;
 import com.example.katecatlin.finalproject.dialogs.TimePickerFragment;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
+import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 import com.example.katecatlin.finalproject.requests.ParseRequest;
 
@@ -32,14 +29,14 @@ import java.util.Calendar;
 /**
  * Created by katecatlin on 12/3/14.
  */
-public class SubmitConcertWhen extends Fragment {
+public class SubmitConcertWhen extends Fragment implements GetChosenDateInterface {
     static final String SUBMITTED_CONCERT_ENTRY = SubmitConcertWho.SUBMITTED_CONCERT_ENTRY;
     ConcertModel submittedConcert;
     private EditText edit_ticket_url;
     Button button_date, button_time;
     Calendar dateAndTime = Calendar.getInstance();
     DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
-    DateTime dt = new DateTime("2004-12-13T21:39:45.618-08:00");
+    static int year, month, day, hour, minute = 0;
 
 
 
@@ -76,6 +73,7 @@ public class SubmitConcertWhen extends Fragment {
 
             }
         });
+
         Button button_submit = (Button) view.findViewById(R.id.button_submit);
         button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,11 +86,11 @@ public class SubmitConcertWhen extends Fragment {
             }
         });
 
-        Button button_date = (Button) view.findViewById(R.id.button_date);
+        button_date = (Button) view.findViewById(R.id.button_date);
         button_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    DialogFragment newFragment = new DatePickerFragment();
+                    DialogFragment newFragment = new DatePickerFragment(SubmitConcertWhen.this);
                     newFragment.show(getFragmentManager(), "datePicker");
             }
         });
@@ -111,10 +109,10 @@ public class SubmitConcertWhen extends Fragment {
     public void gatherInfoFromWhenEditTexts() {
         String url = edit_ticket_url.getText().toString();
         submittedConcert.setTicketUrl(url);
-    }
 
-    public void setButtonText (String value) {
-        button_date.setText(value);
+        DateTime dt = new DateTime(year+"-"+month+"-"+day+"T"+hour+":"+minute+":00.000");
+        submittedConcert.setDateTime(dt);
+
     }
 
     private void updateLabel() {
@@ -122,6 +120,15 @@ public class SubmitConcertWhen extends Fragment {
                 .setText(DateUtils.formatDateTime(getActivity(),
                         dateAndTime.getTimeInMillis(),
                         DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_TIME));
+    }
+
+    @Override
+    public void getChosenDate(int year, int month, int day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        Log.d("LOG_TAG", "Chosen date is " + month + "/" + day + "/" + year);
+        button_date.setText(month + "/" + day + "/" + year);
     }
 }
 

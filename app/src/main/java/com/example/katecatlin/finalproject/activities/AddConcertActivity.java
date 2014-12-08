@@ -9,17 +9,14 @@ import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.fragments.SubmitConcertWhen;
 import com.example.katecatlin.finalproject.fragments.SubmitConcertWho;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
-import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 
 import java.util.Calendar;
 import java.util.Date;
 
 
-public class AddConcertActivity extends Activity implements FragmentController, GetChosenDateInterface {
+public class AddConcertActivity extends Activity implements FragmentController {
     SubmitConcertWhen submitConcertWhen;
-    Calendar dateAndTime=Calendar.getInstance();
-    Date concertDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,22 +57,6 @@ public class AddConcertActivity extends Activity implements FragmentController, 
         fragmentTransaction.commit();
     }
 
-    public void getChosenDate(Date chosenDate) {
-        concertDate = chosenDate;
-        if (submitConcertWhen.isVisible()) {
-            submitConcertWhen.setButtonText(concertDate.toString());
-        }
-    }
-
-//    public void showTimePickerDialog(View v) {
-//        DialogFragment newFragment = new TimePickerFragment();
-//        newFragment.show(getFragmentManager(), "timePicker");
-//    }
-//
-//    public void setDateButton (int hourOfDay, int minute) {
-//        Button button_date = (Button) findViewById(R.id.button_date);
-//        button_date.setText(hourOfDay + ":" + minute);
-//    }
 
  }
 

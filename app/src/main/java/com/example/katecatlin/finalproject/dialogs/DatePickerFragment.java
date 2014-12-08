@@ -9,15 +9,24 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 
 import com.example.katecatlin.finalproject.R;
+import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
+import com.example.katecatlin.finalproject.interfaces.MasterAPIRequestCallback;
+
+import org.joda.time.DateTime;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by katecatlin on 12/4/14.
  */
 
-public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener
-    {
+public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+    GetChosenDateInterface chosenDateInterface;
+
+    public DatePickerFragment (GetChosenDateInterface getChosenDateInterface) {
+        chosenDateInterface = getChosenDateInterface;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -32,5 +41,6 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
+        chosenDateInterface.getChosenDate(year, month, day);
     }
 }
