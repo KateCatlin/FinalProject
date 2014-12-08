@@ -1,10 +1,8 @@
 package com.example.katecatlin.finalproject.fragments;
 
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -16,26 +14,16 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
-import com.example.katecatlin.finalproject.activities.AddConcertActivity;
-import com.example.katecatlin.finalproject.activities.MainActivity;
-import com.example.katecatlin.finalproject.dialogs.DatePickerFragment;
-import com.example.katecatlin.finalproject.dialogs.TimePickerFragment;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
-import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
-import com.example.katecatlin.finalproject.interfaces.MasterAPIRequestCallback;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 import com.example.katecatlin.finalproject.requests.ParseRequest;
 
-import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by katecatlin on 12/3/14.

@@ -1,7 +1,5 @@
 package com.example.katecatlin.finalproject.parsers;
 
-import android.util.Log;
-
 import com.example.katecatlin.finalproject.models.ConcertModel;
 
 import org.joda.time.DateTime;

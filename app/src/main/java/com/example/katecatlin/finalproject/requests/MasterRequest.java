@@ -2,11 +2,9 @@ package com.example.katecatlin.finalproject.requests;
 
 import android.app.Activity;
 
-import com.example.katecatlin.finalproject.fragments.ConcertListFragment;
 import com.example.katecatlin.finalproject.interfaces.IndividualApiRequestCallback;
 import com.example.katecatlin.finalproject.interfaces.MasterAPIRequestCallback;
 import com.example.katecatlin.finalproject.models.ConcertModel;
-import com.example.katecatlin.finalproject.parsers.ParseObjectParser;
 
 import java.util.ArrayList;
 import java.util.List;
