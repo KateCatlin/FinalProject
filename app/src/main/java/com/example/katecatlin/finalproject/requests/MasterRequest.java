@@ -52,14 +52,13 @@ public class MasterRequest implements IndividualApiRequestCallback {
 
         if (apisReturned == 2) {
             if (upcomingConcerts.get(0) != null) {
+                apisReturned = 0;
                 masterAPIRequestCallback.onSuccess(upcomingConcerts);
             } else {
                 masterAPIRequestCallback.onError();
             }
         }
-
     }
-
 
     @Override
     public void onSuccess(List<ConcertModel> concertModelList) {

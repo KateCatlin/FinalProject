@@ -26,6 +26,8 @@ public class ParseRequest {
     private static String CLIENT_KEY = "3AN5tiVBtJ24e5J0RUx1DNf1cpeXBJiQqrdigEif";
 
     private static ParseRequest parseRequest;
+    private IndividualApiRequestCallback individualApiRequestCallback;
+
 
 
     public ParseRequest(Activity currentActivity) {
@@ -56,31 +58,37 @@ public class ParseRequest {
         newConcertObject.saveInBackground();
     }
 
-    public List<ParseObject> getConcertsFromParse(IndividualApiRequestCallback individualApiRequestCallback) {
+    public void getConcertsFromParse(IndividualApiRequestCallback individualApiRequestCallback) {
+        this.individualApiRequestCallback = individualApiRequestCallback;
+
 
         List<ParseObject> parseObjectList = null;
         ParseQuery<ParseObject> parseQuery = new ParseQuery<ParseObject>("Concert");
         ArrayList<ParseObject> parseObjects = new ArrayList<ParseObject>();
+        List<ConcertModel> concertModels = null;
 
         try {
-            //this is where you change Boolean to true!
             parseObjectList = parseQuery.find();
 
             for (ParseObject x: parseObjectList) {
                 parseObjects.add(x);
             }
 
+            ParseObjectParser parseObjectParser = new ParseObjectParser();
+            concertModels = parseObjectParser.parseParseObject(parseObjects);
+
         } catch (ParseException e) {
             Log.e("Error", e.getMessage());
             e.printStackTrace();
         }
 
-        return parseObjects;
-
-
+        if (concertModels != null) {
+            this.individualApiRequestCallback.onSuccess(concertModels);
+        } else {
+            this.individualApiRequestCallback.onError();
+        }
     }
 
     //DO SOMETHING WITH PARSING
-    ParseObjectParser parseObjectParser = new ParseObjectParser();
-    parseObjectParser.parseParseObject(parseObjects);
+
 }
