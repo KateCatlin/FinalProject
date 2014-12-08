@@ -13,8 +13,7 @@ import java.util.Calendar;
 /**
  * Created by katecatlin on 12/4/14.
  */
-public class TimePickerFragment extends DialogFragment
-        implements TimePickerDialog.OnTimeSetListener {
+public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

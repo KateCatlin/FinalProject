@@ -1,6 +1,7 @@
 package com.example.katecatlin.finalproject.fragments;
 
 import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -16,10 +17,13 @@ import android.widget.ImageButton;
 import android.widget.TimePicker;
 
 import com.example.katecatlin.finalproject.R;
+import com.example.katecatlin.finalproject.dialogs.DatePickerFragment;
+import com.example.katecatlin.finalproject.dialogs.TimePickerFragment;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 import com.example.katecatlin.finalproject.requests.ParseRequest;
 
+import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -35,6 +39,7 @@ public class SubmitConcertWhen extends Fragment {
     Button button_date, button_time;
     Calendar dateAndTime = Calendar.getInstance();
     DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
+    DateTime dt = new DateTime("2004-12-13T21:39:45.618-08:00");
 
 
 
@@ -87,7 +92,8 @@ public class SubmitConcertWhen extends Fragment {
         button_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                chooseDate(view);
+                    DialogFragment newFragment = new DatePickerFragment();
+                    newFragment.show(getFragmentManager(), "datePicker");
             }
         });
 
@@ -95,60 +101,12 @@ public class SubmitConcertWhen extends Fragment {
         button_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                chooseTime(view);
+                DialogFragment newFragment = new TimePickerFragment();
+                newFragment.show(getFragmentManager(), "timePicker");
             }
         });
         return view;
     }
-
-    com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface chosenDateInterface;
-
-        public void chooseDate(View view) { new DatePickerDialog(getActivity(), d,
-                dateAndTime.get(Calendar.YEAR),
-                dateAndTime.get(Calendar.MONTH),
-                dateAndTime.get(Calendar.DAY_OF_MONTH))
-                .show(); }
-
-        DatePickerDialog.OnDateSetListener d=new DatePickerDialog.OnDateSetListener() {
-
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                dateAndTime.set(Calendar.YEAR, year);
-                dateAndTime.set(Calendar.MONTH, monthOfYear);
-                dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
-                if (chosenDateInterface !=null) {
-                    chosenDateInterface.getChosenDate(dateAndTime.getTime());
-                }
-            }
-        };
-
-    public void chooseTime(View v) { new TimePickerDialog(getActivity(), t,
-            dateAndTime.get(Calendar.HOUR_OF_DAY), dateAndTime.get(Calendar.MINUTE), true)
-            .show(); }
-
-        TimePickerDialog.OnTimeSetListener t=new TimePickerDialog.OnTimeSetListener() {
-
-            public void onTimeSet(TimePicker view, int hourOfDay,
-                                  int minute) {
-
-                dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                dateAndTime.set(Calendar.MINUTE, minute);
-                Log.d("LOG_TAG", "dateAndTime is" + dateAndTime);
-                if (button_time == null) {
-                    Log.d("LOG_TAG", "button_time is null");
-                }
-                if (dateAndTime != null) {
-//                    button_time.setText(DateUtils.formatDateTime(getActivity(),
-//                            dateAndTime.getTimeInMillis(),
-//                            DateUtils.FORMAT_SHOW_TIME));
-                }
-                else {
-                    Log.d("LOG_TAG", "dateAndTime is null");
-                }
-            }
-        };
-
 
     public void gatherInfoFromWhenEditTexts() {
         String url = edit_ticket_url.getText().toString();
