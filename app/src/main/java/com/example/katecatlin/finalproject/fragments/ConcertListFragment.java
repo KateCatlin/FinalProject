@@ -12,16 +12,11 @@ import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.activities.AddConcertActivity;
 import com.example.katecatlin.finalproject.adapters.ConcertListAdapter;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
-import com.example.katecatlin.finalproject.interfaces.IndividualApiRequestCallback;
 import com.example.katecatlin.finalproject.interfaces.MasterAPIRequestCallback;
 import com.example.katecatlin.finalproject.models.ConcertModel;
-import com.example.katecatlin.finalproject.parsers.ParseObjectParser;
-import com.example.katecatlin.finalproject.requests.JSONRequest;
+import com.example.katecatlin.finalproject.parsers.SortConcertsByDate;
 import com.example.katecatlin.finalproject.requests.MasterRequest;
-import com.example.katecatlin.finalproject.requests.ParseRequest;
-import com.parse.ParseObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -74,8 +69,12 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
     @Override
     public void onSuccess(List<ConcertModel> returnedConcerts) {
         if (isAdded()) {
+
+            SortConcertsByDate sortConcertsByDate = new SortConcertsByDate();
+            List<ConcertModel> sortedConcerts = sortConcertsByDate.sortConcerts(returnedConcerts);
+
             concertListAdapter.clear();
-            concertListAdapter.addAll(returnedConcerts);
+            concertListAdapter.addAll(sortedConcerts);
         }
     }
 
