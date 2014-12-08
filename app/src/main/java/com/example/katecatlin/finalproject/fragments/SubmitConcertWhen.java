@@ -139,16 +139,20 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
     @Override
     public void getChosenDate(int year, int month, int day) {
         this.year = year;
-        this.month = month;
+        this.month = month + 1;
         this.day = day;
         button_date.setText(month + "/" + day + "/" + year);
     }
 
     @Override
     public void getChosenTime(int hour, int minute) {
+        if (minute < 10 ) {
+            button_time.setText(hour + ":0" + minute);
+        } else {
+            button_time.setText(hour + ":" + minute);
+        }
         this.hour = hour;
         this.minute = minute;
-        button_time.setText(hour + ":" + minute);
     }
 }
 
