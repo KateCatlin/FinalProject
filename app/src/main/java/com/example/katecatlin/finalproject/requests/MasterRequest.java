@@ -20,7 +20,6 @@ public class MasterRequest implements IndividualApiRequestCallback {
     private MasterAPIRequestCallback masterAPIRequestCallback;
 
     private static MasterRequest masterRequest;
-    IndividualApiRequestCallback individualApiRequestCallback;
     Activity activity;
 
     public static MasterRequest getMasterRequest() {
@@ -38,10 +37,10 @@ public class MasterRequest implements IndividualApiRequestCallback {
 
 
         JSONRequest jsonRequest = JSONRequest.getJsonRequest();
-        jsonRequest.getConcerts(individualApiRequestCallback);
+        jsonRequest.getConcerts(this);
 
-        ParseRequest parseRequest = ParseRequest.getParseRequest(activity);
-        parseRequest.getConcertsFromParse(individualApiRequestCallback);
+        ParseRequest parseRequest = ParseRequest.getParseRequest(activity, this);
+        parseRequest.getConcertsFromParse(this);
     }
 
     public void refreshConcerts (List<ConcertModel> returnedConcerts) {
@@ -50,7 +49,7 @@ public class MasterRequest implements IndividualApiRequestCallback {
             upcomingConcerts.add(returnedConcerts.get(i));
         }
 
-        if (apisReturned == 2) {
+        if (apisReturned == 1) {
             if (upcomingConcerts.get(0) != null) {
                 apisReturned = 0;
                 masterAPIRequestCallback.onSuccess(upcomingConcerts);

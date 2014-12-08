@@ -88,8 +88,8 @@ public class SubmitConcertWhen extends Fragment {
                 gatherInfoFromWhenEditTexts();
 
 //                Log.d("LOG_TAG", "All the info from the concert is " + submittedConcert.getArtist1() + " " + submittedConcert.getVenue() + " " + submittedConcert.getTicketUrl() + " " + submittedConcert.getAddress());
-                ParseRequest parseRequest = new ParseRequest(getActivity());
-                parseRequest.postConcertToParse(submittedConcert);
+//                ParseRequest parseRequest = new ParseRequest(getActivity(), );
+//                parseRequest.postConcertToParse(submittedConcert);
 
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);

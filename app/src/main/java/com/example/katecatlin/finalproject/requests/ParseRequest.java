@@ -30,13 +30,13 @@ public class ParseRequest {
 
 
 
-    public ParseRequest(Activity currentActivity) {
+    public ParseRequest(Activity currentActivity, IndividualApiRequestCallback individualApiRequestCallback) {
         Parse.initialize(currentActivity, APPLICATION_ID, CLIENT_KEY);
     }
 
-    public static ParseRequest getParseRequest (Activity activity) {
+    public static ParseRequest getParseRequest (Activity activity, IndividualApiRequestCallback individualApiRequestCallback) {
         if (parseRequest == null) {
-            parseRequest = new ParseRequest(activity);
+            parseRequest = new ParseRequest(activity, individualApiRequestCallback);
         }
         return parseRequest;
     }
