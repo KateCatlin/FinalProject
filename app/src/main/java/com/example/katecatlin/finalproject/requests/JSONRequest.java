@@ -4,12 +4,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.katecatlin.finalproject.interfaces.JsonApiCallback;
+import com.example.katecatlin.finalproject.interfaces.IndividualApiRequestCallback;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 import com.example.katecatlin.finalproject.parsers.JSONParser;
 
-import org.joda.time.DateTime;
-import org.joda.time.JodaTimePermission;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,10 +15,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 
 /**
@@ -30,7 +25,6 @@ public class JSONRequest {
 
     HttpURLConnection httpURLConnection = null;
     InputStream inputStream = null;
-
 
     private static JSONRequest jsonRequest;
 
@@ -44,7 +38,7 @@ public class JSONRequest {
     private JSONRequest () {
     }
 
-    public void getConcerts (JsonApiCallback jsonApiCallback) {
+    public void getConcerts (IndividualApiRequestCallback individualApiRequestCallback) {
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
@@ -58,16 +52,16 @@ public class JSONRequest {
 
         Log.d("LOG_TAG", "URL is " + uri);
 
-        new LoadDataInBackground(jsonApiCallback).execute(uri);
+        new LoadDataInBackground(individualApiRequestCallback).execute(uri);
     }
 
 
     private class LoadDataInBackground extends AsyncTask <Uri, Void, List<ConcertModel>> {
 
-        private JsonApiCallback jsonApiCallback;
+        private IndividualApiRequestCallback individualApiRequestCallback;
 
-        private LoadDataInBackground(JsonApiCallback jsonApiCallback) {
-            this.jsonApiCallback = jsonApiCallback;
+        private LoadDataInBackground(IndividualApiRequestCallback individualApiRequestCallback) {
+            this.individualApiRequestCallback = individualApiRequestCallback;
         }
 
         @Override
@@ -100,9 +94,9 @@ public class JSONRequest {
         @Override
         protected void onPostExecute(List<ConcertModel> results) {
             if (results != null) {
-                this.jsonApiCallback.onSuccess(results);
+                this.individualApiRequestCallback.onSuccess(results);
             } else {
-                this.jsonApiCallback.onError();
+                this.individualApiRequestCallback.onError();
             }
         }
     }
@@ -126,8 +120,6 @@ public class JSONRequest {
         }
 
         return new JSONObject(stringBuilder.toString());
-
-
     }
 
 

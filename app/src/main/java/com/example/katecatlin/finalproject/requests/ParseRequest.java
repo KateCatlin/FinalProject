@@ -3,7 +3,9 @@ package com.example.katecatlin.finalproject.requests;
 import android.app.Activity;
 import android.util.Log;
 
+import com.example.katecatlin.finalproject.interfaces.IndividualApiRequestCallback;
 import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.parsers.ParseObjectParser;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -23,9 +25,18 @@ public class ParseRequest {
     private static String APPLICATION_ID = "Farfo7O7tFBYG7ZqhhUr3Qxp0rzUGDbqiYNJaWwX";
     private static String CLIENT_KEY = "3AN5tiVBtJ24e5J0RUx1DNf1cpeXBJiQqrdigEif";
 
+    private static ParseRequest parseRequest;
+
 
     public ParseRequest(Activity currentActivity) {
         Parse.initialize(currentActivity, APPLICATION_ID, CLIENT_KEY);
+    }
+
+    public static ParseRequest getParseRequest (Activity activity) {
+        if (parseRequest == null) {
+            parseRequest = new ParseRequest(activity);
+        }
+        return parseRequest;
     }
 
     public void postConcertToParse(ConcertModel newConcert) {
@@ -45,13 +56,14 @@ public class ParseRequest {
         newConcertObject.saveInBackground();
     }
 
-    public List<ParseObject> getConcertsFromParse() {
+    public List<ParseObject> getConcertsFromParse(IndividualApiRequestCallback individualApiRequestCallback) {
 
         List<ParseObject> parseObjectList = null;
         ParseQuery<ParseObject> parseQuery = new ParseQuery<ParseObject>("Concert");
         ArrayList<ParseObject> parseObjects = new ArrayList<ParseObject>();
 
         try {
+            //this is where you change Boolean to true!
             parseObjectList = parseQuery.find();
 
             for (ParseObject x: parseObjectList) {
@@ -67,4 +79,8 @@ public class ParseRequest {
 
 
     }
+
+    //DO SOMETHING WITH PARSING
+    ParseObjectParser parseObjectParser = new ParseObjectParser();
+    parseObjectParser.parseParseObject(parseObjects);
 }

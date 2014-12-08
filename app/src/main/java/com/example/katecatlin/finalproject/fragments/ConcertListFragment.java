@@ -3,9 +3,6 @@ package com.example.katecatlin.finalproject.fragments;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -13,15 +10,16 @@ import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.activities.AddConcertActivity;
-import com.example.katecatlin.finalproject.activities.MainActivity;
 import com.example.katecatlin.finalproject.adapters.ConcertListAdapter;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
-import com.example.katecatlin.finalproject.interfaces.JsonApiCallback;
+import com.example.katecatlin.finalproject.interfaces.IndividualApiRequestCallback;
+import com.example.katecatlin.finalproject.interfaces.MasterAPIRequestCallback;
 import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.parsers.ParseObjectParser;
 import com.example.katecatlin.finalproject.requests.JSONRequest;
-
-import org.joda.time.DateTime;
-import org.json.JSONObject;
+import com.example.katecatlin.finalproject.requests.MasterRequest;
+import com.example.katecatlin.finalproject.requests.ParseRequest;
+import com.parse.ParseObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +27,11 @@ import java.util.List;
 /**
  * Created by katecatlin on 11/25/14.
  */
-public class ConcertListFragment extends ListFragment implements JsonApiCallback {
+public class ConcertListFragment extends ListFragment implements MasterAPIRequestCallback {
 
     private ConcertListAdapter concertListAdapter;
-    private JSONRequest jsonRequest = JSONRequest.getJsonRequest();
+    MasterRequest masterRequest;
+    MasterAPIRequestCallback masterAPIRequestCallback;
 
     public ConcertListFragment () {
     }
@@ -48,7 +47,12 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
         super.onViewCreated(view, savedInstanceState);
         concertListAdapter = new ConcertListAdapter(getActivity());
         setListAdapter(concertListAdapter);
-        loadConcerts();
+        refreshConcerts();
+    }
+
+    public void refreshConcerts () {
+        masterRequest = MasterRequest.getMasterRequest();
+        masterRequest.loadConcerts(getActivity(), masterAPIRequestCallback);
     }
 
     @Override
@@ -65,18 +69,13 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
         } else {
             throw new IllegalArgumentException("Your activity must implement the FragmentController interface");
         }
-
     }
 
-    //onSuccess and onError may need to get refactored, depending on the passage of information from the
-    //two sources of data!
     @Override
-    public void onSuccess(List<ConcertModel> upcomingConcerts) {
-
-        /// Ask Matt why "isAdded" is used here!
+    public void onSuccess(List<ConcertModel> returnedConcerts) {
         if (isAdded()) {
             concertListAdapter.clear();
-            concertListAdapter.addAll(upcomingConcerts);
+            concertListAdapter.addAll(returnedConcerts);
         }
     }
 
@@ -85,23 +84,13 @@ public class ConcertListFragment extends ListFragment implements JsonApiCallback
         Toast.makeText(getActivity(), "Error loading concerts, press back and try again!", Toast.LENGTH_LONG).show();
     }
 
-    public void loadConcerts () {
-
-        Log.d("LOG_TAG", "Loading Concerts!");
-
-        //this will be changed later to ALSO call entries from the Parse.com API, which will be added later.
-        jsonRequest.getConcerts(this);
-
-
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
                 Toast.makeText(getActivity(), "Refreshing your jams...", Toast.LENGTH_SHORT)
                         .show();
-                loadConcerts();
+                refreshConcerts();
                 break;
             case R.id.action_new_concert:
                 Intent addConcertIntent = new Intent (getActivity(), AddConcertActivity.class );
