@@ -46,7 +46,7 @@ public class ParseRequest {
 
         Log.d("LOG_TAG", "newConcertObject is " + newConcert.getArtist1() + " " + newConcert.getAddress());
         ParseObject newConcertObject = new ParseObject("Concert");
-//            newConcertObject.put("Date", newConcert.getDateTime().toDate());
+        newConcertObject.put("Date", newConcert.getDateTime().toDate());
         newConcertObject.put("Venue", newConcert.getVenue());
         newConcertObject.put("Address", newConcert.getAddress());
         newConcertObject.put("City", newConcert.getCity());
