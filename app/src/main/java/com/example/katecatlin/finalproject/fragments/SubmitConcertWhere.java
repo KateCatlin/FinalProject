@@ -18,6 +18,9 @@ import com.example.katecatlin.finalproject.models.ConcertModel;
  */
 
 
+//GO BACK AND CHANGE BACK BUTTON TO BE THE HARDWARE BACK BUTTON
+    //USE ON BACK PRESSED
+
 public class SubmitConcertWhere extends Fragment {
 
     private EditText edit_venue, edit_address, edit_city, edit_zipcode, edit_venue_url;

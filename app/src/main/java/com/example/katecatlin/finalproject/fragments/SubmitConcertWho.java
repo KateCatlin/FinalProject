@@ -17,6 +17,7 @@ import com.example.katecatlin.finalproject.models.ConcertModel;
  * Created by katecatlin on 12/3/14.
  */
 public class SubmitConcertWho extends Fragment {
+    //pass as bundle argument, not ConcertModel
 
     private ConcertModel submittedConcert;
     private EditText edit_artist_1, edit_artist_2, edit_artist_3;
@@ -25,6 +26,10 @@ public class SubmitConcertWho extends Fragment {
 
 
     public static SubmitConcertWho newInstance(ConcertModel concertModel){
+        //check in your savedInstanceState in teh onCreate of each fragment for a concert model.
+        //if there's nothing, make a new one.
+        //if there's one, then go ahead and save the edit texts to that
+
         Bundle args = new Bundle();
         args.putParcelable(SUBMITTED_CONCERT_ENTRY, concertModel);
 
@@ -50,6 +55,7 @@ public class SubmitConcertWho extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
         next_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

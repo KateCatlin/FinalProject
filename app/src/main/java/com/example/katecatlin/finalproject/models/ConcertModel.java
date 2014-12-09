@@ -9,8 +9,17 @@ import org.joda.time.DateTime;
  * Created by katecatlin on 11/25/14.
  */
 public class ConcertModel implements Parcelable {
-    private DateTime DateTime;
-    private String Venue, Address, City, ZipCode, VenueURL, Artist1, Artist2, Artist3, TicketUrl;
+    private DateTime DateTime = new DateTime("2050-01-01T12:00:00.000");
+    private String Venue="";
+    private String Address = "";
+    private String City = "";
+    private String ZipCode="";
+    private String VenueURL="";
+    private String Artist1="";
+    private String Artist2="";
+    private String Artist3="";
+    private String TicketUrl="";
+
 
     public ConcertModel(DateTime dateTime, String venue, String address, String city, String zipCode, String venueURL, String artist1, String artist2, String artist3, String ticketUrl) {
         DateTime = dateTime;
@@ -23,6 +32,9 @@ public class ConcertModel implements Parcelable {
         Artist2 = artist2;
         Artist3 = artist3;
         TicketUrl = ticketUrl;
+    }
+
+    public ConcertModel() {
     }
 
     public void setDateTime(DateTime dateTime) {

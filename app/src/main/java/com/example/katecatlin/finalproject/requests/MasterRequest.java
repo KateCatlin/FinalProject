@@ -34,8 +34,7 @@ public class MasterRequest implements IndividualApiRequestCallback {
     }
 
 
-    public void loadConcerts(Activity activity, MasterAPIRequestCallback masterAPIRequestCallback) {
-        thisMasterAPIRequestCallback = masterAPIRequestCallback;
+    public void loadConcerts(Activity activity) {
 
         JSONRequest jsonRequest = JSONRequest.getJsonRequest(this);
         jsonRequest.getConcerts();
@@ -47,11 +46,13 @@ public class MasterRequest implements IndividualApiRequestCallback {
 
     public void refreshConcerts (List<ConcertModel> returnedConcerts) {
 
-        for (int i=0; i < returnedConcerts.size(); i++) {
-            upcomingConcerts.add(returnedConcerts.get(i));
+        if (returnedConcerts != null) {
+            for (int i = 0; i < returnedConcerts.size(); i++) {
+                upcomingConcerts.add(returnedConcerts.get(i));
+            }
         }
 
-        if (apisReturned == 2 || (apisReturned ==1 && errorReturned ==1)) {
+        if (apisReturned == 2) {
             if (upcomingConcerts.get(0) != null) {
                 apisReturned = 0;
                 errorReturned = 0;
@@ -62,7 +63,6 @@ public class MasterRequest implements IndividualApiRequestCallback {
         }
     }
 
-
     @Override
     public void onSuccess(List<ConcertModel> concertModelList) {
         apisReturned++;
@@ -72,10 +72,7 @@ public class MasterRequest implements IndividualApiRequestCallback {
 
     @Override
     public void onError() {
-        errorReturned++;
-        if (errorReturned == 2) {
-            errorReturned = 0;
-            thisMasterAPIRequestCallback.onError();
-        }
+        apisReturned++;
+        refreshConcerts(null);
     }
 }

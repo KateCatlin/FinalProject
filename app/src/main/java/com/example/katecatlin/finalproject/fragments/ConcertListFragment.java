@@ -47,7 +47,7 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
 
     public void refreshConcerts () {
         MasterRequest masterRequest = MasterRequest.getMasterRequest(this);
-        masterRequest.loadConcerts(getActivity(), this);
+        masterRequest.loadConcerts(getActivity());
     }
 
 

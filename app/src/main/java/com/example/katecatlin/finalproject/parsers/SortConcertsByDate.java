@@ -18,9 +18,13 @@ public class SortConcertsByDate {
     public List<ConcertModel> sortConcerts (List<ConcertModel> returnedConcerts) {
 
         Collections.sort(returnedConcerts, new Comparator<ConcertModel>() {
+
             public int compare(ConcertModel concertModel1, ConcertModel concertModel2) {
-                if (concertModel1.getDateTime() == null || concertModel2.getDateTime() == null)
+
+                if (concertModel1.getDateTime() == null || concertModel2.getDateTime() == null) {
                     return 0;
+                }
+
                 return concertModel1.getDateTime().compareTo(concertModel2.getDateTime());
             }
         });

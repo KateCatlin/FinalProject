@@ -21,7 +21,7 @@ public class AddConcertActivity extends Activity implements FragmentController {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity);
 
-        ConcertModel newConcert = new ConcertModel(null, "", "", "", "", "", "", "", "", "");
+        ConcertModel newConcert = new ConcertModel();
 
         SubmitConcertWho submitConcertWho = SubmitConcertWho.newInstance(newConcert);
 
