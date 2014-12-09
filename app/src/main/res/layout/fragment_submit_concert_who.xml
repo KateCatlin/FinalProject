@@ -79,6 +79,19 @@
         android:layout_marginBottom="5dp"
         android:singleLine="true"/>
 
+    <Button
+        android:id="@+id/button_picture_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_artist_3"
+        android:padding="15dp"
+        android:background="#000000"
+        android:textColor="#ffffff"
+        android:text="@string/Picture_Choose"
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        />
+
     <ImageButton
         android:id="@+id/button_next"
         android:layout_width="75dp"
@@ -89,5 +102,7 @@
         android:scaleType="centerInside"
         android:adjustViewBounds="true"
         />
+
+
 
 </RelativeLayout>
