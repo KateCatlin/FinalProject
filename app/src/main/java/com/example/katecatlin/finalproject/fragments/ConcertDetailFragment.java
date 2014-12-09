@@ -90,12 +90,13 @@ public class ConcertDetailFragment extends Fragment {
             ticketButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 
-                    if (concertModel.getTicketUrl().equals("") && concertModel.getVenueURL().equals("")) {
-                        Toast.makeText(getActivity(), "Sorry, URL not provided!", Toast.LENGTH_SHORT);
-                    } else if (concertModel.getTicketUrl().equals("")) {
+                    if (!concertModel.getTicketUrl().equals("")) {
+                        openWebURL(concertModel.getTicketUrl());
+                    }
+                    else if (!concertModel.getVenueURL().equals("")) {
                         openWebURL(concertModel.getVenueURL());
                     } else {
-                        openWebURL(concertModel.getTicketUrl());
+                        Toast.makeText(getActivity(), "Sorry, URL not provided!", Toast.LENGTH_SHORT);
                     }
                 }
             });

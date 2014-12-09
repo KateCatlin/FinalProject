@@ -24,20 +24,16 @@ public class JSONParser {
 
             List <ConcertModel> concertsList = new ArrayList<ConcertModel>();
 
-            for (int index = 0; index < 10 && index < 25; index++) {
+            for (int index = 0; index < jsonArray.length(); index++) {
                 JSONObject concertEntry = jsonArray.getJSONObject(index);
                 ConcertModel newConcertModel = createConcertModelFromJsonInfo (concertEntry);
                 concertsList.add(newConcertModel);
             }
-
             return  concertsList;
 
         } catch (JSONException e) {
-
            return new ArrayList<ConcertModel>();
-
         }
-
     }
 
     private static ConcertModel createConcertModelFromJsonInfo (JSONObject concertsJsonObject) throws JSONException {

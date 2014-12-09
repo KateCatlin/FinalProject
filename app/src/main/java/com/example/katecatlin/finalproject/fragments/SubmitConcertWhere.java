@@ -75,7 +75,7 @@ public class SubmitConcertWhere extends Fragment {
         button_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (edit_venue != null && edit_address != null && edit_city != null && edit_zipcode != null && edit_venue_url != null) {
+                if (edit_venue != null || edit_address != null || edit_city != null || edit_zipcode != null || edit_venue_url != null) {
                     gatherInfoFromWhereEditTexts();
                     SubmitConcertWhen submitConcertWhen = SubmitConcertWhen.newInstance(submittedConcert);
                     FragmentController fragmentController = (FragmentController) getActivity();
