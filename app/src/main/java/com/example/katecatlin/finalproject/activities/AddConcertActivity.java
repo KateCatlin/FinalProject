@@ -11,12 +11,10 @@ import com.example.katecatlin.finalproject.fragments.SubmitConcertWho;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 
-import java.util.Calendar;
-import java.util.Date;
-
 
 public class AddConcertActivity extends Activity implements FragmentController {
     SubmitConcertWhen submitConcertWhen;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +30,6 @@ public class AddConcertActivity extends Activity implements FragmentController {
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, submitConcertWho)
                 .commit();
-
     }
 
 
@@ -45,6 +42,7 @@ public class AddConcertActivity extends Activity implements FragmentController {
         }
     }
 
+
     @Override
     public void changeFragment(Fragment fragment, boolean addToBackstack) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -56,8 +54,6 @@ public class AddConcertActivity extends Activity implements FragmentController {
         fragmentTransaction.replace(R.id.fragmentContainer, fragment);
         fragmentTransaction.commit();
     }
-
-
  }
 
 

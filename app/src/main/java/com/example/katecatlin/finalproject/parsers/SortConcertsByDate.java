@@ -14,6 +14,7 @@ public class SortConcertsByDate {
     public SortConcertsByDate () {
     }
 
+
     public List<ConcertModel> sortConcerts (List<ConcertModel> returnedConcerts) {
 
         Collections.sort(returnedConcerts, new Comparator<ConcertModel>() {

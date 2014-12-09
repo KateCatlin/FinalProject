@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.models.ConcertModel;
@@ -17,6 +18,8 @@ import com.example.katecatlin.finalproject.models.ConcertModel;
 /**
  * Created by katecatlin on 11/29/14.
  */
+
+
 public class ConcertDetailFragment extends Fragment {
 
     private static final String ARG_CONCERT_ENTRY = "arg_concert_entry";
@@ -35,6 +38,7 @@ public class ConcertDetailFragment extends Fragment {
 
         return concertDetailFragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +60,6 @@ public class ConcertDetailFragment extends Fragment {
         return view;
     }
 
-    //***********Ask Matt why these are separated in mentor app :)******************
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -86,20 +89,21 @@ public class ConcertDetailFragment extends Fragment {
 
             ticketButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-//                    if (concertModel.getTicketUrl().equals("") && concertModel.getVenueURL().equals("")) {
-//                        Toast.makeText(getActivity(), "Sorry, URL not provided!", Toast.LENGTH_SHORT);
-//                    } else if (concertModel.getTicketUrl().equals("")) {
-//                        openWebURL(concertModel.getVenueURL());
-//                    } else {
+
+                    if (concertModel.getTicketUrl().equals("") && concertModel.getVenueURL().equals("")) {
+                        Toast.makeText(getActivity(), "Sorry, URL not provided!", Toast.LENGTH_SHORT);
+                    } else if (concertModel.getTicketUrl().equals("")) {
+                        openWebURL(concertModel.getVenueURL());
+                    } else {
                         openWebURL(concertModel.getTicketUrl());
-//                    }
+                    }
                 }
             });
-
         } else {
             throw new IllegalStateException("Something went wrong passing concert model to detail fragment!");
         }
     }
+
 
     public void openWebURL(String URL ) {
 

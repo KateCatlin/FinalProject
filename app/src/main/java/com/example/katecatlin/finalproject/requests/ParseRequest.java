@@ -18,18 +18,18 @@ import java.util.List;
  * Created by katecatlin on 12/5/14.
  */
 public class ParseRequest {
+
     private static String APPLICATION_ID = "Farfo7O7tFBYG7ZqhhUr3Qxp0rzUGDbqiYNJaWwX";
     private static String CLIENT_KEY = "3AN5tiVBtJ24e5J0RUx1DNf1cpeXBJiQqrdigEif";
-
     private static ParseRequest parseRequest;
     private IndividualApiRequestCallback individualApiRequestCallback;
-
 
 
     public ParseRequest(Activity currentActivity, IndividualApiRequestCallback individualApiRequestCallback) {
         Parse.initialize(currentActivity, APPLICATION_ID, CLIENT_KEY);
         this.individualApiRequestCallback = individualApiRequestCallback;
     }
+
 
     public static ParseRequest getParseRequest (Activity activity, IndividualApiRequestCallback individualApiRequestCallback) {
         if (parseRequest == null) {
@@ -38,9 +38,6 @@ public class ParseRequest {
         return parseRequest;
     }
 
-    public static ParseRequest getEstablishedParseRequest (Activity activity) {
-        return parseRequest;
-    }
 
     public void postConcertToParse(ConcertModel newConcert) {
 
@@ -58,6 +55,7 @@ public class ParseRequest {
         newConcertObject.put("TicketUrl", newConcert.getTicketUrl());
         newConcertObject.saveInBackground();
     }
+
 
     public void getConcertsFromParse() {
 
@@ -88,6 +86,8 @@ public class ParseRequest {
         }
     }
 
-    //DO SOMETHING WITH PARSING
 
+    public static ParseRequest getEstablishedParseRequest (Activity activity) {
+        return parseRequest;
+    }
 }

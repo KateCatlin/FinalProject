@@ -9,16 +9,8 @@ import org.joda.time.DateTime;
  * Created by katecatlin on 11/25/14.
  */
 public class ConcertModel implements Parcelable {
-    DateTime DateTime;
-    String Venue;
-    String Address;
-    String City;
-    String ZipCode;
-    String VenueURL;
-    String Artist1;
-    String Artist2;
-    String Artist3;
-    String TicketUrl;
+    private DateTime DateTime;
+    private String Venue, Address, City, ZipCode, VenueURL, Artist1, Artist2, Artist3, TicketUrl;
 
     public ConcertModel(DateTime dateTime, String venue, String address, String city, String zipCode, String venueURL, String artist1, String artist2, String artist3, String ticketUrl) {
         DateTime = dateTime;

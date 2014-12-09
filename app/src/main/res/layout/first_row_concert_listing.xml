@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/TextView_Artist1"
-        android:layout_toLeftOf="@+id/TextView_Time"
+        android:layout_alignParentRight="true"
         android:paddingRight="10dp"
         android:text="@string/Date"
         android:textColor="#ffffff"

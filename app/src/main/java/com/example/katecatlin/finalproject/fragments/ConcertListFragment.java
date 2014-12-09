@@ -25,8 +25,6 @@ import java.util.List;
 public class ConcertListFragment extends ListFragment implements MasterAPIRequestCallback {
 
     private ConcertListAdapter concertListAdapter;
-    MasterRequest masterRequest;
-    MasterAPIRequestCallback masterAPIRequestCallback;
 
     public ConcertListFragment () {
     }
@@ -37,6 +35,7 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
         return concertListFragment;
     }
 
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -45,10 +44,12 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
         refreshConcerts();
     }
 
+
     public void refreshConcerts () {
-        masterRequest = MasterRequest.getMasterRequest(this);
+        MasterRequest masterRequest = MasterRequest.getMasterRequest(this);
         masterRequest.loadConcerts(getActivity(), this);
     }
+
 
     @Override
     public void onListItemClick(ListView listView, View row, int position, long id) {
@@ -66,6 +67,7 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
         }
     }
 
+
     @Override
     public void onSuccess(List<ConcertModel> returnedConcerts) {
         if (isAdded()) {
@@ -78,10 +80,12 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
         }
     }
 
+
     @Override
     public void onError() {
         Toast.makeText(getActivity(), "Error loading concerts, press back and try again!", Toast.LENGTH_LONG).show();
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

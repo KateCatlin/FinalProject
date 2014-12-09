@@ -17,10 +17,10 @@ import com.example.katecatlin.finalproject.models.ConcertModel;
  * Created by katecatlin on 12/3/14.
  */
 public class SubmitConcertWho extends Fragment {
-    ConcertModel submittedConcert;
 
+    private ConcertModel submittedConcert;
     private EditText edit_artist_1, edit_artist_2, edit_artist_3;
-    public static final String PASS_TO_SCREEN_2 = "PASS_TO_SCREEN_2";
+    private ImageButton next_button;
     static final String SUBMITTED_CONCERT_ENTRY = "SUBMITTED_CONCERT_ENTRY";
 
 
@@ -34,26 +34,27 @@ public class SubmitConcertWho extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_submit_concert_who, container, false);
-
         submittedConcert = getArguments().getParcelable(SUBMITTED_CONCERT_ENTRY);
-
-
         edit_artist_1 = (EditText) view.findViewById(R.id.edit_artist_1);
         edit_artist_2 = (EditText) view.findViewById(R.id.edit_artist_2);
         edit_artist_3 = (EditText) view.findViewById(R.id.edit_artist_3);
+        next_button = (ImageButton) view.findViewById(R.id.button_next);
 
-        ImageButton next_button = (ImageButton) view.findViewById(R.id.button_next);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         next_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-
-                if (edit_artist_1.getText().toString() != null) {
+                if (edit_artist_1.getText().toString() != "") {
 
                     String artist1 = edit_artist_1.getText().toString();
                     String artist2 = edit_artist_2.getText().toString();
@@ -66,15 +67,13 @@ public class SubmitConcertWho extends Fragment {
 
                     FragmentController fragmentController = (FragmentController) getActivity();
                     fragmentController.changeFragment(submitConcertWhere, true);
+
                 } else {
-                    Toast toast = Toast.makeText(getActivity(), "Enter in a headlining artist!", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getActivity(), "Enter in a headlining artist to proceed!", Toast.LENGTH_SHORT);
                     toast.show();
                 }
-
             }
         });
-
-        return view;
     }
 
 

@@ -16,6 +16,7 @@ import com.example.katecatlin.finalproject.interfaces.FragmentController;
 
 public class MainActivity extends Activity implements FragmentController {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,12 +24,14 @@ public class MainActivity extends Activity implements FragmentController {
         loadConcertListFragment();
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.activity_main, menu);
         return true;
     }
+
 
     @Override
     public void onBackPressed() {
@@ -38,6 +41,7 @@ public class MainActivity extends Activity implements FragmentController {
             super.onBackPressed();
         }
     }
+
 
     @Override
     public void changeFragment(Fragment fragment, boolean addToBackstack) {
@@ -51,6 +55,7 @@ public class MainActivity extends Activity implements FragmentController {
         fragmentTransaction.commit();
     }
 
+
     private void loadConcertListFragment () {
 
         ConcertListFragment concertListFragment = ConcertListFragment.newInstance();
@@ -59,6 +64,7 @@ public class MainActivity extends Activity implements FragmentController {
                 .replace(R.id.fragmentContainer, concertListFragment)
                 .commit();
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -13,12 +13,12 @@ import java.util.List;
  * Created by katecatlin on 12/8/14.
  */
 public class MasterRequest implements IndividualApiRequestCallback {
+
     public static Integer apisReturned = 0;
     List<ConcertModel> upcomingConcerts = new ArrayList<ConcertModel>();
     private MasterAPIRequestCallback thisMasterAPIRequestCallback;
-
     private static MasterRequest masterRequest;
-    Activity activity;
+
 
     public static MasterRequest getMasterRequest(MasterAPIRequestCallback masterAPIRequestCallback) {
         if (masterRequest == null) {
@@ -27,9 +27,11 @@ public class MasterRequest implements IndividualApiRequestCallback {
         return masterRequest;
     }
 
+
     private MasterRequest(MasterAPIRequestCallback masterAPIRequestCallback) {
         thisMasterAPIRequestCallback = masterAPIRequestCallback;
     }
+
 
     public void loadConcerts(Activity activity, MasterAPIRequestCallback masterAPIRequestCallback) {
         thisMasterAPIRequestCallback = masterAPIRequestCallback;
@@ -40,6 +42,7 @@ public class MasterRequest implements IndividualApiRequestCallback {
         ParseRequest parseRequest = ParseRequest.getParseRequest(activity, this);
         parseRequest.getConcertsFromParse();
     }
+
 
     public void refreshConcerts (List<ConcertModel> returnedConcerts) {
 
@@ -57,11 +60,13 @@ public class MasterRequest implements IndividualApiRequestCallback {
         }
     }
 
+
     @Override
     public void onSuccess(List<ConcertModel> concertModelList) {
         apisReturned++;
         refreshConcerts(concertModelList);
     }
+
 
     @Override
     public void onError() {

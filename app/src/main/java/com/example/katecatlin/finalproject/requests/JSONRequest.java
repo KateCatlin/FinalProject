@@ -28,6 +28,7 @@ public class JSONRequest {
     private static JSONRequest jsonRequest;
     IndividualApiRequestCallback jsonCallback;
 
+
     public static JSONRequest getJsonRequest (IndividualApiRequestCallback individualApiRequestCallback) {
         if (jsonRequest == null) {
             jsonRequest = new JSONRequest(individualApiRequestCallback);
@@ -35,9 +36,11 @@ public class JSONRequest {
         return jsonRequest;
     }
 
+
     private JSONRequest (IndividualApiRequestCallback individualApiRequestCallback) {
         jsonCallback = individualApiRequestCallback;
     }
+
 
     public void getConcerts () {
 
@@ -87,6 +90,7 @@ public class JSONRequest {
             }
         }
 
+
         @Override
         protected void onPostExecute(List<ConcertModel> results) {
             if (results != null) {
@@ -96,6 +100,7 @@ public class JSONRequest {
             }
         }
     }
+
 
     private JSONObject getJSONObjectFromUri(Uri uri) throws IOException, JSONException {
         String uriString = uri.toString();

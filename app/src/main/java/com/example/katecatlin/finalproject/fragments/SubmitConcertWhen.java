@@ -4,7 +4,6 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,22 +23,19 @@ import com.example.katecatlin.finalproject.models.ConcertModel;
 import com.example.katecatlin.finalproject.requests.ParseRequest;
 
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
-import java.util.Calendar;
 
 /**
  * Created by katecatlin on 12/3/14.
  */
+
+
 public class SubmitConcertWhen extends Fragment implements GetChosenDateInterface, GetChosenTimeInterface {
+
     static final String SUBMITTED_CONCERT_ENTRY = SubmitConcertWho.SUBMITTED_CONCERT_ENTRY;
-    ConcertModel submittedConcert;
+    private ConcertModel submittedConcert;
     private EditText edit_ticket_url;
-    Button button_date, button_time, button_submit;
-    ImageButton button_back;
-    Calendar dateAndTime = Calendar.getInstance();
-    DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
+    private Button button_date, button_time, button_submit;
+    private ImageButton button_back;
     static int year, month, day, hour, minute = 0;
 
 
@@ -59,39 +55,39 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
         View view = inflater.inflate(R.layout.fragment_submit_concert_when, container, false);
 
         submittedConcert = getArguments().getParcelable(SUBMITTED_CONCERT_ENTRY);
-
         edit_ticket_url = (EditText) view.findViewById(R.id.edit_ticket_url);
         button_back = (ImageButton) view.findViewById(R.id.button_back);
+        button_submit = (Button) view.findViewById(R.id.button_submit);
+        button_date = (Button) view.findViewById(R.id.button_date);
+        button_time = (Button) view.findViewById(R.id.button_time);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+
         button_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (edit_ticket_url != null) {
                     gatherInfoFromWhenEditTexts();
                 }
-
                 SubmitConcertWho submitConcertWho = SubmitConcertWho.newInstance(submittedConcert);
-
                 FragmentController fragmentController = (FragmentController) getActivity();
                 fragmentController.changeFragment(submitConcertWho, true);
-
             }
         });
 
-        button_submit = (Button) view.findViewById(R.id.button_submit);
         button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (year != 0 && hour != 0) {
                     gatherInfoFromWhenEditTexts();
-
                     ParseRequest parseRequest = ParseRequest.getEstablishedParseRequest(getActivity());
                     parseRequest.postConcertToParse(submittedConcert);
-
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
-
                 } else {
                     Toast toast = Toast.makeText(getActivity(), "You must enter a date and time!", Toast.LENGTH_SHORT);
                     toast.show();
@@ -99,16 +95,14 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
             }
         });
 
-        button_date = (Button) view.findViewById(R.id.button_date);
         button_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    DialogFragment newFragment = new DatePickerFragment(SubmitConcertWhen.this);
-                    newFragment.show(getFragmentManager(), "datePicker");
+                DialogFragment newFragment = new DatePickerFragment(SubmitConcertWhen.this);
+                newFragment.show(getFragmentManager(), "datePicker");
             }
         });
 
-        button_time = (Button) view.findViewById(R.id.button_time);
         button_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,11 +110,10 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
                 newFragment.show(getFragmentManager(), "timePicker");
             }
         });
-        return view;
     }
 
 
-    public void gatherInfoFromWhenEditTexts() {
+        public void gatherInfoFromWhenEditTexts() {
         String url = edit_ticket_url.getText().toString();
         submittedConcert.setTicketUrl(url);
 
@@ -129,13 +122,6 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
     }
 
 
-    private void updateLabel() {
-        button_date
-                .setText(DateUtils.formatDateTime(getActivity(),
-                        dateAndTime.getTimeInMillis(),
-                        DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_TIME));
-    }
-
     @Override
     public void getChosenDate(int year, int month, int day) {
         this.year = year;
@@ -143,6 +129,7 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
         this.day = day;
         button_date.setText(month + "/" + day + "/" + year);
     }
+
 
     @Override
     public void getChosenTime(int hour, int minute) {

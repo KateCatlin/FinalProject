@@ -13,6 +13,8 @@ import java.util.List;
 /**
  * Created by katecatlin on 11/30/14.
  */
+
+
 public class JSONParser {
 
     public static List <ConcertModel> parseJSONObject (JSONObject jsonObject) {
@@ -23,24 +25,23 @@ public class JSONParser {
             List <ConcertModel> concertsList = new ArrayList<ConcertModel>();
 
             for (int index = 0; index < 10 && index < 25; index++) {
-
                 JSONObject concertEntry = jsonArray.getJSONObject(index);
-
                 ConcertModel newConcertModel = createConcertModelFromJsonInfo (concertEntry);
-
                 concertsList.add(newConcertModel);
-
             }
 
             return  concertsList;
 
         } catch (JSONException e) {
+
            return new ArrayList<ConcertModel>();
+
         }
 
     }
 
     private static ConcertModel createConcertModelFromJsonInfo (JSONObject concertsJsonObject) throws JSONException {
+
         String venue, address, city, zipCode, venueURL, artist1, artist2, artist3, ticketUrl;
         DateTime dateTime;
         ConcertModel concertModel;
@@ -58,8 +59,6 @@ public class JSONParser {
         venueURL = venueObject.optString("Url", "No URL");
 
         artistArray = concertsJsonObject.getJSONArray("Artists");
-
-        //if artists don't exist, we want to display nothing!
 
         artistObject = artistArray.getJSONObject(0);
         artist1 = artistObject.optString("Name", "Unknown Artist");

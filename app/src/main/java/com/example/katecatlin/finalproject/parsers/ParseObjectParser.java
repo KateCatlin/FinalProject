@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class ParseObjectParser {
 
-    public static List<ConcertModel> parseParseObject (ArrayList<ParseObject> parseObjects) {
+    public static List<ConcertModel> parseParseObject(ArrayList<ParseObject> parseObjects) {
 
         String venue, address, city, zipCode, venueURL, artist1, artist2, artist3, ticketUrl;
         DateTime dateTime;
@@ -22,28 +22,27 @@ public class ParseObjectParser {
         ConcertModel concertModel;
 
 
-        List <ConcertModel> concertsList = new ArrayList<ConcertModel>();
+        List<ConcertModel> concertsList = new ArrayList<ConcertModel>();
 
-            for (ParseObject x: parseObjects) {
+        for (ParseObject x : parseObjects) {
 
-                tempDate = x.getDate("Date");
-                dateTime = new DateTime(tempDate);
-                venue = x.getString("Venue");
-                address = x.getString("Address");
-                city = x.getString("City");
-                zipCode = x.getString("ZipCode");
-                venueURL = x.getString("VenueURL");
-                artist1 = x.getString("Artist1");
-                artist2 = x.getString("Artist2");
-                artist3 = x.getString("Artist3");
-                ticketUrl = x.getString("TicketUrl");
+            tempDate = x.getDate("Date");
+            dateTime = new DateTime(tempDate);
+            venue = x.getString("Venue");
+            address = x.getString("Address");
+            city = x.getString("City");
+            zipCode = x.getString("ZipCode");
+            venueURL = x.getString("VenueURL");
+            artist1 = x.getString("Artist1");
+            artist2 = x.getString("Artist2");
+            artist3 = x.getString("Artist3");
+            ticketUrl = x.getString("TicketUrl");
 
-                concertModel = new ConcertModel(dateTime, venue, address, city, zipCode, venueURL, artist1, artist2, artist3, ticketUrl);
+            concertModel = new ConcertModel(dateTime, venue, address, city, zipCode, venueURL, artist1, artist2, artist3, ticketUrl);
 
-                concertsList.add(concertModel);
-            }
-
-            return  concertsList;
+            concertsList.add(concertModel);
+        }
+        return concertsList;
     }
-    }
+}
 

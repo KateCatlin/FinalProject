@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.katecatlin.finalproject.R;
@@ -16,23 +15,26 @@ import org.joda.time.DateTime;
 /**
  * Created by katecatlin on 11/26/14.
  */
+
+
 public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
-    final String LOG_TAG = "LOG_TAG";
-    Context context = getContext();
 
     public ConcertListAdapter (Context context) {
         super(context, R.layout.rows_concert_listings);
     }
+
 
     @Override
     public int getViewTypeCount() {
         return 2;
     }
 
+
     @Override
     public int getItemViewType (int position) {
         return (position == 0) ? 0 : 1;
     }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -69,9 +71,9 @@ public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
         DateTime dateTime = concertModel.getDateTime();
         viewHolder.textView_date.setText(concertModel.convertDateTimetoDate(dateTime));
 
-
         return convertView;
     }
+
 
     private static class ViewHolder {
 
@@ -79,7 +81,6 @@ public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
         private TextView textView_date;
         private TextView textView_venue;
         private TextView textView_city;
-        private ImageView concertImage;
 
         public ViewHolder(View rootView) {
             this.textView_artist1 = (TextView) rootView.findViewById(R.id.TextView_Artist1);

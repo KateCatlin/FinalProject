@@ -7,17 +7,16 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.widget.TimePicker;
 
-
-import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
 import com.example.katecatlin.finalproject.interfaces.GetChosenTimeInterface;
-
-import java.util.Calendar;
 
 /**
  * Created by katecatlin on 12/4/14.
  */
+
+
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
     GetChosenTimeInterface chosenTimeInterface;
+
 
     public TimePickerFragment (GetChosenTimeInterface getChosenTimeInterface) {
         chosenTimeInterface = getChosenTimeInterface;
@@ -26,15 +25,14 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the current time as the default values for the picker
-        final Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
 
-        // Create a new instance of TimePickerDialog and return it
+        int hour = 20;
+        int minute = 00;
+
         return new TimePickerDialog(getActivity(), this, hour, minute,
                 DateFormat.is24HourFormat(getActivity()));
     }
+
 
     public void onTimeSet(TimePicker view, int hour, int minute) {
         chosenTimeInterface.getChosenTime(hour, minute);
