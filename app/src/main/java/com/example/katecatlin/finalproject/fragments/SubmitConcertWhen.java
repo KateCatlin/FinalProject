@@ -4,6 +4,7 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,12 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
+import com.example.katecatlin.finalproject.activities.AddConcertActivity;
 import com.example.katecatlin.finalproject.activities.MainActivity;
 import com.example.katecatlin.finalproject.dialogs.DatePickerFragment;
 import com.example.katecatlin.finalproject.dialogs.TimePickerFragment;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
+import com.example.katecatlin.finalproject.interfaces.FragmentControllerNewConcert;
 import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
 import com.example.katecatlin.finalproject.interfaces.GetChosenTimeInterface;
 import com.example.katecatlin.finalproject.models.ConcertModel;
@@ -39,10 +42,8 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
     static int year, month, day, hour, minute = 0;
 
 
-    public static final SubmitConcertWhen newInstance(ConcertModel concertModel) {
+    public static final SubmitConcertWhen newInstance() {
         Bundle args = new Bundle();
-        args.putParcelable(SUBMITTED_CONCERT_ENTRY, concertModel);
-
         SubmitConcertWhen submitConcertWhen = new SubmitConcertWhen();
         submitConcertWhen.setArguments(args);
 
@@ -54,7 +55,9 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_submit_concert_when, container, false);
 
-        submittedConcert = getArguments().getParcelable(SUBMITTED_CONCERT_ENTRY);
+        submittedConcert = AddConcertActivity.newConcert;
+        Log.d("LOG_TAG", submittedConcert.getArtist1() + submittedConcert.getCity() + submittedConcert.getAddress() + submittedConcert.getDateTime().toString());
+
         edit_ticket_url = (EditText) view.findViewById(R.id.edit_ticket_url);
         button_back = (ImageButton) view.findViewById(R.id.button_back);
         button_submit = (Button) view.findViewById(R.id.button_submit);
@@ -73,9 +76,9 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
                 if (edit_ticket_url != null) {
                     gatherInfoFromWhenEditTexts();
                 }
-                SubmitConcertWho submitConcertWho = SubmitConcertWho.newInstance(submittedConcert);
-                FragmentController fragmentController = (FragmentController) getActivity();
-                fragmentController.changeFragment(submitConcertWho, true);
+                SubmitConcertWhere submitConcertWhere = SubmitConcertWhere.newInstance();
+                FragmentControllerNewConcert fragmentController = (FragmentControllerNewConcert) getActivity();
+                fragmentController.changeFragment(submitConcertWhere, true, submittedConcert);
             }
         });
 
@@ -86,6 +89,7 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
                     gatherInfoFromWhenEditTexts();
                     ParseRequest parseRequest = ParseRequest.getEstablishedParseRequest(getActivity());
                     parseRequest.postConcertToParse(submittedConcert);
+
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                 } else {

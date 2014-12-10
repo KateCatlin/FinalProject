@@ -4,16 +4,18 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.fragments.SubmitConcertWhen;
 import com.example.katecatlin.finalproject.fragments.SubmitConcertWho;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
+import com.example.katecatlin.finalproject.interfaces.FragmentControllerNewConcert;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 
 
-public class AddConcertActivity extends Activity implements FragmentController {
-    SubmitConcertWhen submitConcertWhen;
+public class AddConcertActivity extends Activity implements FragmentControllerNewConcert {
+    public static ConcertModel newConcert;
 
 
     @Override
@@ -21,11 +23,9 @@ public class AddConcertActivity extends Activity implements FragmentController {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity);
 
-        ConcertModel newConcert = new ConcertModel();
+        newConcert = new ConcertModel();
 
-        SubmitConcertWho submitConcertWho = SubmitConcertWho.newInstance(newConcert);
-
-        submitConcertWhen = new SubmitConcertWhen();
+        SubmitConcertWho submitConcertWho = SubmitConcertWho.newInstance();
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, submitConcertWho)
@@ -44,8 +44,12 @@ public class AddConcertActivity extends Activity implements FragmentController {
 
 
     @Override
-    public void changeFragment(Fragment fragment, boolean addToBackstack) {
+    public void changeFragment(Fragment fragment, boolean addToBackstack, ConcertModel newConcert) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+
+        this.newConcert = newConcert;
+        Log.d("LOG_TAG", this.newConcert.getArtist1() + this.newConcert.getCity() + this.newConcert.getAddress() + this.newConcert.getDateTime().toString());
+
 
         if (addToBackstack) {
             fragmentTransaction.addToBackStack(null);

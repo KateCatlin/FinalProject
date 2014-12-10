@@ -2,6 +2,7 @@ package com.example.katecatlin.finalproject.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +11,15 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
+import com.example.katecatlin.finalproject.activities.AddConcertActivity;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
+import com.example.katecatlin.finalproject.interfaces.FragmentControllerNewConcert;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 
 /**
  * Created by katecatlin on 12/3/14.
  */
 public class SubmitConcertWho extends Fragment {
-    //pass as bundle argument, not ConcertModel
 
     private ConcertModel submittedConcert;
     private EditText edit_artist_1, edit_artist_2, edit_artist_3;
@@ -25,14 +27,9 @@ public class SubmitConcertWho extends Fragment {
     static final String SUBMITTED_CONCERT_ENTRY = "SUBMITTED_CONCERT_ENTRY";
 
 
-    public static SubmitConcertWho newInstance(ConcertModel concertModel){
-        //check in your savedInstanceState in teh onCreate of each fragment for a concert model.
-        //if there's nothing, make a new one.
-        //if there's one, then go ahead and save the edit texts to that
+    public static SubmitConcertWho newInstance(){
 
         Bundle args = new Bundle();
-        args.putParcelable(SUBMITTED_CONCERT_ENTRY, concertModel);
-
         SubmitConcertWho submitConcertWho = new SubmitConcertWho();
         submitConcertWho.setArguments(args);
         return submitConcertWho;
@@ -43,8 +40,11 @@ public class SubmitConcertWho extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        submittedConcert = AddConcertActivity.newConcert;
+        Log.d("LOG_TAG", submittedConcert.getArtist1() + submittedConcert.getCity() + submittedConcert.getAddress() + submittedConcert.getDateTime().toString());
+
+
         View view = inflater.inflate(R.layout.fragment_submit_concert_who, container, false);
-        submittedConcert = getArguments().getParcelable(SUBMITTED_CONCERT_ENTRY);
         edit_artist_1 = (EditText) view.findViewById(R.id.edit_artist_1);
         edit_artist_2 = (EditText) view.findViewById(R.id.edit_artist_2);
         edit_artist_3 = (EditText) view.findViewById(R.id.edit_artist_3);
@@ -69,10 +69,10 @@ public class SubmitConcertWho extends Fragment {
                     submittedConcert.setArtist2(artist2);
                     submittedConcert.setArtist3(artist3);
 
-                    SubmitConcertWhere submitConcertWhere = SubmitConcertWhere.newInstance(submittedConcert);
+                    SubmitConcertWhere submitConcertWhere = SubmitConcertWhere.newInstance();
 
-                    FragmentController fragmentController = (FragmentController) getActivity();
-                    fragmentController.changeFragment(submitConcertWhere, true);
+                    FragmentControllerNewConcert fragmentController = (FragmentControllerNewConcert) getActivity();
+                    fragmentController.changeFragment(submitConcertWhere, true, submittedConcert);
 
                 } else {
                     Toast toast = Toast.makeText(getActivity(), "Enter in a headlining artist to proceed!", Toast.LENGTH_SHORT);
