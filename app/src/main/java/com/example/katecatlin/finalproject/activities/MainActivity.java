@@ -51,7 +51,7 @@ public class MainActivity extends Activity implements FragmentController {
 
     @Override
     public void changeFragment(Fragment fragment, boolean addToBackstack) {
-        //*
+
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
         if (addToBackstack) {
@@ -60,13 +60,11 @@ public class MainActivity extends Activity implements FragmentController {
 
         fragmentTransaction.replace(R.id.fragmentContainer, fragment);
         fragmentTransaction.commit();
-        //*/
     }
 
 
     private void loadConcertListFragment () {
 
-        //*
         Fragment clf = getFragmentManager().findFragmentByTag(ConcertListFragment.FRAG_TAG);
         if(clf != null) {
             Log.d("MainActivity", "found concert list fragment");
@@ -82,7 +80,6 @@ public class MainActivity extends Activity implements FragmentController {
 
 
         Log.d("MainActivity", "load concert list fragment = " + result);
-                //*/
     }
 
     public void setActionBar() {
@@ -91,6 +88,7 @@ public class MainActivity extends Activity implements FragmentController {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setTitle(R.string.Heading);
+
         actionBar.show();
     }
 }

@@ -14,9 +14,5 @@
         android:showAsAction="always"
         android:icon="@drawable/action_refresh"
         android:title="Refresh"/>
-    <item
-        android:id="@+id/action_settings"
-        android:title="Settings">
-    </item>
 
 </menu> 
