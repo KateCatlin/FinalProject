@@ -90,6 +90,7 @@
         android:layout_below="@id/textview_ticket_url_submit"
         android:singleLine="true"
         android:layout_marginBottom="20dp"
+        android:inputType="textWebEmailAddress"
         />
     
     <Button

@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textview_artist_submit"
         android:layout_marginBottom="5dp"
+        android:inputType="textCapWords"
         android:singleLine="true"/>
 
     <TextView
@@ -59,6 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textview_artist_2_submit"
         android:layout_marginBottom="5dp"
+        android:inputType="textCapWords"
         android:singleLine="true"/>
 
     <TextView
@@ -77,6 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textview_artist_3_submit"
         android:layout_marginBottom="5dp"
+        android:inputType="textCapWords"
         android:singleLine="true"/>
 
     <ImageButton
