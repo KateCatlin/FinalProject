@@ -1,10 +1,13 @@
 package com.example.katecatlin.finalproject.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.fragments.SubmitConcertWhen;
@@ -22,6 +25,7 @@ public class AddConcertActivity extends Activity implements FragmentControllerNe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity);
+        setActionBar();
 
         newConcert = new ConcertModel();
 
@@ -58,6 +62,30 @@ public class AddConcertActivity extends Activity implements FragmentControllerNe
         fragmentTransaction.replace(R.id.fragmentContainer, fragment);
         fragmentTransaction.commit();
     }
+
+    public void setActionBar() {
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle(R.string.Heading);
+        actionBar.show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Log.d("LOG_TAG", "button_home");
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
+
  }
 
 

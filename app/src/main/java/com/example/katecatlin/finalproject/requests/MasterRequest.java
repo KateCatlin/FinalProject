@@ -15,7 +15,6 @@ import java.util.List;
 public class MasterRequest implements IndividualApiRequestCallback {
 
     public static Integer apisReturned = 0;
-    public static Integer errorReturned = 0;
     List<ConcertModel> upcomingConcerts = new ArrayList<ConcertModel>();
     private MasterAPIRequestCallback thisMasterAPIRequestCallback;
     private static MasterRequest masterRequest;
@@ -36,6 +35,8 @@ public class MasterRequest implements IndividualApiRequestCallback {
 
     public void loadConcerts(Activity activity) {
 
+        upcomingConcerts.clear();
+
         JSONRequest jsonRequest = JSONRequest.getJsonRequest(this);
         jsonRequest.getConcerts();
 
@@ -55,7 +56,6 @@ public class MasterRequest implements IndividualApiRequestCallback {
         if (apisReturned == 2) {
             if (upcomingConcerts.get(0) != null) {
                 apisReturned = 0;
-                errorReturned = 0;
                 thisMasterAPIRequestCallback.onSuccess(upcomingConcerts);
             } else {
                 thisMasterAPIRequestCallback.onError();

@@ -1,8 +1,11 @@
 package com.example.katecatlin.finalproject.fragments;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -37,12 +40,21 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
 
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        concertListAdapter = new ConcertListAdapter(getActivity());
-        setListAdapter(concertListAdapter);
+
+        this.concertListAdapter = new ConcertListAdapter(getActivity());
+        setListAdapter(this.concertListAdapter);
         refreshConcerts();
     }
+
+    public static final String FRAG_TAG = "ConcertListFragment";
 
 
     public void refreshConcerts () {
@@ -73,10 +85,17 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
         if (isAdded()) {
 
             SortConcertsByDate sortConcertsByDate = new SortConcertsByDate();
-            List<ConcertModel> sortedConcerts = sortConcertsByDate.sortConcerts(returnedConcerts);
+            final List<ConcertModel> sortedConcerts = sortConcertsByDate.sortConcerts(returnedConcerts);
 
-            concertListAdapter.clear();
-            concertListAdapter.addAll(sortedConcerts);
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ((ConcertListAdapter)getListAdapter()).clear();
+                    ((ConcertListAdapter)getListAdapter()).addAll(sortedConcerts);
+                    ((ConcertListAdapter)getListAdapter()).notifyDataSetChanged();
+                }
+            });
+
         }
     }
 
@@ -90,16 +109,19 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                Log.d("LOG_TAG", "button_home from listfrag");
+                break;
             case R.id.action_refresh:
+                Log.d("LOG_TAG", "action_refresh");
                 Toast.makeText(getActivity(), "Refreshing your jams...", Toast.LENGTH_SHORT)
                         .show();
                 refreshConcerts();
                 break;
             case R.id.action_new_concert:
+                Log.d("LOG_TAG", "new_concert");
                 Intent addConcertIntent = new Intent (getActivity(), AddConcertActivity.class );
                 startActivity(addConcertIntent);
-                break;
-            case R.id.action_settings:
                 break;
             default:
                 break;

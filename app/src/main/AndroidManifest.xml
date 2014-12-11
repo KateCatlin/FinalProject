@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/microphone_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -21,7 +21,12 @@
         <activity
             android:name=".activities.AddConcertActivity"
             android:label="AddConcertActivity"
+            android:parentActivityName="com.example.katecatlin.finalproject.activities.MainActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.katecatlin.finalproject.activities.MainActivity" />
             />
+        </activity>
     </application>
 
 </manifest>

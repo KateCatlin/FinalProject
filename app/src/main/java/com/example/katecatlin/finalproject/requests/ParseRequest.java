@@ -12,6 +12,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -68,7 +69,13 @@ public class ParseRequest {
             parseObjectList = parseQuery.find();
 
             for (ParseObject x: parseObjectList) {
-                parseObjects.add(x);
+                Date date = new Date();
+                Date currentDate = new Date();
+
+                date = x.getDate("Date");
+                if (date.after(currentDate)) {
+                    parseObjects.add(x);
+                }
             }
 
             ParseObjectParser parseObjectParser = new ParseObjectParser();

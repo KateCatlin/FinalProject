@@ -141,33 +141,16 @@
         android:layout_below="@id/textview_url_submit"
         android:singleLine="true"/>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
 
     <ImageButton
         android:id="@+id/button_next"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="75dp"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/arrow_right"
         android:scaleType="centerInside"
         android:adjustViewBounds="true"
         />
-
-    <ImageButton
-        android:id="@+id/button_back"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/arrow_left"
-        android:layout_margin="0dp"
-        android:scaleType="centerInside"
-        android:adjustViewBounds="true"
-        />
-
-    </RelativeLayout>
 
 </RelativeLayout>

@@ -38,7 +38,6 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
     private ConcertModel submittedConcert;
     private EditText edit_ticket_url;
     private Button button_date, button_time, button_submit;
-    private ImageButton button_back;
     static int year, month, day, hour, minute = 0;
 
 
@@ -59,7 +58,6 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
         Log.d("LOG_TAG", submittedConcert.getArtist1() + submittedConcert.getCity() + submittedConcert.getAddress() + submittedConcert.getDateTime().toString());
 
         edit_ticket_url = (EditText) view.findViewById(R.id.edit_ticket_url);
-        button_back = (ImageButton) view.findViewById(R.id.button_back);
         button_submit = (Button) view.findViewById(R.id.button_submit);
         button_date = (Button) view.findViewById(R.id.button_date);
         button_time = (Button) view.findViewById(R.id.button_time);
@@ -70,18 +68,6 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        button_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (edit_ticket_url != null) {
-                    gatherInfoFromWhenEditTexts();
-                }
-                SubmitConcertWhere submitConcertWhere = SubmitConcertWhere.newInstance();
-                FragmentControllerNewConcert fragmentController = (FragmentControllerNewConcert) getActivity();
-                fragmentController.changeFragment(submitConcertWhere, true, submittedConcert);
-            }
-        });
-
         button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,8 +77,10 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
                     parseRequest.postConcertToParse(submittedConcert);
 
                     Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
-                } else {
+                }
+            else {
                     Toast toast = Toast.makeText(getActivity(), "You must enter a date and time!", Toast.LENGTH_SHORT);
                     toast.show();
                 }

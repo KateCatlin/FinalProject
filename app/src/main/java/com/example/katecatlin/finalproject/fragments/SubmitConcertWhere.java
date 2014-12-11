@@ -24,7 +24,7 @@ import com.example.katecatlin.finalproject.models.ConcertModel;
 public class SubmitConcertWhere extends Fragment {
 
     private EditText edit_venue, edit_address, edit_city, edit_zipcode, edit_venue_url;
-    private ImageButton next_button, button_back;
+    private ImageButton next_button;
     private ConcertModel submittedConcert;
 
     public static final SubmitConcertWhere newInstance() {
@@ -43,7 +43,6 @@ public class SubmitConcertWhere extends Fragment {
         View view = inflater.inflate(R.layout.fragment_submit_concert_where, container, false);
 
         submittedConcert = AddConcertActivity.newConcert;
-        Log.d("LOG_TAG", submittedConcert.getArtist1() + submittedConcert.getCity() + submittedConcert.getAddress() + submittedConcert.getDateTime().toString());
 
         edit_venue = (EditText) view.findViewById(R.id.edit_venue);
         edit_address = (EditText) view.findViewById(R.id.edit_address);
@@ -51,7 +50,6 @@ public class SubmitConcertWhere extends Fragment {
         edit_zipcode = (EditText) view.findViewById(R.id.edit_zipcode);
         edit_venue_url = (EditText) view.findViewById(R.id.edit_venue_url);
         next_button = (ImageButton) view.findViewById(R.id.button_next);
-        button_back = (ImageButton) view.findViewById(R.id.button_back);
         return view;
     }
 
@@ -61,7 +59,7 @@ public class SubmitConcertWhere extends Fragment {
         next_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (edit_venue.getText().toString() != null) {
+                if (edit_venue.getText().length() != 0 ) {
                     gatherInfoFromWhereEditTexts();
                     SubmitConcertWhen submitConcertWhen = SubmitConcertWhen.newInstance();
 
@@ -73,19 +71,6 @@ public class SubmitConcertWhere extends Fragment {
                     toast.show();
                 }
             }
-        });
-
-        button_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                    gatherInfoFromWhereEditTexts();
-
-                SubmitConcertWho submitConcertWho = SubmitConcertWho.newInstance();
-                FragmentControllerNewConcert fragmentController = (FragmentControllerNewConcert) getActivity();
-                fragmentController.changeFragment(submitConcertWho, true, submittedConcert);
-
-            };
         });
     }
 

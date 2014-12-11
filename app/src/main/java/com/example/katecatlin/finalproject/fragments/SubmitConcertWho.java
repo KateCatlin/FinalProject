@@ -60,7 +60,7 @@ public class SubmitConcertWho extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (edit_artist_1.getText().toString() != "") {
+                if (edit_artist_1.getText().length() != 0) {
 
                     String artist1 = edit_artist_1.getText().toString();
                     String artist2 = edit_artist_2.getText().toString();

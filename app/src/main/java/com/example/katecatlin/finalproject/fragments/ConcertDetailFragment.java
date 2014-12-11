@@ -1,11 +1,14 @@
 package com.example.katecatlin.finalproject.fragments;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
+import com.example.katecatlin.finalproject.activities.AddConcertActivity;
+import com.example.katecatlin.finalproject.activities.MainActivity;
 import com.example.katecatlin.finalproject.models.ConcertModel;
 
 /**
@@ -37,6 +42,12 @@ public class ConcertDetailFragment extends Fragment {
         concertDetailFragment.setArguments(args);
 
         return concertDetailFragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
     }
 
 
@@ -115,5 +126,27 @@ public class ConcertDetailFragment extends Fragment {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Log.d("LOG_TAG", "button_home from detail frag");
+                if (getFragmentManager().getBackStackEntryCount() != 0) {
+                    getFragmentManager().popBackStack();
+                }
+                break;
+            case R.id.action_refresh:
+                Log.d("LOG_TAG", "tried to refresh from detail fragment");
+                break;
+            case R.id.action_new_concert:
+                Log.d("LOG_TAG", "new_concert");
+                Intent addConcertIntent = new Intent (getActivity(), AddConcertActivity.class );
+                startActivity(addConcertIntent);
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
 
 }
