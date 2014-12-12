@@ -107,6 +107,9 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
 
         public void gatherInfoFromWhenEditTexts() {
         String url = edit_ticket_url.getText().toString();
+        if (url.length()!=0 && !url.startsWith("http://")) {
+            url = "http://" + url;
+        }
         submittedConcert.setTicketUrl(url);
 
         DateTime dt = new DateTime(year+"-"+month+"-"+day+"T"+hour+":"+minute+":00.000");
@@ -125,11 +128,16 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
 
     @Override
     public void getChosenTime(int hour, int minute) {
-        if (minute < 10 ) {
-            button_time.setText(hour + ":0" + minute);
+        if (hour > 12) {
+            if (minute < 10 ) {
+                button_time.setText((hour-12) + ":0" + minute);
+            } else {
+                button_time.setText((hour-12) + ":" + minute);
+            }
         } else {
             button_time.setText(hour + ":" + minute);
         }
+
         this.hour = hour;
         this.minute = minute;
     }

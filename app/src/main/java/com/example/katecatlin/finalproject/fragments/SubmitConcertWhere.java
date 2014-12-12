@@ -85,6 +85,9 @@ public class SubmitConcertWhere extends Fragment {
         String zipCode = edit_zipcode.getText().toString();
         submittedConcert.setZipCode(zipCode);
         String venueURL = edit_venue_url.getText().toString();
+        if (venueURL.length()!=0 && !venueURL.startsWith("http://")) {
+            venueURL = "http://" + venueURL;
+        }
         submittedConcert.setVenueURL(venueURL);
     }
 }
