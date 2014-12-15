@@ -3,12 +3,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/light_black"
     android:orientation="vertical"
     >
-
-    <!--Go back and turn those color placeholders into actual colors! -->
-<!--Make sure a button gets added for sharing at a later date!-->
 
     <TextView
         android:id="@+id/detailArtistTextView"
@@ -19,7 +16,7 @@
         android:paddingTop="30dp"
         android:paddingLeft="10dp"
         android:text="@string/Artist1"
-        android:textColor="#ffffff"
+        android:textColor="@color/pink"
         android:textSize="40dp"/>
 
     <RelativeLayout
@@ -36,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Date"
-            android:textColor="#ffffff"
+            android:textColor="@color/cream"
             android:textSize="25dp"
             />
 
@@ -48,7 +45,7 @@
             android:layout_centerHorizontal="true"
             android:layout_toRightOf="@id/detailDateTextView"
             android:text="@string/Time"
-            android:textColor="#ffffff"
+            android:textColor="@color/cream"
             android:textSize="25dp"
             />
 
@@ -60,9 +57,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/date_Row"
         android:layout_centerHorizontal="true"
-        android:paddingTop="30dp"
+        android:paddingTop="20dp"
         android:text="@string/Venue"
-        android:textColor="#ffffff"
+        android:textColor="@color/dark_pink"
         android:textSize="30dp"
         />
 
@@ -125,9 +122,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/detailUrlTextView"
         android:layout_centerHorizontal="true"
-        android:paddingTop="30dp"
+        android:paddingTop="20dp"
         android:text="@string/Featuring_Title"
-        android:textColor="#ffffff"
+        android:textColor="@color/dark_pink"
         android:textSize="30dp"
         />
 
@@ -156,7 +153,7 @@
 
     <Button
         android:id="@+id/Ticket_Button"
-        android:background="#000fff"
+        android:background="@color/teal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -164,7 +161,7 @@
         android:layout_margin="20dp"
         android:padding="10dp"
         android:text="@string/Ticket_Title"
-        android:textColor="#ffffff"
+        android:textColor="@color/cream"
         android:textSize="30dp"
         />
 

@@ -7,6 +7,7 @@
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:paddingBottom="20dp"
+    android:background="@color/light_black"
     tools:context=".CreateLunchFragment">
 
     <!--Why is this so ugly? -->
@@ -21,6 +22,7 @@
         android:layout_marginRight="20dp"
         android:textStyle="bold"
         android:gravity="center_horizontal"
+        android:textColor="@color/pink"
         android:textSize="30dp"/>
 
     <TextView
@@ -32,16 +34,18 @@
         android:layout_marginBottom="5dp"
         android:text="@string/Venue_Submit"
         android:textStyle="bold"
+        android:textColor="@color/dark_pink"
         android:textSize="20dp"/>
 
 
     <EditText
         android:id="@+id/edit_venue"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@id/textview_venue_submit"
         android:layout_marginBottom="5dp"
         android:inputType="textCapWords"
+        android:background="@color/cream"
         android:singleLine="true"/>
 
     <TextView
@@ -52,15 +56,17 @@
         android:layout_marginBottom="5dp"
         android:text="@string/Address_Submit"
         android:textStyle="bold"
+        android:textColor="@color/dark_pink"
         android:textSize="20dp"/>
 
     <EditText
         android:id="@+id/edit_address"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@id/textview_address_submit"
         android:layout_marginBottom="5dp"
         android:inputType="textPostalAddress|textCapWords"
+        android:background="@color/cream"
         android:singleLine="true"/>
 
     <LinearLayout
@@ -79,6 +85,7 @@
         android:layout_marginBottom="5dp"
         android:text="@string/City_Submit"
         android:textStyle="bold"
+        android:textColor="@color/dark_pink"
         android:textSize="20dp"/>
 
         <TextView
@@ -91,6 +98,7 @@
             android:layout_marginBottom="5dp"
             android:text="@string/Zipcode_Submit"
             android:textStyle="bold"
+            android:textColor="@color/dark_pink"
             android:textSize="20dp"/>
 
     </LinearLayout>
@@ -107,10 +115,12 @@
         android:id="@+id/edit_city"
         android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@id/textview_city_submit"
         android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
         android:inputType="textCapWords"
+        android:background="@color/cream"
         android:singleLine="true"/>
 
 
@@ -118,13 +128,15 @@
         android:id="@+id/edit_zipcode"
         android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_toRightOf="@id/edit_city"
         android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_below="@id/textview_zipcode_submit"
         android:inputType="number"
         android:numeric="integer"
         android:maxLength="5"
+        android:background="@color/cream"
         android:singleLine="true"/>
 
     </LinearLayout>
@@ -137,15 +149,17 @@
         android:layout_marginBottom="5dp"
         android:text="@string/Venue_URL_Submit"
         android:textStyle="bold"
+        android:textColor="@color/dark_pink"
         android:textSize="20dp"/>
 
 
     <EditText
         android:id="@+id/edit_venue_url"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@id/textview_url_submit"
         android:inputType="textWebEmailAddress"
+        android:background="@color/cream"
         android:singleLine="true"/>
 
 

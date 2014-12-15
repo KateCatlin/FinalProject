@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#000000"
+    android:background="@color/light_black"
     android:padding="15dp"
     android:orientation="vertical"
     >
@@ -18,7 +18,7 @@
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
         android:text="@string/Artist1"
-        android:textColor="#ffffff"
+        android:textColor="@color/pink"
         android:textSize="30dp"
         android:ellipsize="end"
         android:maxLines="1"/>
@@ -32,9 +32,8 @@
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
         android:text="@string/Date"
-        android:textColor="#ffffff"
+        android:textColor="@color/cream"
         android:textSize="20dp"
-
         />
 
     <TextView
@@ -46,7 +45,7 @@
         android:paddingTop="5dp"
         android:paddingBottom="10dp"
         android:text="@string/Venue"
-        android:textColor="#ffffff"
+        android:textColor="@color/cream"
         android:textSize="15dp"
         />
 
@@ -60,7 +59,7 @@
         android:paddingTop="5dp"
         android:paddingBottom="10dp"
         android:text="@string/City"
-        android:textColor="#ffffff"
+        android:textColor="@color/cream"
         android:textSize="15dp"
         android:ellipsize="end"
         android:maxLines="1"
