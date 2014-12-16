@@ -4,19 +4,14 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 
 import com.example.katecatlin.finalproject.R;
-import com.example.katecatlin.finalproject.adapters.ConcertListAdapter;
 import com.example.katecatlin.finalproject.fragments.ConcertListFragment;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
-import com.example.katecatlin.finalproject.models.ConcertModel;
 
 
 public class MainActivity extends Activity implements FragmentController {

@@ -5,10 +5,12 @@ import android.os.Parcelable;
 
 import org.joda.time.DateTime;
 
+import java.util.List;
+
 /**
  * Created by katecatlin on 11/25/14.
  */
-public class ConcertModel implements Parcelable {
+public class Concert implements Parcelable {
     private DateTime DateTime = new DateTime("2050-01-01T12:00:00.000");
     private String Venue="";
     private String Address = "";
@@ -20,8 +22,7 @@ public class ConcertModel implements Parcelable {
     private String Artist3="";
     private String TicketUrl="";
 
-
-    public ConcertModel(DateTime dateTime, String venue, String address, String city, String zipCode, String venueURL, String artist1, String artist2, String artist3, String ticketUrl) {
+    public Concert(DateTime dateTime, String venue, String address, String city, String zipCode, String venueURL, String artist1, String artist2, String artist3, String ticketUrl) {
         DateTime = dateTime;
         Venue = venue;
         Address = address;
@@ -34,7 +35,7 @@ public class ConcertModel implements Parcelable {
         TicketUrl = ticketUrl;
     }
 
-    public ConcertModel() {
+    public Concert() {
     }
 
     public void setDateTime(DateTime dateTime) {
@@ -142,7 +143,7 @@ public class ConcertModel implements Parcelable {
         dest.writeString(this.TicketUrl);
     }
 
-    private ConcertModel(Parcel in) {
+    private Concert(Parcel in) {
         this.DateTime = (DateTime) in.readSerializable();
         this.Venue = in.readString();
         this.Address = in.readString();
@@ -155,14 +156,13 @@ public class ConcertModel implements Parcelable {
         this.TicketUrl = in.readString();
     }
 
-    public static final Parcelable.Creator<ConcertModel> CREATOR = new Parcelable.Creator<ConcertModel>() {
-        public ConcertModel createFromParcel (Parcel source) {
-            return new ConcertModel(source);
+    public static final Parcelable.Creator<Concert> CREATOR = new Parcelable.Creator<Concert>() {
+        public Concert createFromParcel (Parcel source) {
+            return new Concert(source);
         }
 
-        public ConcertModel[] newArray(int size) {
-            return new ConcertModel[size];
+        public Concert[] newArray(int size) {
+            return new Concert[size];
         }
     };
-
 }

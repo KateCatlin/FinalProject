@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.katecatlin.finalproject.interfaces.IndividualApiRequestCallback;
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 import com.example.katecatlin.finalproject.parsers.JSONParser;
 
 import org.json.JSONException;
@@ -58,18 +58,18 @@ public class JSONRequest {
     }
 
 
-    private class LoadDataInBackground extends AsyncTask <Uri, Void, List<ConcertModel>> {
+    private class LoadDataInBackground extends AsyncTask <Uri, Void, List<Concert>> {
 
         private LoadDataInBackground() {
         }
 
         @Override
-        protected List<ConcertModel> doInBackground(Uri... params) {
+        protected List<Concert> doInBackground(Uri... params) {
 
             try {
                 Uri uri = params[0];
                 JSONObject jsonObject = getJSONObjectFromUri(uri) ;
-                List<ConcertModel> listOfConcerts = JSONParser.parseJSONObject(jsonObject);
+                List<Concert> listOfConcerts = JSONParser.parseJSONObject(jsonObject);
                 return listOfConcerts;
             } catch (IOException e) {
                 return null;
@@ -92,7 +92,7 @@ public class JSONRequest {
 
 
         @Override
-        protected void onPostExecute(List<ConcertModel> results) {
+        protected void onPostExecute(List<Concert> results) {
             if (results != null) {
                 jsonCallback.onSuccess(results);
             } else {

@@ -1,6 +1,5 @@
 package com.example.katecatlin.finalproject.fragments;
 
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -17,15 +16,14 @@ import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.activities.AddConcertActivity;
-import com.example.katecatlin.finalproject.activities.MainActivity;
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 
 /**
  * Created by katecatlin on 11/29/14.
  */
 
 
-public class ConcertDetailFragment extends Fragment {
+public class ConcertDetailFragment extends android.support.v4.app.Fragment {
 
     private static final String ARG_CONCERT_ENTRY = "arg_concert_entry";
     private TextView detailArtistTextView, detailDateTextView, detailTimeTextView, detailVenueTextView,
@@ -33,13 +31,14 @@ public class ConcertDetailFragment extends Fragment {
             featuringTextView, detailArtist2TextView, detailArtist3TextView;
     private Button ticketButton;
 
-    public static ConcertDetailFragment newInstance(ConcertModel concertModel) {
+    public static ConcertDetailFragment newInstance(Concert concert) {
 
         Bundle args = new Bundle();
-        args.putParcelable(ARG_CONCERT_ENTRY, concertModel);
+        args.putParcelable(ARG_CONCERT_ENTRY, concert);
 
         ConcertDetailFragment concertDetailFragment = new ConcertDetailFragment();
         concertDetailFragment.setArguments(args);
+        Log.d("LOG_TAG", "concert is " + concert.getArtist1());
 
         return concertDetailFragment;
     }
@@ -53,7 +52,9 @@ public class ConcertDetailFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_detail_view, container, false);
+
+        ViewGroup view = (ViewGroup) inflater.inflate(
+                R.layout.fragment_detail_view, container, false);
 
         detailArtistTextView = (TextView) view.findViewById(R.id.detailArtistTextView);
         detailDateTextView = (TextView) view.findViewById(R.id.detailDateTextView);
@@ -76,36 +77,38 @@ public class ConcertDetailFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final ConcertModel concertModel = getArguments().getParcelable(ARG_CONCERT_ENTRY);
+        final Concert concert = getArguments().getParcelable(ARG_CONCERT_ENTRY);
 
-        if (concertModel != null) {
+        Log.d("LOG_TAG", "concert is " + concert.getArtist1());
 
-            detailArtistTextView.setText(concertModel.getArtist1());
-            detailDateTextView.setText(concertModel.convertDateTimetoDate(concertModel.getDateTime()));
-            detailVenueTextView.setText(concertModel.getVenue());
-            detailAddressTextView.setText(concertModel.getAddress());
-            detailCityTextView.setText(concertModel.getCity());
-            detailZipCodeTextView.setText(concertModel.getZipCode());
-            detailUrlTextView.setText(concertModel.getTicketUrl());
-            detailArtist2TextView.setText(concertModel.getArtist2());
-            detailArtist3TextView.setText(concertModel.getArtist3());
-            if (concertModel.getArtist2().equals("")) {
+        if (concert != null) {
+
+            detailArtistTextView.setText(concert.getArtist1());
+            detailDateTextView.setText(concert.convertDateTimetoDate(concert.getDateTime()));
+            detailVenueTextView.setText(concert.getVenue());
+            detailAddressTextView.setText(concert.getAddress());
+            detailCityTextView.setText(concert.getCity());
+            detailZipCodeTextView.setText(concert.getZipCode());
+            detailUrlTextView.setText(concert.getTicketUrl());
+            detailArtist2TextView.setText(concert.getArtist2());
+            detailArtist3TextView.setText(concert.getArtist3());
+            if (concert.getArtist2() == null || concert.getArtist2().equals("")) {
                 featuringTextView.setText("");
             }
-            if (concertModel.convertDateTimetoTime(concertModel.getDateTime()).toString().equals("0:00")) {
+            if (concert.convertDateTimetoTime(concert.getDateTime()).toString().equals("0:00")) {
                 detailTimeTextView.setVisibility(View.GONE);
             } else {
-                detailTimeTextView.setText(concertModel.convertDateTimetoTime(concertModel.getDateTime()));
+                detailTimeTextView.setText(concert.convertDateTimetoTime(concert.getDateTime()));
             }
 
             ticketButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 
-                    if (!concertModel.getTicketUrl().equals("")) {
-                        openWebURL(concertModel.getTicketUrl());
+                    if (!concert.getTicketUrl().equals("")) {
+                        openWebURL(concert.getTicketUrl());
                     }
-                    else if (!concertModel.getVenueURL().equals("")) {
-                        openWebURL(concertModel.getVenueURL());
+                    else if (!concert.getVenueURL().equals("")) {
+                        openWebURL(concert.getVenueURL());
                     } else {
                         Toast.makeText(getActivity(), "Sorry, URL not provided!", Toast.LENGTH_SHORT);
                     }

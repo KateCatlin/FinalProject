@@ -10,15 +10,13 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.katecatlin.finalproject.R;
-import com.example.katecatlin.finalproject.fragments.SubmitConcertWhen;
 import com.example.katecatlin.finalproject.fragments.SubmitConcertWho;
-import com.example.katecatlin.finalproject.interfaces.FragmentController;
 import com.example.katecatlin.finalproject.interfaces.FragmentControllerNewConcert;
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 
 
 public class AddConcertActivity extends Activity implements FragmentControllerNewConcert {
-    public static ConcertModel newConcert;
+    public static Concert newConcert;
 
 
     @Override
@@ -27,7 +25,7 @@ public class AddConcertActivity extends Activity implements FragmentControllerNe
         setContentView(R.layout.activity);
         setActionBar();
 
-        newConcert = new ConcertModel();
+        newConcert = new Concert();
 
         SubmitConcertWho submitConcertWho = SubmitConcertWho.newInstance();
 
@@ -48,7 +46,7 @@ public class AddConcertActivity extends Activity implements FragmentControllerNe
 
 
     @Override
-    public void changeFragment(Fragment fragment, boolean addToBackstack, ConcertModel newConcert) {
+    public void changeFragment(Fragment fragment, boolean addToBackstack, Concert newConcert) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
         this.newConcert = newConcert;

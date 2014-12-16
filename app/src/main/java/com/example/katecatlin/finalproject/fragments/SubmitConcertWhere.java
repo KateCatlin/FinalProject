@@ -2,7 +2,6 @@ package com.example.katecatlin.finalproject.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +11,8 @@ import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.activities.AddConcertActivity;
-import com.example.katecatlin.finalproject.interfaces.FragmentController;
 import com.example.katecatlin.finalproject.interfaces.FragmentControllerNewConcert;
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 
 /**
  * Created by katecatlin on 12/3/14.
@@ -25,7 +23,7 @@ public class SubmitConcertWhere extends Fragment {
 
     private EditText edit_venue, edit_address, edit_city, edit_zipcode, edit_venue_url;
     private ImageButton next_button;
-    private ConcertModel submittedConcert;
+    private Concert submittedConcert;
 
     public static final SubmitConcertWhere newInstance() {
 

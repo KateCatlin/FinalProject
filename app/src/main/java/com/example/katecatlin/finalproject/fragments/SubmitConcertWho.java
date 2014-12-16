@@ -12,16 +12,15 @@ import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.activities.AddConcertActivity;
-import com.example.katecatlin.finalproject.interfaces.FragmentController;
 import com.example.katecatlin.finalproject.interfaces.FragmentControllerNewConcert;
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 
 /**
  * Created by katecatlin on 12/3/14.
  */
 public class SubmitConcertWho extends Fragment {
 
-    private ConcertModel submittedConcert;
+    private Concert submittedConcert;
     private EditText edit_artist_1, edit_artist_2, edit_artist_3;
     private ImageButton next_button;
     static final String SUBMITTED_CONCERT_ENTRY = "SUBMITTED_CONCERT_ENTRY";

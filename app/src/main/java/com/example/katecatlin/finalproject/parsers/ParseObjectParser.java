@@ -1,6 +1,6 @@
 package com.example.katecatlin.finalproject.parsers;
 
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 import com.parse.ParseObject;
 
 import org.joda.time.DateTime;
@@ -14,15 +14,15 @@ import java.util.List;
  */
 public class ParseObjectParser {
 
-    public static List<ConcertModel> parseParseObject(ArrayList<ParseObject> parseObjects) {
+    public static List<Concert> parseParseObject(ArrayList<ParseObject> parseObjects) {
 
         String venue, address, city, zipCode, venueURL, artist1, artist2, artist3, ticketUrl;
         DateTime dateTime;
         Date tempDate;
-        ConcertModel concertModel;
+        Concert concert;
 
 
-        List<ConcertModel> concertsList = new ArrayList<ConcertModel>();
+        List<Concert> concertsList = new ArrayList<Concert>();
 
         for (ParseObject x : parseObjects) {
 
@@ -38,9 +38,9 @@ public class ParseObjectParser {
             artist3 = x.getString("Artist3");
             ticketUrl = x.getString("TicketUrl");
 
-            concertModel = new ConcertModel(dateTime, venue, address, city, zipCode, venueURL, artist1, artist2, artist3, ticketUrl);
+            concert = new Concert(dateTime, venue, address, city, zipCode, venueURL, artist1, artist2, artist3, ticketUrl);
 
-            concertsList.add(concertModel);
+            concertsList.add(concert);
         }
         return concertsList;
     }

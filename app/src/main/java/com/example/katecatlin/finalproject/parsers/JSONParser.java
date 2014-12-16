@@ -1,6 +1,6 @@
 package com.example.katecatlin.finalproject.parsers;
 
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 
 import org.joda.time.DateTime;
 import org.json.JSONArray;
@@ -17,30 +17,30 @@ import java.util.List;
 
 public class JSONParser {
 
-    public static List <ConcertModel> parseJSONObject (JSONObject jsonObject) {
+    public static List <Concert> parseJSONObject (JSONObject jsonObject) {
 
         try {
             JSONArray jsonArray = jsonObject.getJSONArray("Events");
 
-            List <ConcertModel> concertsList = new ArrayList<ConcertModel>();
+            List <Concert> concertsList = new ArrayList<Concert>();
 
             for (int index = 0; index < jsonArray.length(); index++) {
                 JSONObject concertEntry = jsonArray.getJSONObject(index);
-                ConcertModel newConcertModel = createConcertModelFromJsonInfo (concertEntry);
-                concertsList.add(newConcertModel);
+                Concert newConcert = createConcertModelFromJsonInfo (concertEntry);
+                concertsList.add(newConcert);
             }
             return  concertsList;
 
         } catch (JSONException e) {
-           return new ArrayList<ConcertModel>();
+           return new ArrayList<Concert>();
         }
     }
 
-    private static ConcertModel createConcertModelFromJsonInfo (JSONObject concertsJsonObject) throws JSONException {
+    private static Concert createConcertModelFromJsonInfo (JSONObject concertsJsonObject) throws JSONException {
 
         String venue, address, city, zipCode, venueURL, artist1, artist2, artist3, ticketUrl;
         DateTime dateTime;
-        ConcertModel concertModel;
+        Concert concert;
         JSONObject venueObject, artistObject;
         JSONArray artistArray;
 
@@ -73,10 +73,10 @@ public class JSONParser {
 
         ticketUrl = concertsJsonObject.optString("TicketUrl", "Unknown URL");
 
-        concertModel = new ConcertModel(dateTime,venue, address, city, zipCode,
+        concert = new Concert(dateTime,venue, address, city, zipCode,
                 venueURL, artist1, artist2, artist3, ticketUrl);
 
 
-        return concertModel;
+        return concert;
     }
 }

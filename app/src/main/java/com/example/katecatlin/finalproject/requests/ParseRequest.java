@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.example.katecatlin.finalproject.interfaces.IndividualApiRequestCallback;
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 import com.example.katecatlin.finalproject.parsers.ParseObjectParser;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -40,7 +40,7 @@ public class ParseRequest {
     }
 
 
-    public void postConcertToParse(ConcertModel newConcert) {
+    public void postConcertToParse(Concert newConcert) {
 
         Log.d("LOG_TAG", "newConcertObject is " + newConcert.getArtist1() + " " + newConcert.getAddress());
         ParseObject newConcertObject = new ParseObject("Concert");
@@ -63,7 +63,7 @@ public class ParseRequest {
         List<ParseObject> parseObjectList = null;
         ParseQuery<ParseObject> parseQuery = new ParseQuery<ParseObject>("Concert");
         ArrayList<ParseObject> parseObjects = new ArrayList<ParseObject>();
-        List<ConcertModel> concertModels = null;
+        List<Concert> concerts = null;
 
         try {
             parseObjectList = parseQuery.find();
@@ -79,15 +79,15 @@ public class ParseRequest {
             }
 
             ParseObjectParser parseObjectParser = new ParseObjectParser();
-            concertModels = parseObjectParser.parseParseObject(parseObjects);
+            concerts = parseObjectParser.parseParseObject(parseObjects);
 
         } catch (ParseException e) {
             Log.e("Error", e.getMessage());
             e.printStackTrace();
         }
 
-        if (concertModels != null) {
-            individualApiRequestCallback.onSuccess(concertModels);
+        if (concerts != null) {
+            individualApiRequestCallback.onSuccess(concerts);
         } else {
             individualApiRequestCallback.onError();
         }

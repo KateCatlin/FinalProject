@@ -1,6 +1,6 @@
 package com.example.katecatlin.finalproject.interfaces;
 
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 
 import java.util.List;
 
@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface MasterAPIRequestCallback {
 
-    public void onSuccess(List<ConcertModel> concertModelList);
+    public void onSuccess(List<Concert> concertList);
     public void onError();
 }

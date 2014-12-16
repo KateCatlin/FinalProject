@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.example.katecatlin.finalproject.interfaces.IndividualApiRequestCallback;
 import com.example.katecatlin.finalproject.interfaces.MasterAPIRequestCallback;
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
 public class MasterRequest implements IndividualApiRequestCallback {
 
     public static Integer apisReturned = 0;
-    List<ConcertModel> upcomingConcerts = new ArrayList<ConcertModel>();
+    List<Concert> upcomingConcerts = new ArrayList<Concert>();
     private MasterAPIRequestCallback thisMasterAPIRequestCallback;
     private static MasterRequest masterRequest;
 
@@ -45,7 +45,7 @@ public class MasterRequest implements IndividualApiRequestCallback {
     }
 
 
-    public void refreshConcerts (List<ConcertModel> returnedConcerts) {
+    public void refreshConcerts (List<Concert> returnedConcerts) {
 
         if (returnedConcerts != null) {
             for (int i = 0; i < returnedConcerts.size(); i++) {
@@ -64,9 +64,9 @@ public class MasterRequest implements IndividualApiRequestCallback {
     }
 
     @Override
-    public void onSuccess(List<ConcertModel> concertModelList) {
+    public void onSuccess(List<Concert> concertList) {
         apisReturned++;
-        refreshConcerts(concertModelList);
+        refreshConcerts(concertList);
     }
 
 

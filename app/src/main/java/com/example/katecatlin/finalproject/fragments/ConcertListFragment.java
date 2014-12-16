@@ -1,7 +1,5 @@
 package com.example.katecatlin.finalproject.fragments;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,20 +11,22 @@ import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.activities.AddConcertActivity;
+import com.example.katecatlin.finalproject.activities.ConcertPagerActivity;
 import com.example.katecatlin.finalproject.adapters.ConcertListAdapter;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
 import com.example.katecatlin.finalproject.interfaces.MasterAPIRequestCallback;
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 import com.example.katecatlin.finalproject.parsers.SortConcertsByDate;
 import com.example.katecatlin.finalproject.requests.MasterRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by katecatlin on 11/25/14.
  */
 public class ConcertListFragment extends ListFragment implements MasterAPIRequestCallback {
-
+    private ArrayList<Concert> sortedConcerts;
     private ConcertListAdapter concertListAdapter;
 
     public ConcertListFragment () {
@@ -68,11 +68,18 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
 
         if (getActivity() instanceof FragmentController) {
 
-            ConcertModel concertModel = (ConcertModel) listView.getAdapter().getItem(position);
-            ConcertDetailFragment concertDetailFragment = ConcertDetailFragment.newInstance(concertModel);
+            Concert concert = (Concert) listView.getAdapter().getItem(position);
 
-            FragmentController fragmentController = (FragmentController) getActivity();
-            fragmentController.changeFragment(concertDetailFragment, true);
+            Intent concertPagerIntent = new Intent(getActivity(), ConcertPagerActivity.class);
+            Bundle dataBundle = new Bundle();
+            dataBundle.putParcelableArrayList("data", sortedConcerts);
+            dataBundle.putInt("position", position);
+
+//            concertPagerIntent.putParcelableArrayListExtra("data", sortedConcerts);
+//            concertPagerIntent.putExtra("position", position);
+            concertPagerIntent.putExtras(dataBundle);
+            startActivity(concertPagerIntent);
+
 
         } else {
             throw new IllegalArgumentException("Your activity must implement the FragmentController interface");
@@ -81,11 +88,11 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
 
 
     @Override
-    public void onSuccess(List<ConcertModel> returnedConcerts) {
+    public void onSuccess(List<Concert> returnedConcerts) {
         if (isAdded()) {
 
             SortConcertsByDate sortConcertsByDate = new SortConcertsByDate();
-            final List<ConcertModel> sortedConcerts = sortConcertsByDate.sortConcerts(returnedConcerts);
+            sortedConcerts = new ArrayList<Concert>(sortConcertsByDate.sortConcerts(returnedConcerts));
 
             getActivity().runOnUiThread(new Runnable() {
                 @Override
@@ -95,7 +102,6 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
                     ((ConcertListAdapter)getListAdapter()).notifyDataSetChanged();
                 }
             });
-
         }
     }
 

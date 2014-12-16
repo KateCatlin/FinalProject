@@ -1,6 +1,6 @@
 package com.example.katecatlin.finalproject.parsers;
 
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,19 +15,20 @@ public class SortConcertsByDate {
     }
 
 
-    public List<ConcertModel> sortConcerts (List<ConcertModel> returnedConcerts) {
+    public List<Concert> sortConcerts (List<Concert> returnedConcerts) {
 
-        Collections.sort(returnedConcerts, new Comparator<ConcertModel>() {
+        Collections.sort(returnedConcerts, new Comparator<Concert>() {
 
-            public int compare(ConcertModel concertModel1, ConcertModel concertModel2) {
+            public int compare(Concert concert1, Concert concert2) {
 
-                if (concertModel1.getDateTime() == null || concertModel2.getDateTime() == null) {
+                if (concert1.getDateTime() == null || concert2.getDateTime() == null) {
                     return 0;
                 }
 
-                return concertModel1.getDateTime().compareTo(concertModel2.getDateTime());
+                return concert1.getDateTime().compareTo(concert2.getDateTime());
             }
         });
+
         return returnedConcerts;
     }
 }

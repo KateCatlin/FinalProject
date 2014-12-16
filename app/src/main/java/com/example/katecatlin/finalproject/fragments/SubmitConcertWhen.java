@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
@@ -18,11 +17,9 @@ import com.example.katecatlin.finalproject.activities.AddConcertActivity;
 import com.example.katecatlin.finalproject.activities.MainActivity;
 import com.example.katecatlin.finalproject.dialogs.DatePickerFragment;
 import com.example.katecatlin.finalproject.dialogs.TimePickerFragment;
-import com.example.katecatlin.finalproject.interfaces.FragmentController;
-import com.example.katecatlin.finalproject.interfaces.FragmentControllerNewConcert;
 import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
 import com.example.katecatlin.finalproject.interfaces.GetChosenTimeInterface;
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 import com.example.katecatlin.finalproject.requests.ParseRequest;
 
 import org.joda.time.DateTime;
@@ -35,7 +32,7 @@ import org.joda.time.DateTime;
 public class SubmitConcertWhen extends Fragment implements GetChosenDateInterface, GetChosenTimeInterface {
 
     static final String SUBMITTED_CONCERT_ENTRY = SubmitConcertWho.SUBMITTED_CONCERT_ENTRY;
-    private ConcertModel submittedConcert;
+    private Concert submittedConcert;
     private EditText edit_ticket_url;
     private Button button_date, button_time, button_submit;
     static int year, month, day, hour, minute = 0;

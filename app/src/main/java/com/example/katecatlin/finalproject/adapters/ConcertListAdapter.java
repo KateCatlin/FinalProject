@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.katecatlin.finalproject.R;
-import com.example.katecatlin.finalproject.models.ConcertModel;
+import com.example.katecatlin.finalproject.models.Concert;
 
 import org.joda.time.DateTime;
 
@@ -17,7 +17,7 @@ import org.joda.time.DateTime;
  */
 
 
-public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
+public class ConcertListAdapter extends ArrayAdapter<Concert> {
 
     public ConcertListAdapter (Context context) {
         super(context, R.layout.rows_concert_listings);
@@ -63,13 +63,13 @@ public class ConcertListAdapter extends ArrayAdapter<ConcertModel> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ConcertModel concertModel = getItem(position);
+        Concert concert = getItem(position);
 
-        viewHolder.textView_artist1.setText(concertModel.getArtist1());
-        viewHolder.textView_city.setText(concertModel.getCity());
-        viewHolder.textView_venue.setText(concertModel.getVenue());
-        DateTime dateTime = concertModel.getDateTime();
-        viewHolder.textView_date.setText(concertModel.convertDateTimetoDate(dateTime));
+        viewHolder.textView_artist1.setText(concert.getArtist1());
+        viewHolder.textView_city.setText(concert.getCity());
+        viewHolder.textView_venue.setText(concert.getVenue());
+        DateTime dateTime = concert.getDateTime();
+        viewHolder.textView_date.setText(concert.convertDateTimetoDate(dateTime));
 
         return convertView;
     }
