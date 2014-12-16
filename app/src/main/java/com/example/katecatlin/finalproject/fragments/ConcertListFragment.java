@@ -75,8 +75,6 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
             dataBundle.putParcelableArrayList("data", sortedConcerts);
             dataBundle.putInt("position", position);
 
-//            concertPagerIntent.putParcelableArrayListExtra("data", sortedConcerts);
-//            concertPagerIntent.putExtra("position", position);
             concertPagerIntent.putExtras(dataBundle);
             startActivity(concertPagerIntent);
 

@@ -1,7 +1,7 @@
 package com.example.katecatlin.finalproject.activities;
 
 import android.app.ActionBar;
-import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -9,15 +9,13 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.fragments.ConcertDetailFragment;
-import com.example.katecatlin.finalproject.fragments.ConcertListFragment;
 import com.example.katecatlin.finalproject.models.Concert;
-import com.example.katecatlin.finalproject.parsers.SortConcertsByDate;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by katecatlin on 12/15/14.
@@ -32,18 +30,51 @@ public class ConcertPagerActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_pager);
 
-        Bundle extras = getIntent().getExtras();
-        int currentPosition = extras.getInt("position");
-        concerts = extras.getParcelableArrayList("data");
-        Log.d("LOG_TAG", "current position is " + currentPosition);
-        Log.d("LOG_TAG", "concerst include " + concerts.get(0).getArtist1());
-
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(pagerAdapter);
 
-        final ActionBar bar = getActionBar();
-        bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+        setActionBar();
+        setViewPager();
+    }
 
+    public void setActionBar() {
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle(R.string.Heading);
+        actionBar.show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Log.d("LOG_TAG", "button_home");
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                break;
+            case R.id.action_refresh:
+                Log.d("LOG_TAG", "button_home");
+                intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                break;
+            case R.id.action_new_concert:
+                Log.d("LOG_TAG", "new_concert");
+                Intent addConcertIntent = new Intent (this, AddConcertActivity.class );
+                startActivity(addConcertIntent);
+                break;
+        }
+        return true;
+    }
+
+    public void setViewPager() {
+        Bundle extras = getIntent().getExtras();
+        int currentPosition = extras.getInt("position");
+        concerts = extras.getParcelableArrayList("data");
 
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         viewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
@@ -75,8 +106,4 @@ public class ConcertPagerActivity extends FragmentActivity {
             }
         });
     }
-
-
-
-
 }

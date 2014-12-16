@@ -128,28 +128,4 @@ public class ConcertDetailFragment extends android.support.v4.app.Fragment {
         getActivity().startActivity(internetIntent);
 
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Log.d("LOG_TAG", "button_home from detail frag");
-                if (getFragmentManager().getBackStackEntryCount() != 0) {
-                    getFragmentManager().popBackStack();
-                }
-                break;
-            case R.id.action_refresh:
-                Log.d("LOG_TAG", "tried to refresh from detail fragment");
-                break;
-            case R.id.action_new_concert:
-                Log.d("LOG_TAG", "new_concert");
-                Intent addConcertIntent = new Intent (getActivity(), AddConcertActivity.class );
-                startActivity(addConcertIntent);
-                break;
-            default:
-                break;
-        }
-        return true;
-    }
-
 }
