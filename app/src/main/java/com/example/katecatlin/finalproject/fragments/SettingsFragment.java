@@ -19,6 +19,7 @@ import com.example.katecatlin.finalproject.R;
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static final String RADIUS_OF_SEARCH = "RADIUS_OF_SEARCH";
+    public static final String ZIP_CODE = "ZIP_CODE";
 
 
     @Override
@@ -28,23 +29,17 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences);
 
-        SharedPreferences sp = getPreferenceScreen().getSharedPreferences();
-//        EditTextPreference editTextPref = (EditTextPreference) findPreference(RADIUS_OF_SEARCH);
-//        editTextPref.setSummary(sp.getInt(RADIUS_OF_SEARCH, null));
     }
-
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//
-//        View view = (View) inflater.inflate(
-//                R.layout.fake_layout, container, false);
-//
-//        return view;
-//    }
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
                                           String key) {
         if (key.equals(RADIUS_OF_SEARCH)) {
+            Preference connectionPref = findPreference(key);
+            // Set summary to be the user-description for the selected value
+            connectionPref.setSummary(sharedPreferences.getString(key, ""));
+        }
+
+        if (key.equals(ZIP_CODE)) {
             Preference connectionPref = findPreference(key);
             // Set summary to be the user-description for the selected value
             connectionPref.setSummary(sharedPreferences.getString(key, ""));

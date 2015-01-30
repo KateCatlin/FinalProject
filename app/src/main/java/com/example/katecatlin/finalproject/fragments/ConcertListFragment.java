@@ -2,7 +2,9 @@ package com.example.katecatlin.finalproject.fragments;
 
 import android.app.ListFragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,8 +62,16 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
 
 
     public void refreshConcerts () {
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String ZIP_CODE = sharedPreferences.getString("ZIP_CODE", "48201");
+        String RADIUS_OF_SEARCH = sharedPreferences.getString("RADIUS_OF_SEARCH", "10");
+
+
+
+
         MasterRequest masterRequest = MasterRequest.getMasterRequest(this);
-        masterRequest.loadConcerts(getActivity());
+        masterRequest.loadConcerts(getActivity(), ZIP_CODE, RADIUS_OF_SEARCH);
     }
 
 

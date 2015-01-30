@@ -33,12 +33,12 @@ public class MasterRequest implements IndividualApiRequestCallback {
     }
 
 
-    public void loadConcerts(Activity activity) {
+    public void loadConcerts(Activity activity, String zipcode, String radius) {
 
         upcomingConcerts.clear();
 
         JSONRequest jsonRequest = JSONRequest.getJsonRequest(this);
-        jsonRequest.getConcerts();
+        jsonRequest.getConcerts(zipcode, radius);
 
         ParseRequest parseRequest = ParseRequest.getParseRequest(activity, this);
         parseRequest.getConcertsFromParse();

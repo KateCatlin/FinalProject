@@ -62,7 +62,6 @@ public class MainActivity extends Activity implements FragmentController {
 
         Fragment clf = getFragmentManager().findFragmentByTag(ConcertListFragment.FRAG_TAG);
         if(clf != null) {
-            Log.d("MainActivity", "found concert list fragment");
             getFragmentManager().beginTransaction().show(clf).commit();
             return;
         }
@@ -72,9 +71,6 @@ public class MainActivity extends Activity implements FragmentController {
         int result = getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, concertListFragment, ConcertListFragment.FRAG_TAG)
                 .commit();
-
-
-        Log.d("MainActivity", "load concert list fragment = " + result);
     }
 
     public void setActionBar() {

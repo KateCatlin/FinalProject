@@ -38,7 +38,7 @@
 
     <string name="Heading">DetroitLive!</string>
 
-    <string name="shared_preferences_radius">CHANGE RADIUS OF SEARCH</string>
-    <string name="shared_preferences_zipcode">CHANGE ZIP CODE OF SEARCH</string>
+    <string name="shared_preferences_radius">Adjust radius of search</string>
+    <string name="shared_preferences_zipcode">Change your Zip Code</string>
 
 </resources>

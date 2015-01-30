@@ -1,7 +1,9 @@
 package com.example.katecatlin.finalproject.requests;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.example.katecatlin.finalproject.interfaces.IndividualApiRequestCallback;
@@ -42,14 +44,15 @@ public class JSONRequest {
     }
 
 
-    public void getConcerts () {
+    public void getConcerts (String sharedPrefsZipCode, String sharedPrefsRadius) {
+
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
                 .authority("api.jambase.com")
                 .appendPath("events")
-                .appendQueryParameter("zipCode", "48201")
-                .appendQueryParameter("radius", "10")
+                .appendQueryParameter("zipCode", sharedPrefsRadius)
+                .appendQueryParameter("radius", sharedPrefsRadius)
                 .appendQueryParameter("page", "0")
                 .appendQueryParameter("api_key", "fbry47pgp62uj3vnknntdyda")
                 .build();
