@@ -103,6 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:paddingLeft="15dp"
             android:layout_toRightOf="@id/detailCityTextView"
             android:text="@string/ZipCode"
             android:textColor="#ffffff"
@@ -118,8 +119,9 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/address_Row"
         android:text="@string/VenueURL"
-        android:textColor="#ffffff"
-        android:textSize="15dp"
+        android:textColor="@color/teal"
+        android:textSize="25dp"
+        android:textStyle="bold"
         android:autoLink="web"
         />
 

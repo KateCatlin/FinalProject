@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class ConcertDetailFragment extends android.support.v4.app.Fragment {
             detailAddressTextView, detailCityTextView, detailZipCodeTextView, detailUrlTextView,
             featuringTextView, detailArtist2TextView, detailArtist3TextView;
     private Button ticketButton;
+    private Boolean isPlaying = false;
 
     public static ConcertDetailFragment newInstance(Concert concert) {
 
@@ -47,6 +49,7 @@ public class ConcertDetailFragment extends android.support.v4.app.Fragment {
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
 
@@ -89,7 +92,6 @@ public class ConcertDetailFragment extends android.support.v4.app.Fragment {
             detailAddressTextView.setText(concert.getAddress());
             detailCityTextView.setText(concert.getCity());
             detailZipCodeTextView.setText(concert.getZipCode());
-            detailUrlTextView.setText(concert.getTicketUrl());
             detailArtist2TextView.setText(concert.getArtist2());
             detailArtist3TextView.setText(concert.getArtist3());
             if (concert.getArtist2() == null || concert.getArtist2().equals("")) {
@@ -100,6 +102,17 @@ public class ConcertDetailFragment extends android.support.v4.app.Fragment {
             } else {
                 detailTimeTextView.setText(concert.convertDateTimetoTime(concert.getDateTime()));
             }
+
+            if (concert.getVenueURL() == null || concert.getVenueURL().equals("")) {
+                detailUrlTextView.setVisibility(View.GONE);
+            }
+
+            detailUrlTextView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                        openWebURL(concert.getVenueURL());
+                }
+            });
 
             ticketButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -114,6 +127,7 @@ public class ConcertDetailFragment extends android.support.v4.app.Fragment {
                     }
                 }
             });
+
         } else {
             throw new IllegalStateException("Something went wrong passing concert model to detail fragment!");
         }
@@ -128,4 +142,5 @@ public class ConcertDetailFragment extends android.support.v4.app.Fragment {
         getActivity().startActivity(internetIntent);
 
     }
+
 }

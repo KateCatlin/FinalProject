@@ -51,21 +51,24 @@ public class ConcertPagerActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Log.d("LOG_TAG", "button_home");
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case R.id.action_refresh:
-                Log.d("LOG_TAG", "button_home");
                 intent = new Intent(this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case R.id.action_new_concert:
-                Log.d("LOG_TAG", "new_concert");
                 Intent addConcertIntent = new Intent (this, AddConcertActivity.class );
                 startActivity(addConcertIntent);
+                break;
+            case R.id.action_settings:
+                Intent changeSettingsIntent = new Intent (this, SettingsActivity.class);
+                startActivity(changeSettingsIntent);
+                break;
+            default:
                 break;
         }
         return true;

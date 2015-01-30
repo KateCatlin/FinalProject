@@ -38,7 +38,7 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
     static int year, month, day, hour, minute = 0;
 
 
-    public static final SubmitConcertWhen newInstance() {
+    public  static final SubmitConcertWhen newInstance() {
         Bundle args = new Bundle();
         SubmitConcertWhen submitConcertWhen = new SubmitConcertWhen();
         submitConcertWhen.setArguments(args);
@@ -46,6 +46,11 @@ public class SubmitConcertWhen extends Fragment implements GetChosenDateInterfac
         return submitConcertWhen;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

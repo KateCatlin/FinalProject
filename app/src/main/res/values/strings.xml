@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">FinalProject</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">DetroitLive!</string>
     <string name="action_settings">Settings</string>
     <string name="LOG_TAG">LOG_TAG</string>
 
@@ -29,7 +28,7 @@
     <string name="Address">Default Address</string>
     <string name="City">Default City</string>
     <string name="ZipCode">Default Zipcode</string>
-    <string name="VenueURL">DefaultVenueURL.com</string>
+    <string name="VenueURL">Click for Venue Website</string>
     <string name="Artist1">Default Artist Headliner</string>
     <string name="Artist2">Default Artist 2</string>
     <string name="Artist3">Default Artist 3</string>
@@ -38,5 +37,8 @@
     <string name="Time">8:00</string>
 
     <string name="Heading">DetroitLive!</string>
+
+    <string name="shared_preferences_radius">Adjust radius of search</string>
+    <string name="shared_preferences_zipcode">Change your Zip Code</string>
 
 </resources>

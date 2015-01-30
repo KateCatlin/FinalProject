@@ -33,12 +33,12 @@ public class MasterRequest implements IndividualApiRequestCallback {
     }
 
 
-    public void loadConcerts(Activity activity) {
+    public void loadConcerts(Activity activity, String zipcode, String radius) {
 
         upcomingConcerts.clear();
 
         JSONRequest jsonRequest = JSONRequest.getJsonRequest(this);
-        jsonRequest.getConcerts();
+        jsonRequest.getConcerts(zipcode, radius);
 
         ParseRequest parseRequest = ParseRequest.getParseRequest(activity, this);
         parseRequest.getConcertsFromParse();
@@ -54,12 +54,18 @@ public class MasterRequest implements IndividualApiRequestCallback {
         }
 
         if (apisReturned == 2) {
-            if (upcomingConcerts.get(0) != null) {
-                apisReturned = 0;
-                thisMasterAPIRequestCallback.onSuccess(upcomingConcerts);
-            } else {
+            try {
+                if (upcomingConcerts.get(0) != null) {
+                    apisReturned = 0;
+                    thisMasterAPIRequestCallback.onSuccess(upcomingConcerts);
+                } else {
+                    thisMasterAPIRequestCallback.onError();
+                }
+            } catch (IndexOutOfBoundsException e) {
                 thisMasterAPIRequestCallback.onError();
             }
+
+
         }
     }
 
