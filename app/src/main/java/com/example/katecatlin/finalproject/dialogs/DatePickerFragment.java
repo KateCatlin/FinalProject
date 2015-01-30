@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.os.Bundle;
 import android.widget.DatePicker;
 
+import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.interfaces.GetChosenDateInterface;
 
 import java.util.Calendar;
@@ -16,6 +17,7 @@ import java.util.Calendar;
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
     GetChosenDateInterface chosenDateInterface;
+    String EXTRA_DATE = "EXTRA_DATE";
 
 
     public DatePickerFragment (GetChosenDateInterface getChosenDateInterface) {

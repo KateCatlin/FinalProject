@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <ListPreference
+        android:key="ZIP_CODE"
+        android:entries="@array/detroitZipCodes"
+        android:entryValues="@array/detroitZipCodes"
+        android:title="@string/shared_preferences_zipcode"
+        android:defaultValue="48201"
+        android:inputType="number"
+        android:singleLine="true" />
+
+
+    <EditTextPreference
+        android:key="RADIUS_OF_SEARCH"
+        android:title="@string/shared_preferences_radius"
+        android:defaultValue="10"
+        android:inputType="number"
+        android:singleLine="true" />
+
+
+</PreferenceScreen>

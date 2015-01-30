@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.katecatlin.finalproject.R;
 import com.example.katecatlin.finalproject.activities.AddConcertActivity;
 import com.example.katecatlin.finalproject.activities.ConcertPagerActivity;
+import com.example.katecatlin.finalproject.activities.SettingsActivity;
 import com.example.katecatlin.finalproject.adapters.ConcertListAdapter;
 import com.example.katecatlin.finalproject.interfaces.FragmentController;
 import com.example.katecatlin.finalproject.interfaces.MasterAPIRequestCallback;
@@ -43,6 +44,7 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override
@@ -126,6 +128,10 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
                 Log.d("LOG_TAG", "new_concert");
                 Intent addConcertIntent = new Intent (getActivity(), AddConcertActivity.class );
                 startActivity(addConcertIntent);
+                break;
+            case R.id.action_settings:
+                Intent changeSettingsIntent = new Intent (getActivity(), SettingsActivity.class);
+                startActivity(changeSettingsIntent);
                 break;
             default:
                 break;

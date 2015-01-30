@@ -54,12 +54,18 @@ public class MasterRequest implements IndividualApiRequestCallback {
         }
 
         if (apisReturned == 2) {
-            if (upcomingConcerts.get(0) != null) {
-                apisReturned = 0;
-                thisMasterAPIRequestCallback.onSuccess(upcomingConcerts);
-            } else {
+            try {
+                if (upcomingConcerts.get(0) != null) {
+                    apisReturned = 0;
+                    thisMasterAPIRequestCallback.onSuccess(upcomingConcerts);
+                } else {
+                    thisMasterAPIRequestCallback.onError();
+                }
+            } catch (IndexOutOfBoundsException e) {
                 thisMasterAPIRequestCallback.onError();
             }
+
+
         }
     }
 

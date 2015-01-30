@@ -35,6 +35,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.katecatlin.finalproject.activities.MainActivity" />
             </activity>
+        <activity android:name=".activities.SettingsActivity"
+            android:label="SettingsActivity"
+            android:parentActivityName=".activities.MainActivity"/>
     </application>
 
 </manifest>
