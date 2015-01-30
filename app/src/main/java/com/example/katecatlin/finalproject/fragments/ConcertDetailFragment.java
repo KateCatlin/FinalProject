@@ -1,22 +1,18 @@
 package com.example.katecatlin.finalproject.fragments;
 
-import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.katecatlin.finalproject.R;
-import com.example.katecatlin.finalproject.activities.AddConcertActivity;
 import com.example.katecatlin.finalproject.models.Concert;
 
 /**
@@ -31,7 +27,6 @@ public class ConcertDetailFragment extends android.support.v4.app.Fragment {
             detailAddressTextView, detailCityTextView, detailZipCodeTextView, detailUrlTextView,
             featuringTextView, detailArtist2TextView, detailArtist3TextView;
     private Button ticketButton;
-    private Boolean isPlaying = false;
 
     public static ConcertDetailFragment newInstance(Concert concert) {
 

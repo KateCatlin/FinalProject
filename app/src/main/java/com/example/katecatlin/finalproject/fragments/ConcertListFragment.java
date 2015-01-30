@@ -67,9 +67,6 @@ public class ConcertListFragment extends ListFragment implements MasterAPIReques
         String ZIP_CODE = sharedPreferences.getString("ZIP_CODE", "48201");
         String RADIUS_OF_SEARCH = sharedPreferences.getString("RADIUS_OF_SEARCH", "10");
 
-
-
-
         MasterRequest masterRequest = MasterRequest.getMasterRequest(this);
         masterRequest.loadConcerts(getActivity(), ZIP_CODE, RADIUS_OF_SEARCH);
     }

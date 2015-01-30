@@ -46,7 +46,6 @@ public class JSONRequest {
 
     public void getConcerts (String sharedPrefsZipCode, String sharedPrefsRadius) {
 
-
         Uri uri = new Uri.Builder()
                 .scheme("http")
                 .authority("api.jambase.com")
